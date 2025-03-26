@@ -11,7 +11,7 @@ public class DBConnector {
     private static final String DB_PASSWORD = "1212";
 
     private static Connection connection = null;
-    public Connection getConnection() {
+    public static Connection getConnection() {
         if(connection == null) {
             try{
                 connection = DriverManager.getConnection(
