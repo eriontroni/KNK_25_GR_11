@@ -52,6 +52,20 @@ public class SQLTables {
                     role VARCHAR(50) CHECK (role IN ('Admin', 'Receptionist', 'Customer')) NOT NULL
                 );
                 
+                CREATE TABLE Employee (
+    
+                    id SERIAL PRIMARY KEY,
+                    first_name VARCHAR(100) NOT NULL,
+                    last_name VARCHAR(100) NOT NULL,
+                    position VARCHAR(100),
+                    email VARCHAR(255) UNIQUE,
+                    phone VARCHAR(20),
+                    hire_date DATE                
+);
+
+
+
+                
                 CREATE TABLE Feedback (
                     id SERIAL PRIMARY KEY,
                     customer_id INT REFERENCES Customer(id) ON DELETE CASCADE,
