@@ -85,6 +85,15 @@ public class SQLTables {
                     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
                 );
 
+                CREATE TABLE maintenance_requests (
+                    id SERIAL PRIMARY KEY,
+                    room_id INT REFERENCES rooms(id),
+                    reported_by INT REFERENCES employees(id),
+                    description TEXT,
+                    status VARCHAR(20) DEFAULT 'pending', -- pending, in_progress, completed
+                    reported_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
                 """;
 
         try{
