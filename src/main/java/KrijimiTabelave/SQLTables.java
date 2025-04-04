@@ -105,16 +105,23 @@ public class SQLTables {
                 discount_id INT REFERENCES Discount(id) ON DELETE CASCADE
             );
 
-
-
-                CREATE TABLE maintenance_requests (
-                    id SERIAL PRIMARY KEY,
-                    room_id INT REFERENCES rooms(id),
-                    reported_by INT REFERENCES employees(id),
-                    description TEXT,
-                    status VARCHAR(20) DEFAULT 'pending', -- pending, in_progress, completed
-                    reported_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+            CREATE TABLE Maintenance (
+                id SERIAL PRIMARY KEY,
+                room_id INT REFERENCES rooms(id),
+                reported_by INT REFERENCES employees(id),
+                description TEXT,
+                status VARCHAR(20) DEFAULT 'pending', -- pending, in_progress, completed
+                reported_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
+           CREATE TABLE room_types (
+               id SERIAL PRIMARY KEY,
+               name VARCHAR(100) NOT NULL,
+               description TEXT,
+               capacity INT CHECK (capacity > 0),
+               price_per_night DECIMAL(10, 2) CHECK (price_per_night >= 0),
+               created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+               updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+         );
 
                 """;
 
