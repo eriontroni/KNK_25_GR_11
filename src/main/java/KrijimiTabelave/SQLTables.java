@@ -62,28 +62,50 @@ public class SQLTables {
                     phone VARCHAR(20),
                     hire_date DATE                
 );
+            CREATE TABLE Room_Service (
+                id SERIAL PRIMARY KEY,
+                reservation_id INT REFERENCES Reservation(id) ON DELETE CASCADE,
+                service_name VARCHAR(100) NOT NULL,
+                price DECIMAL(10,2) NOT NULL,
+                requested_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+            );
+            CREATE TABLE Cleaning_Schedule (
+                id SERIAL PRIMARY KEY,
+                room_id INT REFERENCES Room(id) ON DELETE CASCADE,
+                employee_id INT REFERENCES Employee(id),
+                scheduled_date DATE NOT NULL,
+                status VARCHAR(50) CHECK (status IN ('Scheduled', 'Completed', 'Missed')) DEFAULT 'Scheduled'
+            );
+            CREATE TABLE Feedback (
+                id SERIAL PRIMARY KEY,
+                customer_id INT REFERENCES Customer(id) ON DELETE CASCADE,
+                reservation_id INT REFERENCES Reservation(id) ON DELETE CASCADE,
+                rating INT CHECK (rating BETWEEN 1 AND 5),
+                comment TEXT,
+                created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+            );
+            CREATE TABLE Room_Image (
+                id SERIAL PRIMARY KEY,
+                room_id INT REFERENCES Room(id) ON DELETE CASCADE,
+                image_url TEXT NOT NULL,
+                uploaded_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+            );
+            CREATE TABLE Discount (
+                id SERIAL PRIMARY KEY,
+                code VARCHAR(50) UNIQUE NOT NULL,
+                description TEXT,
+                percentage DECIMAL(5,2) CHECK (percentage > 0 AND percentage <= 100),
+                valid_from DATE NOT NULL,
+                valid_to DATE NOT NULL
+            );
+            
+            CREATE TABLE Reservation_Discount (
+                id SERIAL PRIMARY KEY,
+                reservation_id INT REFERENCES Reservation(id) ON DELETE CASCADE,
+                discount_id INT REFERENCES Discount(id) ON DELETE CASCADE
+            );
 
-              CREATE TABLE room_types (
-                  
-                    id SERIAL PRIMARY KEY,
-                    name VARCHAR(100) NOT NULL,
-                    description TEXT,
-                    capacity INT CHECK (capacity > 0),
-                    price_per_night DECIMAL(10, 2) CHECK (price_per_night >= 0),
-                    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-                    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-                                    ); 
 
-
-
-                
-                CREATE TABLE Feedback (
-                    id SERIAL PRIMARY KEY,
-                    customer_id INT REFERENCES Customer(id) ON DELETE CASCADE,
-                    comment TEXT NOT NULL,
-                    rating INT CHECK (rating BETWEEN 1 AND 5) NOT NULL,
-                    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-                );
 
                 CREATE TABLE maintenance_requests (
                     id SERIAL PRIMARY KEY,
