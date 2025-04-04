@@ -51,6 +51,15 @@ public class SQLTables {
                     password_hash TEXT NOT NULL,
                     role VARCHAR(50) CHECK (role IN ('Admin', 'Receptionist', 'Customer')) NOT NULL
                 );
+                
+                CREATE TABLE Feedback (
+                    id SERIAL PRIMARY KEY,
+                    customer_id INT REFERENCES Customer(id) ON DELETE CASCADE,
+                    comment TEXT NOT NULL,
+                    rating INT CHECK (rating BETWEEN 1 AND 5) NOT NULL,
+                    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+                );
+
                 """;
 
         try{
