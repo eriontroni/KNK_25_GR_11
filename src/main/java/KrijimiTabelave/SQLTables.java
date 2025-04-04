@@ -73,6 +73,23 @@ public class SQLTables {
                     rating INT CHECK (rating BETWEEN 1 AND 5) NOT NULL,
                     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
                 );
+                  CREATE TABLE DiscountsAndOffers (
+                      id SERIAL PRIMARY KEY,
+                      title VARCHAR(100) NOT NULL,
+                      description TEXT,
+                      discount_percentage DECIMAL(5,2) CHECK (discount_percentage BETWEEN 0 AND 100) NOT NULL,
+                      start_date DATE NOT NULL,
+                      end_date DATE NOT NULL
+                  );
+                  CREATE TABLE Events (
+                      event_id SERIAL PRIMARY KEY,
+                      event_name VARCHAR(255) NOT NULL,
+                      organizer_name VARCHAR(255) NOT NULL,
+                      event_date DATE NOT NULL,
+                      event_time TIME NOT NULL,
+                      room_id INT REFERENCES Room(id) ON DELETE SET NULL,
+                      description TEXT
+                  );
 
                 """;
 
