@@ -69,7 +69,6 @@ public class SQLTables {
                 price DECIMAL(10,2) NOT NULL,
                 requested_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
             );
-            [12:27 PM]
             CREATE TABLE Cleaning_Schedule (
                 id SERIAL PRIMARY KEY,
                 room_id INT REFERENCES Room(id) ON DELETE CASCADE,
@@ -77,7 +76,6 @@ public class SQLTables {
                 scheduled_date DATE NOT NULL,
                 status VARCHAR(50) CHECK (status IN ('Scheduled', 'Completed', 'Missed')) DEFAULT 'Scheduled'
             );
-            [12:27 PM]
             CREATE TABLE Feedback (
                 id SERIAL PRIMARY KEY,
                 customer_id INT REFERENCES Customer(id) ON DELETE CASCADE,
@@ -86,14 +84,12 @@ public class SQLTables {
                 comment TEXT,
                 created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
             );
-            [12:28 PM]
             CREATE TABLE Room_Image (
                 id SERIAL PRIMARY KEY,
                 room_id INT REFERENCES Room(id) ON DELETE CASCADE,
                 image_url TEXT NOT NULL,
                 uploaded_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
             );
-            [12:28 PM]
             CREATE TABLE Discount (
                 id SERIAL PRIMARY KEY,
                 code VARCHAR(50) UNIQUE NOT NULL,
@@ -102,8 +98,7 @@ public class SQLTables {
                 valid_from DATE NOT NULL,
                 valid_to DATE NOT NULL
             );
-            NEW
-            [12:28 PM]
+            
             CREATE TABLE Reservation_Discount (
                 id SERIAL PRIMARY KEY,
                 reservation_id INT REFERENCES Reservation(id) ON DELETE CASCADE,
