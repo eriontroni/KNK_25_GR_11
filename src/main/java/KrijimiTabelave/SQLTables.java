@@ -63,6 +63,17 @@ public class SQLTables {
                     hire_date DATE                
 );
 
+              CREATE TABLE room_types (
+                  
+                    id SERIAL PRIMARY KEY,
+                    name VARCHAR(100) NOT NULL,
+                    description TEXT,
+                    capacity INT CHECK (capacity > 0),
+                    price_per_night DECIMAL(10, 2) CHECK (price_per_night >= 0),
+                    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+                    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+                                    ); 
+
 
 
                 """;
