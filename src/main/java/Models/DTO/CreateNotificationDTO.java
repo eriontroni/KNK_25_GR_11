@@ -9,25 +9,18 @@ import java.time.LocalDateTime;
 //uploaded_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 //);
 public class CreateNotificationDTO {
-    private int id;
+
     private int room_id;
     private String image_url;
     LocalDateTime uploaded_at;
 
-    public CreateNotificationDTO(int id, int room_id, String image_url, LocalDateTime uploaded_at) {
-        this.id = id;
+    public CreateNotificationDTO(int room_id, String image_url, LocalDateTime uploaded_at) {
+
         this.room_id = room_id;
         this.image_url = image_url;
         this.uploaded_at = uploaded_at;
     }
 
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
 
     public int getRoom_id() {
         return room_id;
