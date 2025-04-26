@@ -21,7 +21,7 @@ private float price_per_night;
 private LocalDateTime createdAt;
 private LocalDateTime updatedAt;
 
-public createRoomTypeDTO(String name, String description, Integer capacity,int price_per_night, LocalDateTime createdAt, LocalDateTime updatedAt){
+public createRoomTypeDTO(String name, String description, int capacity,float price_per_night, LocalDateTime createdAt, LocalDateTime updatedAt){
     this.name = name;
     this.description = description;
     this.capacity = capacity;
@@ -44,11 +44,11 @@ public createRoomTypeDTO(String name, String description, Integer capacity,int p
     public void setDescription(String description) {
         this.description = description;
     }
-    public Integer getCapacity() {
+    public int getCapacity() {
         return capacity;
     }
 
-    public void setCapacity(Integer capacity) {
+    public void setCapacity(int capacity) {
         this.capacity = capacity;
     }
 
@@ -56,7 +56,7 @@ public createRoomTypeDTO(String name, String description, Integer capacity,int p
         return price_per_night;
     }
 
-    public void setPricePerNight(float price_per_night) {
+    public void setPrice_per_night(float price_per_night) {
         this.price_per_night = price_per_night;
     }
     public LocalDateTime getCreatedAt() {
