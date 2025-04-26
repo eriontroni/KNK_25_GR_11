@@ -12,21 +12,18 @@ public class CreateUsersDTO {
 
     public class CreateUserDTO {
 
-        private int id;
         private String username;
         private String email;
         private String password_hash;
         private String role;
 
         public CreateUserDTO(String username, String email, String password_hash, String role) {
-            this.id = id;
             this.username = username;
             this.email = email;
             this.password_hash = password_hash;
             this.role = role;
         }
 
-        public int getId() { return id; }
 
         public String getUsername() { return username;}
 

@@ -14,7 +14,6 @@ public class CreateDiscountDTO {
 //    valid_to DATE NOT NULL
 //);
 
-    private int id;
     private String code;
     private String description;
     private BigDecimal percentage;
@@ -22,20 +21,11 @@ public class CreateDiscountDTO {
     private LocalDate valid_to;
 
     public CreateDiscountDTO(int id, String code, String description, BigDecimal percentage, LocalDate valid_from, LocalDate valid_to) {
-        this.id = id;
         this.code = code;
         this.description = description;
         this.percentage = percentage;
         this.valid_from = valid_from;
         this.valid_to = valid_to;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     public String getCode() {
