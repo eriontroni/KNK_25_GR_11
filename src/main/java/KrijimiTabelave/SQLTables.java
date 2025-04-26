@@ -8,8 +8,17 @@ import java.sql.Statement;
 public class SQLTables {
     public static void main(String[] args) {
         Connection connection = DBConnector.getConnection();
+        /*
+        * Erioni - RoomImage, ReservationHistory, Notifications
+        * Leoni  - Customer, ReservationDiscount, Offer
+        * Natyra - Room, Reservation, Maintenance
+        * Vesa   - Users, Payment, Discount
+        * Elona  - RoomType, Employee, Event
+        * Era    - RoomService, CleaningSchedule, Feedback
+        * */
         String query = """
--- 1. RoomType
+
+-- 1. RoomType -Elona
 CREATE TABLE RoomType (
     id SERIAL PRIMARY KEY,
     name VARCHAR(100) NOT NULL,
@@ -20,15 +29,15 @@ CREATE TABLE RoomType (
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
--- 2. Room
-CREATE TABLE Room (
+-- 2. Room -Natyra
+CREATE TABLE Room ( 
     id SERIAL PRIMARY KEY,
     room_number VARCHAR(10) UNIQUE NOT NULL,
     type_id INT REFERENCES RoomType(id) ON DELETE SET NULL,
     is_available BOOLEAN DEFAULT TRUE
 );
 
--- 3. Customer
+-- 3. Customer -Leoni
 CREATE TABLE Customer (
     id SERIAL PRIMARY KEY,
     first_name VARCHAR(100) NOT NULL,
@@ -37,7 +46,7 @@ CREATE TABLE Customer (
     phone VARCHAR(20) UNIQUE NOT NULL
 );
 
--- 4. Users
+-- 4. Users -Vesa
 CREATE TABLE Users (
     id SERIAL PRIMARY KEY,
     username VARCHAR(100) UNIQUE NOT NULL,
@@ -46,7 +55,7 @@ CREATE TABLE Users (
     role VARCHAR(50) CHECK (role IN ('Admin', 'Receptionist', 'Customer')) NOT NULL
 );
 
--- 5. Employee
+-- 5. Employee -Elona
 CREATE TABLE Employee (
     id SERIAL PRIMARY KEY,
     first_name VARCHAR(100) NOT NULL,
@@ -57,7 +66,7 @@ CREATE TABLE Employee (
     hire_date DATE
 );
 
--- 6. Reservation
+-- 6. Reservation -Natyra
 CREATE TABLE Reservation (
     id SERIAL PRIMARY KEY,
     customer_id INT REFERENCES Customer(id) ON DELETE CASCADE,
@@ -68,7 +77,7 @@ CREATE TABLE Reservation (
     total_price DECIMAL(10,2) NOT NULL
 );
 
--- 7. Payment
+-- 7. Payment -Vesa
 CREATE TABLE Payment (
     id SERIAL PRIMARY KEY,
     reservation_id INT REFERENCES Reservation(id) ON DELETE CASCADE,
@@ -77,7 +86,7 @@ CREATE TABLE Payment (
     payment_status VARCHAR(50) CHECK (payment_status IN ('Pending', 'Completed', 'Failed')) DEFAULT 'Pending'
 );
 
--- 8. RoomService
+-- 8. RoomService -Era
 CREATE TABLE RoomService (
     id SERIAL PRIMARY KEY,
     reservation_id INT REFERENCES Reservation(id) ON DELETE CASCADE,
@@ -86,7 +95,7 @@ CREATE TABLE RoomService (
     requested_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
--- 9. CleaningSchedule
+-- 9. CleaningSchedule -Era
 CREATE TABLE CleaningSchedule (
     id SERIAL PRIMARY KEY,
     room_id INT REFERENCES Room(id) ON DELETE CASCADE,
@@ -95,7 +104,7 @@ CREATE TABLE CleaningSchedule (
     status VARCHAR(50) CHECK (status IN ('Scheduled', 'Completed', 'Missed')) DEFAULT 'Scheduled'
 );
 
--- 10. Feedback
+-- 10. Feedback -Era
 CREATE TABLE Feedback (
     id SERIAL PRIMARY KEY,
     customer_id INT REFERENCES Customer(id) ON DELETE CASCADE,
@@ -105,7 +114,7 @@ CREATE TABLE Feedback (
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
--- 11. RoomImage
+-- 11. RoomImage -Erioni
 CREATE TABLE RoomImage (
     id SERIAL PRIMARY KEY,
     room_id INT REFERENCES Room(id) ON DELETE CASCADE,
@@ -113,7 +122,7 @@ CREATE TABLE RoomImage (
     uploaded_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
--- 12. Discount
+-- 12. Discount -Vesa
 CREATE TABLE Discount (
     id SERIAL PRIMARY KEY,
     code VARCHAR(50) UNIQUE NOT NULL,
@@ -123,14 +132,14 @@ CREATE TABLE Discount (
     valid_to DATE NOT NULL
 );
 
--- 13. ReservationDiscount
+-- 13. ReservationDiscount -Leoni
 CREATE TABLE ReservationDiscount (
     id SERIAL PRIMARY KEY,
     reservation_id INT REFERENCES Reservation(id) ON DELETE CASCADE,
     discount_id INT REFERENCES Discount(id) ON DELETE CASCADE
 );
 
--- 14. Maintenance
+-- 14. Maintenance -Natyra
 CREATE TABLE Maintenance (
     id SERIAL PRIMARY KEY,
     room_id INT REFERENCES Room(id) ON DELETE CASCADE,
@@ -140,7 +149,7 @@ CREATE TABLE Maintenance (
     reported_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
--- 15. Offer
+-- 15. Offer -Leoni
 CREATE TABLE Offer (
     id SERIAL PRIMARY KEY,
     title VARCHAR(100) NOT NULL,
@@ -150,7 +159,7 @@ CREATE TABLE Offer (
     end_date DATE NOT NULL
 );
 
--- 16. Event
+-- 16. Event -Elona
 CREATE TABLE Event (
     id SERIAL PRIMARY KEY,
     event_name VARCHAR(255) NOT NULL,
@@ -161,7 +170,7 @@ CREATE TABLE Event (
     description TEXT
 );
 
--- 17. ReservationHistory
+-- 17. ReservationHistory -Erioni
 CREATE TABLE ReservationHistory (
     id SERIAL PRIMARY KEY,
     reservation_id INT REFERENCES Reservation(id) ON DELETE CASCADE,
@@ -171,7 +180,7 @@ CREATE TABLE ReservationHistory (
     new_status VARCHAR(50)
 );
 
--- 18. Notification
+-- 18. Notification -Erioni
 CREATE TABLE Notification (
     id SERIAL PRIMARY KEY,
     user_id INT REFERENCES Users(id) ON DELETE CASCADE,
