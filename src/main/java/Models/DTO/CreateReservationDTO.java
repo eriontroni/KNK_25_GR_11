@@ -6,6 +6,16 @@ import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
+//CREATE TABLE Reservation (
+//        id SERIAL PRIMARY KEY,
+//        customer_id INT REFERENCES Customer(id) ON DELETE CASCADE,
+//room_id INT REFERENCES Room(id) ON DELETE CASCADE,
+//check_in_date DATE NOT NULL,
+//check_out_date DATE NOT NULL,
+//status VARCHAR(50) CHECK (status IN ('Pending', 'Confirmed', 'Cancelled')) DEFAULT 'Pending',
+//total_price DECIMAL(10,2) NOT NULL
+//);
+
 public class CreateReservationDTO {
     private static final String INSERT_RESERVATION_QUERY = "INSERT INTO Reservation (customer_id, room_id, check_in_date, check_out_date, status, total_price) VALUES (?, ?, ?, ?, ?, ?)";
 
