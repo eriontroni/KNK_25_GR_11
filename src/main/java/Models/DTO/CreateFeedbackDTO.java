@@ -42,9 +42,7 @@ public class CreateFeedbackDTO {
         this.reservation_id = reservation_id;
     }
 
-    public int getRating() {
-        return rating;
-    }
+    public int getRating() { return rating; }
 
     public void setRating(int rating) {
         this.rating = rating;
