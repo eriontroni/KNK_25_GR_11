@@ -3,6 +3,8 @@ package repository;
 import DataBase.DBConnector;
 import Models.*;
 import java.sql.*;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 // cdo komunikim me baze te te dhenave, behet permes repositories
 
@@ -15,7 +17,13 @@ abstract class BaseRepository<Model, CreateModelDto, UpdateModelDto> {
         this.tableName = tableName;
     }
 
-
+    public static String convertLocalDateTimeToString(LocalDateTime dateTime) {
+        if (dateTime == null) {
+            return null;
+        }
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+        return dateTime.format(formatter);
+    }
     abstract Model fromResutlSet(ResultSet res);
 
     public Model getById(int id){

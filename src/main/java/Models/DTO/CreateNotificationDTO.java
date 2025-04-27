@@ -1,5 +1,6 @@
 package Models.DTO;
 
+import java.sql.Date;
 import java.time.LocalDateTime;
 //
 //-- 18. Notification -Erioni
@@ -14,10 +15,10 @@ public class CreateNotificationDTO {
 
     private int user_id;
     private String message;
-    private LocalDateTime created_at;
+    private Date created_at;
     private boolean is_read;
 
-    public CreateNotificationDTO(int user_id, String message, LocalDateTime created_at, boolean is_read) {
+    public CreateNotificationDTO(int user_id, String message, Date created_at, boolean is_read) {
         this.user_id = user_id;
         this.message = message;
         this.created_at = created_at;
@@ -40,11 +41,11 @@ public class CreateNotificationDTO {
         this.message = message;
     }
 
-    public LocalDateTime getCreated_at() {
+    public Date getCreated_at() {
         return created_at;
     }
 
-    public void setCreated_at(LocalDateTime created_at) {
+    public void setCreated_at(Date created_at) {
         this.created_at = created_at;
     }
 

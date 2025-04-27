@@ -1,6 +1,6 @@
 package Models.DTO;
 
-import java.time.LocalDateTime;
+import java.util.Date;
 
 //CREATE TABLE ReservationHistory (
 //        id SERIAL PRIMARY KEY,
@@ -13,11 +13,11 @@ import java.time.LocalDateTime;
 public class CreateReservationHistoryDTO {
     private int reservation_id;
     private int customer_id;
-    private LocalDateTime change_date;
+    private Date change_date;
     private String old_status;
     private String new_status;
 
-    public CreateReservationHistoryDTO(int reservation_id, int customer_id, LocalDateTime change_date, String old_status, String new_status) {
+    public CreateReservationHistoryDTO(int reservation_id, int customer_id, Date change_date, String old_status, String new_status) {
         this.reservation_id = reservation_id;
         this.customer_id = customer_id;
         this.change_date = change_date;
@@ -41,11 +41,11 @@ public class CreateReservationHistoryDTO {
         this.customer_id = customer_id;
     }
 
-    public LocalDateTime getChange_date() {
+    public Date getChange_date() {
         return change_date;
     }
 
-    public void setChange_date(LocalDateTime change_date) {
+    public void setChange_date(Date change_date) {
         this.change_date = change_date;
     }
 

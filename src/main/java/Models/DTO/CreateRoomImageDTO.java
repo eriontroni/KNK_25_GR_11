@@ -1,5 +1,6 @@
 package Models.DTO;
 
+import java.sql.Date;
 import java.time.LocalDateTime;
 //
 //CREATE TABLE RoomImage (
@@ -11,9 +12,9 @@ import java.time.LocalDateTime;
 public class CreateRoomImageDTO {
     private int room_id;
     private String image_url;
-    private LocalDateTime uploaded_at;
+    private Date uploaded_at;
 
-    public CreateRoomImageDTO(int room_id, String image_url, LocalDateTime uploaded_at) {
+    public CreateRoomImageDTO(int room_id, String image_url, Date uploaded_at) {
         this.room_id = room_id;
         this.image_url = image_url;
         this.uploaded_at = uploaded_at;
@@ -35,11 +36,11 @@ public class CreateRoomImageDTO {
         this.image_url = image_url;
     }
 
-    public LocalDateTime getUploaded_at() {
+    public Date getUploaded_at() {
         return uploaded_at;
     }
 
-    public void setUploaded_at(LocalDateTime uploaded_at) {
+    public void setUploaded_at(Date uploaded_at) {
         this.uploaded_at = uploaded_at;
     }
 }
