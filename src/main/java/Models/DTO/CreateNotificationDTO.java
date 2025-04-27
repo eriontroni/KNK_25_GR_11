@@ -2,47 +2,57 @@ package Models.DTO;
 
 import java.time.LocalDateTime;
 //
-//CREATE TABLE RoomImage (
+//-- 18. Notification -Erioni
+//CREATE TABLE Notification (
 //        id SERIAL PRIMARY KEY,
-//        room_id INT REFERENCES Room(id) ON DELETE CASCADE,
-//image_url TEXT NOT NULL,
-//uploaded_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+//        user_id INT REFERENCES Users(id) ON DELETE CASCADE,
+//message TEXT NOT NULL,
+//created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+//is_read BOOLEAN DEFAULT FALSE
 //);
 public class CreateNotificationDTO {
 
-    private int room_id;
-    private String image_url;
-    LocalDateTime uploaded_at;
+    private int user_id;
+    private String message;
+    private LocalDateTime created_at;
+    private boolean is_read;
 
-    public CreateNotificationDTO(int room_id, String image_url, LocalDateTime uploaded_at) {
-
-        this.room_id = room_id;
-        this.image_url = image_url;
-        this.uploaded_at = uploaded_at;
+    public CreateNotificationDTO(int user_id, String message, LocalDateTime created_at, boolean is_read) {
+        this.user_id = user_id;
+        this.message = message;
+        this.created_at = created_at;
+        this.is_read = is_read;
     }
 
-
-    public int getRoom_id() {
-        return room_id;
+    public int getUser_id() {
+        return user_id;
     }
 
-    public void setRoom_id(int room_id) {
-        this.room_id = room_id;
+    public void setUser_id(int user_id) {
+        this.user_id = user_id;
     }
 
-    public String getImage_url() {
-        return image_url;
+    public String getMessage() {
+        return message;
     }
 
-    public void setImage_url(String image_url) {
-        this.image_url = image_url;
+    public void setMessage(String message) {
+        this.message = message;
     }
 
-    public LocalDateTime getUploaded_at() {
-        return uploaded_at;
+    public LocalDateTime getCreated_at() {
+        return created_at;
     }
 
-    public void setUploaded_at(LocalDateTime uploaded_at) {
-        this.uploaded_at = uploaded_at;
+    public void setCreated_at(LocalDateTime created_at) {
+        this.created_at = created_at;
+    }
+
+    public boolean isIs_read() {
+        return is_read;
+    }
+
+    public void setIs_read(boolean is_read) {
+        this.is_read = is_read;
     }
 }
