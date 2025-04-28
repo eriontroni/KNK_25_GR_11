@@ -12,16 +12,16 @@ package Models.DTO;
 //);
 
 public class updateEmployeeDTO {
-
+private String name;
+private String lastname;
     private String position;//nese kemi rritje ne pozite
-    private String email;
-    private String phone;
 
-    public updateEmployeeDTO( String position, String email, String phone) {
+
+    public updateEmployeeDTO( String position, String name, String lastname) {
 
         this.position = position;
-        this.email = email;
-        this.phone = phone;
+        this.name = name;
+        this.lastname = lastname;
     }
   
 
@@ -32,19 +32,19 @@ public class updateEmployeeDTO {
     public void setPosition(String position) {
         this.position = position;
     }
-    public String getEmail() {
-        return email;
+    public String getName() {
+        return name;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public String getPhone() {
-        return phone;
+    public String getLastname() {
+        return lastname;
     }
 
-    public void setPhone(String phone) {
-        this.phone = phone;
+    public void setLastname(String lastname) {
+        this.lastname = lastname;
     }
 }
