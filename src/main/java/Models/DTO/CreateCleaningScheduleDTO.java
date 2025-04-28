@@ -1,6 +1,6 @@
 package Models.DTO;
 
-import java.time.LocalDateTime;
+import java.util.Date;
 
 /*CREATE TABLE CleaningSchedule (
     id SERIAL PRIMARY KEY,
@@ -13,10 +13,10 @@ import java.time.LocalDateTime;
 public class CreateCleaningScheduleDTO {
     private int room_id;
     private int employee_id;
-    private LocalDateTime scheduled_date;
+    private Date scheduled_date;
     private String status;
 
-    public CreateCleaningScheduleDTO(int room_id, int employee_id, LocalDateTime scheduled_date, String status){
+    public CreateCleaningScheduleDTO(int room_id, int employee_id, Date scheduled_date, String status){
         this.room_id=room_id;
         this.employee_id=employee_id;
         this.scheduled_date=scheduled_date;
@@ -39,11 +39,11 @@ public class CreateCleaningScheduleDTO {
         this.employee_id = employee_id;
     }
 
-    public LocalDateTime getScheduled_date() {
+    public Date getScheduled_date() {
         return scheduled_date;
     }
 
-    public void setScheduled_date(LocalDateTime scheduled_date) {
+    public void setScheduled_date(Date scheduled_date) {
         this.scheduled_date = scheduled_date;
     }
 

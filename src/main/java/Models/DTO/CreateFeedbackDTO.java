@@ -9,16 +9,17 @@ package Models.DTO;
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );*/
 
-import java.time.LocalDateTime;
+
+import java.util.Date;
 
 public class CreateFeedbackDTO {
     private int customer_id;
     private int reservation_id;
     private int rating;
     private String text;
-    private LocalDateTime created_at;
+    private Date created_at;
 
-    public CreateFeedbackDTO(int customer_id, int reservation_id, int rating, String text, LocalDateTime created_at){
+    public CreateFeedbackDTO(int customer_id, int reservation_id, int rating, String text, Date created_at){
         this.customer_id=customer_id;
         this.reservation_id=reservation_id;
         this.rating=rating;
@@ -56,11 +57,11 @@ public class CreateFeedbackDTO {
         this.text = text;
     }
 
-    public LocalDateTime getCreated_at() {
+    public Date getCreated_at() {
         return created_at;
     }
 
-    public void setCreated_at(LocalDateTime created_at) {
+    public void setCreated_at(Date created_at) {
         this.created_at = created_at;
     }
 }
