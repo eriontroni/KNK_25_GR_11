@@ -10,7 +10,7 @@ package Models.DTO;
 );*/
 
 
-import java.util.Date;
+import java.sql.Date;
 
 public class CreateFeedbackDTO {
     private int customer_id;
