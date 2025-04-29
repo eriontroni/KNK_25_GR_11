@@ -3,8 +3,8 @@ package Models.DTO;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
+import java.sql.Date;
+import Models.Reservation;
 
 //CREATE TABLE Reservation (
 //        id SERIAL PRIMARY KEY,
@@ -20,14 +20,14 @@ public class CreateReservationDTO {
     private static final String INSERT_RESERVATION_QUERY = "INSERT INTO Reservation (customer_id, room_id, check_in_date, check_out_date, status, total_price) VALUES (?, ?, ?, ?, ?, ?)";
 
     // Krijon rezervim dhe e ruan ne databaze
-    public static boolean createReservation(Connection connection, int customerId, int roomId, LocalDate checkInDate, LocalDate checkOutDate, String status, double totalPrice) {
+    public static boolean createReservation(Connection connection, Reservation reservation){
         try (PreparedStatement statement = connection.prepareStatement(INSERT_RESERVATION_QUERY)) {
-            statement.setInt(1, customerId); // vendos ID e klientit
-            statement.setInt(2, roomId);     // ID e dhomes
-            statement.setString(3, checkInDate.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"))); // Formatim i datës së hyrjes
-            statement.setString(4, checkOutDate.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"))); // Formatim i datës së daljes
-            statement.setString(5, status);  //
-            statement.setDouble(6, totalPrice); // cmimi
+            statement.setInt(1, reservation.getCustomerId()); // vendos ID e klientit
+            statement.setInt(2, reservation.getRoomId());     // ID e dhomes
+            statement.setDate(3, reservation.getCheckInDate());  //data e hyrjes
+            statement.setDate(4,reservation.getCheckOutDate()); //data e daljes
+            statement.setString(5, reservation.getStatus());  // statusi
+            statement.setDouble(6, reservation.getTotalPrice()); // cmimi
 
             int rowsAffected = statement.executeUpdate(); // ekzekuton query-n
             return rowsAffected > 0; // kthen true nese rezervimi eshte kriju me sukses

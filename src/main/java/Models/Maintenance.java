@@ -1,6 +1,6 @@
 package Models;
 
-import java.time.LocalDateTime;
+import java.sql.Date;
 
 public class Maintenance {
     private int id;
@@ -8,10 +8,10 @@ public class Maintenance {
     private int reportedBy;
     private String description;
     private String status;
-    private LocalDateTime reportedAt;
+    private Date reportedAt;
 
     // konstruktori
-    public Maintenance(int id, int roomId, int reportedBy, String description, String status, LocalDateTime reportedAt) {
+    public Maintenance(int id, int roomId, int reportedBy, String description, String status, Date reportedAt) {
         this.id = id;
         this.roomId = roomId;
         this.reportedBy = reportedBy;
@@ -41,7 +41,7 @@ public class Maintenance {
         return status;
     }
 
-    public LocalDateTime getReportedAt() {
+    public Date getReportedAt() {
         return reportedAt;
     }
 }
