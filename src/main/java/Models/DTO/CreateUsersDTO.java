@@ -10,14 +10,12 @@ public class CreateUsersDTO {
 //    role VARCHAR(50) CHECK (role IN ('Admin', 'Receptionist', 'Customer')) NOT NULL
 //);
 
-    public class CreateUserDTO {
-
         private String username;
         private String email;
         private String password_hash;
         private String role;
 
-        public CreateUserDTO(String username, String email, String password_hash, String role) {
+        public CreateUsersDTO(String username, String email, String password_hash, String role) {
             this.username = username;
             this.email = email;
             this.password_hash = password_hash;
@@ -41,4 +39,3 @@ public class CreateUsersDTO {
 
         public void setRole(String role) { this.role = role; }
     }
-}

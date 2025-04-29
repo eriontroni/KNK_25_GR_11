@@ -1,6 +1,7 @@
 package Models.DTO;
 
-import java.time.LocalDateTime;
+import java.math.BigDecimal;
+import java.sql.Date;
 
 /*CREATE TABLE RoomService (
     id SERIAL PRIMARY KEY,
@@ -13,10 +14,10 @@ import java.time.LocalDateTime;
 public class CreateRoomServiceDTO {
     private int reservationId;
     private String serviceName;
-    private double price;
-    private LocalDateTime requested_at;
+    private BigDecimal price;
+    private Date requested_at;
 
-    public CreateRoomServiceDTO(int reservationId, String serviceName, double price, LocalDateTime requested_at){
+    public CreateRoomServiceDTO(int reservationId, String serviceName, BigDecimal price, Date requested_at){
         this.reservationId=reservationId;
         this.serviceName=serviceName;
         this.price=price;
@@ -39,19 +40,19 @@ public class CreateRoomServiceDTO {
         this.serviceName=serviceName;
     }
 
-    public double getPrice(){
+    public BigDecimal getPrice(){
         return price;
     }
 
-    public void setPrice(double price){
+    public void setPrice(BigDecimal price){
         this.price=price;
     }
 
-    public LocalDateTime getRequested_at(){
+    public Date getRequested_at(){
         return requested_at;
     }
 
-    public void setRequested_at(LocalDateTime requested_at){
+    public void setRequested_at(Date requested_at){
         this.requested_at=requested_at;
     }
 }

@@ -1,7 +1,7 @@
 package Models.DTO;
 
 import java.math.BigDecimal;
-import java.time.LocalDate;
+import java.util.Date;
 
 public class CreateDiscountDTO {
 
@@ -17,10 +17,10 @@ public class CreateDiscountDTO {
     private String code;
     private String description;
     private BigDecimal percentage;
-    private LocalDate valid_from;
-    private LocalDate valid_to;
+    private Date valid_from;
+    private Date valid_to;
 
-    public CreateDiscountDTO(int id, String code, String description, BigDecimal percentage, LocalDate valid_from, LocalDate valid_to) {
+    public CreateDiscountDTO(int id, String code, String description, BigDecimal percentage, Date valid_from, Date valid_to) {
         this.code = code;
         this.description = description;
         this.percentage = percentage;
@@ -52,19 +52,19 @@ public class CreateDiscountDTO {
         this.percentage = percentage;
     }
 
-    public LocalDate getValid_from() {
+    public Date getValid_from() {
         return valid_from;
     }
 
-    public void setValid_from(LocalDate valid_from) {
+    public void setValid_from(Date valid_from) {
         this.valid_from = valid_from;
     }
 
-    public LocalDate getValid_to() {
+    public Date getValid_to() {
         return valid_to;
     }
 
-    public void setValid_to(LocalDate valid_to) {
+    public void setValid_to(Date valid_to) {
         this.valid_to = valid_to;
     }
 }
