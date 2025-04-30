@@ -1,6 +1,6 @@
 package Models.DTO;
 
-import java.time.LocalDate;
+import java.util.Date;
 
 //CREATE TABLE Employee (
   //      id SERIAL PRIMARY KEY,
@@ -17,9 +17,9 @@ public class createEmployeeDTO {
     private String position;
     private String email;
     private String phone;
-    private LocalDate hire_date;
+    private Date hire_date;
 
-    public createEmployeeDTO(String first_name, String last_name, String position, String email, String phone, LocalDate hire_date) {
+    public createEmployeeDTO(String first_name, String last_name, String position, String email, String phone, Date hire_date) {
         this.first_name = first_name;
         this.last_name = last_name;
         this.position = position;
@@ -62,11 +62,11 @@ public class createEmployeeDTO {
     public void setPhone(String phone) {
         this.phone = phone;
     }
-    public LocalDate getHire_date() {
+    public Date getHire_date() {
         return hire_date;
     }
 
-    public void setHire_date(LocalDate hire_date) {
+    public void setHire_date(Date hire_date) {
         this.hire_date = hire_date;
     }
 }

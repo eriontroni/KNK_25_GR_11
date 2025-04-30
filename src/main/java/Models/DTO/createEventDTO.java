@@ -1,6 +1,6 @@
 package Models.DTO;
 
-import java.time.LocalDate;
+import java.util.Date;
 import java.time.LocalTime;
 
 //CREATE TABLE Event (
@@ -15,12 +15,12 @@ import java.time.LocalTime;
 public class createEventDTO {
     private String event_name;
     private String organizer_name;
-    private LocalDate event_date;
+    private Date event_date;
     private LocalTime event_time;
     private Integer room_id;
     private String description;
 
-    public createEventDTO(String event_name, String organizer_name, LocalDate event_date, LocalTime event_time, int room_id, String description){
+    public createEventDTO(String event_name, String organizer_name, Date event_date, LocalTime event_time, int room_id, String description){
         this.event_name = event_name;
         this.organizer_name = organizer_name;
         this.event_date = event_date;
@@ -42,11 +42,11 @@ public class createEventDTO {
     public void setOrganizer_name(String organizer_name) {
         this.organizer_name = organizer_name;
     }
-    public LocalDate getEvent_date() {
+    public Date getEvent_date() {
         return event_date;
     }
 
-    public void setEvent_date(LocalDate event_date) {
+    public void setEvent_date(Date event_date) {
         this.event_date = event_date;
     }
     public LocalTime getEvent_time() {
