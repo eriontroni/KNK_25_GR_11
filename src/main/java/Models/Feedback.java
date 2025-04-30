@@ -2,8 +2,7 @@ package Models;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
+import java.sql.Date;
 
 public class Feedback {
     private int id;
@@ -11,9 +10,9 @@ public class Feedback {
     private int reservation_id;
     private int rating;
     private String comment;
-    private LocalDateTime created_at;
+    private Date created_at;
 
-    public Feedback(int id, int costumer_id, int reservation_id, int rating, String comment, LocalDateTime created_at){
+    public Feedback(int id, int costumer_id, int reservation_id, int rating, String comment, Date created_at){
         this.id=id;
         this.costumer_id=costumer_id;
         this.reservation_id=reservation_id;
@@ -28,9 +27,7 @@ public class Feedback {
         int reservation_id=resultSet.getInt("reservation_id");
         int rating=resultSet.getInt("rating");
         String comment=resultSet.getString("comment");
-
-        String created_atString= resultSet.getString("created_at");
-        LocalDateTime created_at = LocalDateTime.parse(created_atString, DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
+        Date created_at=resultSet.getDate("created_at");
 
         return new Feedback(id, costumer_id,reservation_id, rating, comment, created_at);
     }
@@ -45,5 +42,5 @@ public class Feedback {
 
     public String getComment() { return comment; }
 
-    public LocalDateTime getCreated_at() { return created_at; }
+    public Date getCreated_at() { return created_at; }
 }
