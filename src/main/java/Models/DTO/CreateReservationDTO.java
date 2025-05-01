@@ -1,10 +1,6 @@
 package Models.DTO;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
 import java.sql.Date;
-import Models.Reservation;
 
 //CREATE TABLE Reservation (
 //        id SERIAL PRIMARY KEY,
@@ -17,23 +13,70 @@ import Models.Reservation;
 //);
 
 public class CreateReservationDTO {
-    private static final String INSERT_RESERVATION_QUERY = "INSERT INTO Reservation (customer_id, room_id, check_in_date, check_out_date, status, total_price) VALUES (?, ?, ?, ?, ?, ?)";
+    private int id; //perdoret psh per update ose view
+    private int customerId;
+    private int roomId;
+    private Date checkInDate;
+    private Date checkOutDate;
+    private String status;
+    private double totalPrice;
 
-    // Krijon rezervim dhe e ruan ne databaze
-    public static boolean createReservation(Connection connection, Reservation reservation){
-        try (PreparedStatement statement = connection.prepareStatement(INSERT_RESERVATION_QUERY)) {
-            statement.setInt(1, reservation.getCustomerId()); // vendos ID e klientit
-            statement.setInt(2, reservation.getRoomId());     // ID e dhomes
-            statement.setDate(3, reservation.getCheckInDate());  //data e hyrjes
-            statement.setDate(4,reservation.getCheckOutDate()); //data e daljes
-            statement.setString(5, reservation.getStatus());  // statusi
-            statement.setDouble(6, reservation.getTotalPrice()); // cmimi
-
-            int rowsAffected = statement.executeUpdate(); // ekzekuton query-n
-            return rowsAffected > 0; // kthen true nese rezervimi eshte kriju me sukses
-        } catch (SQLException e) {
-            e.printStackTrace(); // trajton gabimet ne rast se ndodhin
-            return false;
-        }
+    //konstruktor per me kriju nje rezervim
+    public CreateReservationDTO(int id, int customerId, int roomId, Date checkInDate, Date checkOutDate, String status, double totalPrice) {
+        this.id = id;
+        this.customerId = customerId;
+        this.roomId = roomId;
+        this.checkInDate = checkInDate;
+        this.checkOutDate = checkOutDate;
+        this.status = status;
+        this.totalPrice = totalPrice;
     }
+
+    // getter per fushat
+    public int getId() {
+        return id;
+    }
+
+    public int getCustomerId() {
+        return customerId;
+    }
+
+    public int getRoomId() {
+        return roomId;
+    }
+
+    public Date getCheckInDate() {
+        return checkInDate;
+    }
+
+    public Date getCheckOutDate() {
+        return checkOutDate;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public double getTotalPrice() {
+        return totalPrice;
+    }
+    // formatimi i dates se hyrjes si string
+    public String getFormattedCheckInDate() {
+        return checkInDate.toString();  // "yyyy-mm-dd"
+    }
+
+    // data e daljes si string
+    public String getFormattedCheckOutDate() {
+        return checkOutDate.toString();
+    }
+
+    // kalimi i java.sql.Date ne LocalDate (nese esht e nevojshme per ndonje rast tjeter)
+    public java.time.LocalDate getLocalCheckInDate() {
+        return checkInDate.toLocalDate();
+    }
+
+    public java.time.LocalDate getLocalCheckOutDate() {
+        return checkOutDate.toLocalDate();
+    }
+
 }
