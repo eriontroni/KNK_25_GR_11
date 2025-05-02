@@ -1,6 +1,8 @@
 package Models;
 
 import java.sql.Date;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
 public class Reservation {
     private int id;
@@ -11,8 +13,7 @@ public class Reservation {
     private String status;
     private double totalPrice;
 
-    //konstruktor per me kriju nje rezervim
-    public Reservation(int id, int customerId, int roomId, Date checkInDate, Date checkOutDate, String status, double totalPrice) {
+    private Reservation(int id, int customerId, int roomId, Date checkInDate, Date checkOutDate, String status, double totalPrice) {
         this.id = id;
         this.customerId = customerId;
         this.roomId = roomId;
@@ -22,7 +23,18 @@ public class Reservation {
         this.totalPrice = totalPrice;
     }
 
-    // getter per fushat
+    public static Reservation getInstance(ResultSet resultSet) throws SQLException {
+        int id = resultSet.getInt("id");
+        int customerId = resultSet.getInt("customer_id");
+        int roomId = resultSet.getInt("room_id");
+        Date checkInDate = resultSet.getDate("check_in_date");
+        Date checkOutDate = resultSet.getDate("check_out_date");
+        String status = resultSet.getString("status");
+        double totalPrice = resultSet.getDouble("total_price");
+
+        return new Reservation(id, customerId, roomId, checkInDate, checkOutDate, status, totalPrice);
+    }
+
     public int getId() {
         return id;
     }
@@ -50,23 +62,4 @@ public class Reservation {
     public double getTotalPrice() {
         return totalPrice;
     }
-    // formatimi i dates se hyrjes si string
-    public String getFormattedCheckInDate() {
-        return checkInDate.toString();  // "yyyy-mm-dd"
-    }
-
-    // data e daljes si string
-    public String getFormattedCheckOutDate() {
-        return checkOutDate.toString();
-    }
-
-    // kalimi i java.sql.Date ne LocalDate (nese esht e nevojshme per ndonje rast tjeter)
-    public java.time.LocalDate getLocalCheckInDate() {
-        return checkInDate.toLocalDate();
-    }
-
-    public java.time.LocalDate getLocalCheckOutDate() {
-        return checkOutDate.toLocalDate();
-    }
-
 }
