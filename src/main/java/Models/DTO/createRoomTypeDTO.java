@@ -12,16 +12,17 @@ package Models.DTO;
 
 
 import java.time.LocalDateTime;
+import java.util.Date;
 
 public class createRoomTypeDTO {
 private String name;
 private String description;
 private int capacity;
 private float price_per_night;
-private LocalDateTime createdAt;
-private LocalDateTime updatedAt;
+private Date createdAt;
+private Date updatedAt;
 
-public createRoomTypeDTO(String name, String description, int capacity,float price_per_night, LocalDateTime createdAt, LocalDateTime updatedAt){
+public createRoomTypeDTO(String name, String description, int capacity,float price_per_night, Date createdAt, Date updatedAt){
     this.name = name;
     this.description = description;
     this.capacity = capacity;
@@ -59,19 +60,19 @@ public createRoomTypeDTO(String name, String description, int capacity,float pri
     public void setPrice_per_night(float price_per_night) {
         this.price_per_night = price_per_night;
     }
-    public LocalDateTime getCreatedAt() {
+    public Date getCreatedAt() {
         return createdAt;
     }
 
-    public void setCreatedAt(LocalDateTime createdAt) {
+    public void setCreatedAt(Date createdAt) {
         this.createdAt = createdAt;
     }
 
-    public LocalDateTime getUpdatedAt() {
+    public Date getUpdatedAt() {
         return updatedAt;
     }
 
-    public void setUpdatedAt(LocalDateTime updatedAt) {
+    public void setUpdatedAt(Date updatedAt) {
         this.updatedAt = updatedAt;
     }
 

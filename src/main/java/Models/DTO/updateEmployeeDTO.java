@@ -12,10 +12,10 @@ package Models.DTO;
 //);
 
 public class updateEmployeeDTO {
-
     private String position;//nese kemi rritje ne pozite
     private String email;
     private String phone;
+
 
     public updateEmployeeDTO( String position, String email, String phone) {
 
@@ -40,11 +40,11 @@ public class updateEmployeeDTO {
         this.email = email;
     }
 
-    public String getPhone() {
+    public String getLastname() {
         return phone;
     }
 
-    public void setPhone(String phone) {
+    public void setLastname(String phone) {
         this.phone = phone;
     }
 }
