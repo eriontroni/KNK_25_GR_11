@@ -2,13 +2,13 @@ package Models.DTO;
 
 import java.sql.Date;
 
-public class UpdateCleaningScheduleDTO {
+public class UpdateCleaningSchedule{
     private int id;
     private int employee_id;
     private Date scheduled_date;
     private String status;
 
-    public UpdateCleaningScheduleDTO(int id, int employee_id, Date scheduled_date, String status){
+    public UpdateCleaningSchedule(int id, int employee_id, Date scheduled_date, String status){
         this.id=id;
         this.employee_id=employee_id;
         this.scheduled_date=scheduled_date;
