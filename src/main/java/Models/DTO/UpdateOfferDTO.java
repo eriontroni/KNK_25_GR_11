@@ -1,18 +1,21 @@
 package Models.DTO;
+
 import java.util.Date;
 
-public class CreateOfferDTO {
+public class UpdateOfferDTO {
+    private int id;
     private String title;
     private String description;
     private double discountPercentage;
     private Date startDate;
     private Date endDate;
 
-    public CreateOfferDTO() {
+    public UpdateOfferDTO() {
     }
 
-    public CreateOfferDTO(String title, String description, double discountPercentage, Date startDate, Date endDate)
+    public UpdateOfferDTO(int id, String title, String description, double discountPercentage, Date startDate, Date endDate)
     {
+        this.id = id;
         this.title = title;
         this.description = description;
         this.discountPercentage = discountPercentage;
@@ -20,6 +23,13 @@ public class CreateOfferDTO {
         this.endDate = endDate;
     }
 
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public String getTitle() {
         return title;
