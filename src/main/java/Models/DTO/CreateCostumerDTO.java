@@ -7,11 +7,9 @@ public class CreateCostumerDTO {
     private String email;
     private String phone;
 
-    // Konstruktori pa parametra
     public CreateCostumerDTO() {
     }
 
-    // Konstruktori me parametra
     public CreateCostumerDTO(int id, String firstName, String lastName, String email, String phone) {
         this.id = id;
         this.firstName = firstName;
@@ -20,7 +18,6 @@ public class CreateCostumerDTO {
         this.phone = phone;
     }
 
-    // Getter dhe Setter për secilën fushë
 
     public int getId() {
         return id;
