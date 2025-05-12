@@ -7,9 +7,10 @@ package Models.DTO;
 //);
 public class UpdateRoomImageDTO {
     private String image_url;
-
-    UpdateRoomImageDTO(String image_url) {
+    private int id;
+    UpdateRoomImageDTO(String image_url , int id) {
         this.image_url = image_url;
+        this.id = id;
     }
 
     public String getImage_url() {
@@ -18,5 +19,13 @@ public class UpdateRoomImageDTO {
 
     public void setImage_url(String image_url) {
         this.image_url = image_url;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 }
