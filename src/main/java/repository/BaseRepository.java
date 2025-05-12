@@ -24,16 +24,16 @@ abstract class BaseRepository<Model, CreateModelDto, UpdateModelDto> {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
         return dateTime.format(formatter);
     }
-    abstract Model fromResutlSet(ResultSet res);
+    abstract Model fromResultSet(ResultSet res);
 
     public Model getById(int id){
         String query = "SELECT * FROM " + this.tableName + " WHERE id = ?";
         try{
             PreparedStatement statement = this.connection.prepareStatement(query);
             statement.setInt(1, id);
-            ResultSet res = statement.executeQuery(query);
+            ResultSet res = statement.executeQuery();
             if(res.next()){
-                return this.fromResutlSet(res);
+                return this.fromResultSet(res);
             }
         } catch (SQLException e){
             e.printStackTrace();
@@ -48,7 +48,7 @@ abstract class BaseRepository<Model, CreateModelDto, UpdateModelDto> {
             Statement statement = this.connection.createStatement();
             ResultSet res = statement.executeQuery(query);
             while(res.next()){
-                models.add(this.fromResutlSet(res));
+                models.add(this.fromResultSet(res));
             }
 
         } catch(SQLException e){
@@ -60,13 +60,13 @@ abstract class BaseRepository<Model, CreateModelDto, UpdateModelDto> {
 
     abstract Model create(CreateModelDto createModelDto);
 
-    abstract Model udpate(UpdateModelDto updateModelDto);
+    abstract Model update(UpdateModelDto updateModelDto);
 
 //    abstract boolean delete(int id);
 
 
     public boolean delete(int id){
-        String query = "DELETE FROM ??? WHERE ID = ?";
+        String query = "DELETE FROM "+this.tableName +" WHERE ID = ?";
         try{
             PreparedStatement pstm = this.connection.prepareStatement(query);
             pstm.setInt(1, id);

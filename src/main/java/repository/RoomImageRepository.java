@@ -16,10 +16,13 @@ public class RoomImageRepository extends BaseRepository<RoomImage, CreateRoomIma
     }
 
     @Override
-    RoomImage fromResutlSet(ResultSet res) {
-
-
-        return null;
+    public RoomImage fromResultSet(ResultSet res) {
+        try {
+            return RoomImage.getInstance(res);
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return null;
+        }
     }
 
     @Override
@@ -49,7 +52,7 @@ public class RoomImageRepository extends BaseRepository<RoomImage, CreateRoomIma
     }
 
     @Override
-    RoomImage udpate(UpdateRoomImageDTO RoomImage) {
+    RoomImage update(UpdateRoomImageDTO RoomImage) {
         String query = """
                 UPDATE RoomImage
                 SET image_url = ?
@@ -68,4 +71,16 @@ public class RoomImageRepository extends BaseRepository<RoomImage, CreateRoomIma
         }
         return null;
     }
+//        public boolean delete(int id){
+//        String query = "DELETE FROM RoomImage WHERE ID = ?";
+//        try{
+//            PreparedStatement pstm = this.connection.prepareStatement(query);
+//            pstm.setInt(1, id);
+//            return pstm.executeUpdate() == 1;
+//        } catch (SQLException e){
+//            e.printStackTrace();
+//        }
+//        return false;
+//    }
+
 }
