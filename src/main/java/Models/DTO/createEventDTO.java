@@ -20,7 +20,7 @@ public class createEventDTO {
     private Integer room_id;
     private String description;
 
-    public createEventDTO(String event_name, String organizer_name, Date event_date, LocalTime event_time, int room_id, String description){
+    public createEventDTO(String event_name, String organizer_name, Date event_date, LocalTime event_time, Integer room_id, String description){
         this.event_name = event_name;
         this.organizer_name = organizer_name;
         this.event_date = event_date;
@@ -60,7 +60,7 @@ public class createEventDTO {
         return room_id;
     }
 
-    public void setRoom_id(int room_id) {
+    public void setRoom_id(Integer room_id) {
         this.room_id = room_id;
     }
     public String getDescription() {
