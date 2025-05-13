@@ -6,6 +6,4 @@ module java {
     requires org.kordamp.bootstrapfx.core;
     requires java.sql;
 
-    opens com.example.knk_25 to javafx.fxml;
-    exports com.example.knk_25;
 }

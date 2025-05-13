@@ -11,12 +11,14 @@ package Models.DTO;
   përdorim 'id' për ta identifikuar saktësisht rreshtin që duhet përditësuar.
 */
 
+import java.math.BigDecimal;
+
 public class UpdateRoomServiceDTO {
     private int id;
     private String serviceName;
-    private double price;
+    private BigDecimal price;
 
-    public UpdateRoomServiceDTO(int id, String serviceName, double price){
+    public UpdateRoomServiceDTO(int id, String serviceName, BigDecimal price){
         this.id=id;
         this.serviceName=serviceName;
         this.price=price;
@@ -34,11 +36,11 @@ public class UpdateRoomServiceDTO {
         this.serviceName = serviceName;
     }
 
-    public double getPrice() {
+    public BigDecimal getPrice() {
         return price;
     }
 
-    public void setPrice(double price) {
+    public void setPrice(BigDecimal price) {
         this.price = price;
     }
 }
