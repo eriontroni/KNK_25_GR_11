@@ -3,9 +3,6 @@ package repository;
 import Models.DTO.CreateCleaningScheduleDTO;
 import Models.DTO.UpdateCleaningScheduleDTO;
 import Models.CleaningSchedule;
-import Models.DTO.UpdateRoomImageDTO;
-import Models.ReservationHistory;
-import Models.RoomImage;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -13,7 +10,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 public class CleaningScheduleRepository extends BaseRepository<CleaningSchedule, CreateCleaningScheduleDTO, UpdateCleaningScheduleDTO>{
-    public CleaningScheduleRepository(String tableName) { super("CleaningSchedule");}
+    public CleaningScheduleRepository() { super("CleaningSchedule");}
 
     @Override
     public CleaningSchedule fromResultSet(ResultSet res) {
@@ -26,7 +23,7 @@ public class CleaningScheduleRepository extends BaseRepository<CleaningSchedule,
     }
 
     @Override
-    CleaningSchedule create(CreateCleaningScheduleDTO CleaningSchedule){
+    CleaningSchedule create(CreateCleaningScheduleDTO cleaningschedule){
         String query = """
                 INSERT INTO CleaningSchedule (room_id, employee_id, scheduled_date, status)
                 VALUES (?, ?, ?, ?)
@@ -35,10 +32,10 @@ public class CleaningScheduleRepository extends BaseRepository<CleaningSchedule,
             PreparedStatement pstm = this.connection.prepareStatement(
                     query, Statement.RETURN_GENERATED_KEYS
             );
-            pstm.setInt(1, CleaningSchedule.getRoom_id());
-            pstm.setInt(2, CleaningSchedule.getEmployee_id());
-            pstm.setDate(3,CleaningSchedule.getScheduled_date() );
-            pstm.setString(4,CleaningSchedule.getStatus());
+            pstm.setInt(1, cleaningschedule.getRoom_id());
+            pstm.setInt(2, cleaningschedule.getEmployee_id());
+            pstm.setDate(3,cleaningschedule.getScheduled_date() );
+            pstm.setString(4,cleaningschedule.getStatus());
 
             pstm.execute();
             ResultSet result = pstm.getGeneratedKeys();
@@ -55,7 +52,7 @@ public class CleaningScheduleRepository extends BaseRepository<CleaningSchedule,
     }
 
     @Override
-    CleaningSchedule update(UpdateCleaningScheduleDTO CleaningSchedule) {
+    CleaningSchedule update(UpdateCleaningScheduleDTO cleaningschedule) {
         String query = """
                 UPDATE CleaningSchedule
                 SET employee_id = ?, scheduled_date = ?, status = ?
@@ -63,13 +60,13 @@ public class CleaningScheduleRepository extends BaseRepository<CleaningSchedule,
                 """;
         try{
             PreparedStatement pstm = this.connection.prepareStatement(query);
-            pstm.setInt(1, CleaningSchedule.getEmployee_id());
-            pstm.setDate(2, CleaningSchedule.getScheduled_date());
-            pstm.setString(3, CleaningSchedule.getStatus());
-            pstm.setInt(4, CleaningSchedule.getId());
+            pstm.setInt(1, cleaningschedule.getEmployee_id());
+            pstm.setDate(2, cleaningschedule.getScheduled_date());
+            pstm.setString(3, cleaningschedule.getStatus());
+            pstm.setInt(4, cleaningschedule.getId());
             int updatedRecord = pstm.executeUpdate();
             if (updatedRecord == 1){
-                return this.getById(CleaningSchedule.getId());
+                return this.getById(cleaningschedule.getId());
             }
         } catch (SQLException e){
             e.printStackTrace();
