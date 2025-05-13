@@ -11,18 +11,21 @@ package Models.DTO;
 //);
 
 public class updateRoomTypeDTO {
+    private int id;
 
     private String description;
     private int capacity;
     private float price_per_night;
 
     public updateRoomTypeDTO(String name, String description, int capacity, float price_per_night) {
-
+this.id=id;
         this.description = description;//Mund të ndryshosh përshkrimin nëse ndryshon informacioni.
         this.capacity = capacity;//	Mund të ndryshosh kapacitetin (p.sh. nga 2 persona në 3 persona).
         this.price_per_night = price_per_night;//	Mund të ndryshosh çmimin për natë në varësi të ofertave, sezonit etj.
     }
-
+    public int getId(){
+        return id;
+    }
 
     public String getDescription() {
         return description;

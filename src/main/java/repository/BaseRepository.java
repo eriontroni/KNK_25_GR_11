@@ -58,6 +58,7 @@ abstract class BaseRepository<Model, CreateModelDto, UpdateModelDto> {
         return models;
     }
 
+
     abstract Model create(CreateModelDto createModelDto);
 
     abstract Model update(UpdateModelDto updateModelDto);
