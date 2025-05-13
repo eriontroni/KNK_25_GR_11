@@ -11,19 +11,25 @@ package Models.DTO;
 //hire_date DATE
 //);
 
+package Models.DTO;
+
 public class updateEmployeeDTO {
-    private String position;//nese kemi rritje ne pozite
+    private int id;
+    private String position;
     private String email;
     private String phone;
 
-
-    public updateEmployeeDTO( String position, String email, String phone) {
-
+    public updateEmployeeDTO(int id, String position, String email, String phone) {
+        this.id = id;
         this.position = position;
         this.email = email;
         this.phone = phone;
     }
-  
+
+    public int getId() {
+        return id;
+    }
+
 
     public String getPosition() {
         return position;
@@ -32,6 +38,7 @@ public class updateEmployeeDTO {
     public void setPosition(String position) {
         this.position = position;
     }
+
     public String getEmail() {
         return email;
     }
@@ -40,11 +47,11 @@ public class updateEmployeeDTO {
         this.email = email;
     }
 
-    public String getLastname() {
+    public String getPhone() {
         return phone;
     }
 
-    public void setLastname(String phone) {
+    public void setPhone(String phone) {
         this.phone = phone;
     }
 }
