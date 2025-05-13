@@ -16,14 +16,14 @@ public class CreateFeedbackDTO {
     private int customer_id;
     private int reservation_id;
     private int rating;
-    private String text;
+    private String comment;
     private Date created_at;
 
-    public CreateFeedbackDTO(int customer_id, int reservation_id, int rating, String text, Date created_at){
+    public CreateFeedbackDTO(int customer_id, int reservation_id, int rating, String comment, Date created_at){
         this.customer_id=customer_id;
         this.reservation_id=reservation_id;
         this.rating=rating;
-        this.text=text;
+        this.comment=comment;
         this.created_at=created_at;
     }
 
@@ -49,12 +49,12 @@ public class CreateFeedbackDTO {
         this.rating = rating;
     }
 
-    public String getText() {
-        return text;
+    public String getComment() {
+        return comment;
     }
 
-    public void setText(String text) {
-        this.text = text;
+    public void setComment(String comment) {
+        this.comment = comment;
     }
 
     public Date getCreated_at() {

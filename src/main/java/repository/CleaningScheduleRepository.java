@@ -61,7 +61,7 @@ public class CleaningScheduleRepository extends BaseRepository<CleaningSchedule,
         try{
             PreparedStatement pstm = this.connection.prepareStatement(query);
             pstm.setInt(1, cleaningschedule.getEmployee_id());
-            pstm.setDate(2, cleaningschedule.getScheduled_date());
+            pstm.setDate(2, new java.sql.Date(cleaningschedule.getScheduled_date().getTime()));
             pstm.setString(3, cleaningschedule.getStatus());
             pstm.setInt(4, cleaningschedule.getId());
             int updatedRecord = pstm.executeUpdate();
