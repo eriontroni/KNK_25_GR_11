@@ -56,7 +56,7 @@ public class createEventDTO {
     public void setEvent_time(LocalTime event_time) {
         this.event_time = event_time;
     }
-    public int getRoom_id() {
+    public Integer getRoom_id() {
         return room_id;
     }
 
