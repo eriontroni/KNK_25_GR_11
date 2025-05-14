@@ -1,4 +1,4 @@
-package Repository;
+package repository;
 
 import Models.ReservationDiscount;
 import Models.DTO.CreateReservationDiscountDTO;
