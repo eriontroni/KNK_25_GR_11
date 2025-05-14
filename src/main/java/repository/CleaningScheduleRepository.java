@@ -23,7 +23,7 @@ public class CleaningScheduleRepository extends BaseRepository<CleaningSchedule,
     }
 
     @Override
-    CleaningSchedule create(CreateCleaningScheduleDTO cleaningschedule){
+    public CleaningSchedule create(CreateCleaningScheduleDTO cleaningschedule){
         String query = """
                 INSERT INTO CleaningSchedule (room_id, employee_id, scheduled_date, status)
                 VALUES (?, ?, ?, ?)
@@ -34,7 +34,7 @@ public class CleaningScheduleRepository extends BaseRepository<CleaningSchedule,
             );
             pstm.setInt(1, cleaningschedule.getRoom_id());
             pstm.setInt(2, cleaningschedule.getEmployee_id());
-            pstm.setDate(3,cleaningschedule.getScheduled_date() );
+            pstm.setDate(3, new java.sql.Date(cleaningschedule.getScheduled_date().getTime()));
             pstm.setString(4,cleaningschedule.getStatus());
 
             pstm.execute();
@@ -52,7 +52,7 @@ public class CleaningScheduleRepository extends BaseRepository<CleaningSchedule,
     }
 
     @Override
-    CleaningSchedule update(UpdateCleaningScheduleDTO cleaningschedule) {
+    public CleaningSchedule update(UpdateCleaningScheduleDTO cleaningschedule) {
         String query = """
                 UPDATE CleaningSchedule
                 SET employee_id = ?, scheduled_date = ?, status = ?
