@@ -1,20 +1,48 @@
-package repository;
+package Repository;
 
 import Models.ReservationDiscount;
 import Models.DTO.CreateReservationDiscountDTO;
 import Models.DTO.UpdateReservationDiscountDTO;
 
+import java.util.ArrayList;
 import java.util.List;
 
-public interface ReservationDiscountRepository {
+public class ReservationDiscountRepository {
 
-    void create(CreateReservationDiscountDTO dto);
+    private List<ReservationDiscount> reservationDiscounts = new ArrayList<>();
+    private int nextId = 1;
 
-    ReservationDiscount findById(int id);
+    public void create(CreateReservationDiscountDTO dto) {
+        ReservationDiscount rd = new ReservationDiscount(
+                nextId++,
+                dto.getReservationId(),
+                dto.getDiscountId()
+        );
+        reservationDiscounts.add(rd);
+    }
 
-    List<ReservationDiscount> findAll();
+    public ReservationDiscount findById(int id) {
+        return reservationDiscounts.stream()
+                .filter(rd -> rd.getId() == id)
+                .findFirst()
+                .orElse(null);
+    }
 
-    void update(UpdateReservationDiscountDTO dto);
+    public List<ReservationDiscount> findAll() {
+        return new ArrayList<>(reservationDiscounts);
+    }
 
-    void delete(int id);
+    public void update(UpdateReservationDiscountDTO dto) {
+        for (ReservationDiscount rd : reservationDiscounts) {
+            if (rd.getId() == dto.getId()) {
+                rd.setReservationId(dto.getReservationId());
+                rd.setDiscountId(dto.getDiscountId());
+                break;
+            }
+        }
+    }
+
+    public void delete(int id) {
+        reservationDiscounts.removeIf(rd -> rd.getId() == id);
+    }
 }
