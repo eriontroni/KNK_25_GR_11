@@ -27,7 +27,7 @@ public class FeedbackRepository extends BaseRepository<Feedback, CreateFeedbackD
     @Override
     public Feedback create(CreateFeedbackDTO feedback) {
         String query = """
-                INSERT INTO Feedback (customer_id, reservation_id, rating, text, created_at)
+                INSERT INTO Feedback (customer_id, reservation_id, rating, comment, created_at)
                 VALUES (?, ?, ?, ?, ?)
                 """;
         try (PreparedStatement pstm = this.connection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS)) {
