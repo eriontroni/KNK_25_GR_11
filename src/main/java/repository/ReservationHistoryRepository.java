@@ -52,15 +52,6 @@ public class ReservationHistoryRepository extends BaseRepository<ReservationHist
 
     @Override
     public ReservationHistory update(UpdateReservationHistoryDTO dto) {
-        // ⚠ Kërkon ID që të dijë cilin rekord të përditësojë
-        // Po supozojmë që do përdorim ID-n nga rezervimi (p.sh. metoda `updateByReservationId` në vend të `update` klasike)
-
-        System.err.println("Update requires knowing which record to update (ID). Implement custom update method instead.");
-        return null;
-    }
-
-    // ✅ Custom update që përdor reservation_id si referencë
-    public ReservationHistory updateByReservationId(int reservationId, UpdateReservationHistoryDTO dto) {
         String query = """
                 UPDATE ReservationHistory
                 SET old_status = ?, new_status = ?
@@ -70,18 +61,18 @@ public class ReservationHistoryRepository extends BaseRepository<ReservationHist
             PreparedStatement pstm = this.connection.prepareStatement(query);
             pstm.setString(1, dto.getOld_status());
             pstm.setString(2, dto.getNew_status());
-            pstm.setInt(3, reservationId);
+            pstm.setInt(3, dto.getId());
             int updatedRows = pstm.executeUpdate();
             if (updatedRows == 1) {
-                return getLatestByReservationId(reservationId);
+                return getLatestByReservationId(dto.getId());
             }
-        } catch (SQLException e) {
+        } catch (SQLException e) {     
             e.printStackTrace();
         }
         return null;
     }
 
-    // ✅ Merr rreshtin më të fundit për një reservation_id
+
     public ReservationHistory getLatestByReservationId(int reservationId) {
         String query = """
                 SELECT * FROM ReservationHistory
@@ -102,7 +93,7 @@ public class ReservationHistoryRepository extends BaseRepository<ReservationHist
         return null;
     }
 
-    // Opsionale: merr të gjitha historitë për një rezervim
+    // imerr krejt historite per 1 id rezervimi
     public ArrayList<ReservationHistory> getAllByReservationId(int reservationId) {
         ArrayList<ReservationHistory> list = new ArrayList<>();
         String query = "SELECT * FROM ReservationHistory WHERE reservation_id = ?";

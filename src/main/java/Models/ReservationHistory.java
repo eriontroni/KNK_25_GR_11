@@ -2,18 +2,17 @@ package Models;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
+import java.sql.Date;
 
 public class ReservationHistory {
     private int id;
     private int reservationId;
     private int customerId;
-    private LocalDateTime changeDate;
+    private Date changeDate;
     private String oldStatus;
     private String newStatus;
 
-    private ReservationHistory(int id, int reservationId, int customerId, LocalDateTime changeDate, String oldStatus, String newStatus) {
+    private ReservationHistory(int id, int reservationId, int customerId, Date changeDate, String oldStatus, String newStatus) {
         this.id = id;
         this.reservationId = reservationId;
         this.customerId = customerId;
@@ -27,8 +26,7 @@ public class ReservationHistory {
         int reservationId = resultSet.getInt("reservation_id");
         int customerId = resultSet.getInt("customer_id");
 
-        String changeDateString = resultSet.getString("change_date");
-        LocalDateTime changeDate = LocalDateTime.parse(changeDateString, DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
+        Date changeDate = resultSet.getDate("change_date");
 
         String oldStatus = resultSet.getString("old_status");
         String newStatus = resultSet.getString("new_status");
@@ -48,7 +46,7 @@ public class ReservationHistory {
         return customerId;
     }
 
-    public LocalDateTime getChangeDate() {
+    public Date getChangeDate() {
         return changeDate;
     }
 

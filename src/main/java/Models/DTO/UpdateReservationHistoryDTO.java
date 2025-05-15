@@ -1,8 +1,17 @@
 package Models.DTO;
 
 public class UpdateReservationHistoryDTO {
+    private int id;
     private String old_status;
     private String new_status;
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public UpdateReservationHistoryDTO(String old_status, String new_status) {
         this.old_status = old_status;
