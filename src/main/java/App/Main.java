@@ -6,8 +6,9 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 public class Main extends Application {
+    @Override
     public void start(Stage stage) throws Exception{
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/login.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/logini.fxml"));
         Scene scene = new Scene(loader.load());
         stage.setScene(scene);
         stage.setTitle("Login");
