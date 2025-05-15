@@ -11,8 +11,6 @@ package Models.DTO;
 //hire_date DATE
 //);
 
-package Models.DTO;
-
 public class updateEmployeeDTO {
     private int id;
     private String position;
