@@ -29,6 +29,13 @@ public class CreateMaintenanceDTO {
         this.reportedAt = reportedAt;
     }
 
+    public CreateMaintenanceDTO(int roomId, int reportedBy, String description, String status) {
+        this.roomId = roomId;
+        this.reportedBy = reportedBy;
+        this.description = description;
+        this.status = status;
+    }
+
     // getter per fusha
     public int getId() {
         return id;
