@@ -28,7 +28,7 @@ public class LoginController {
             alert.showAndWait();
         } else {
             // kur t deshton
-            Alert alert = new Alert(Alert.AlertType.ERROR);
+            Alert alert = new Alert(Alert.AlertType.ERROR)  ;
             alert.setTitle("Gabim");
             alert.setHeaderText(null);
             alert.setContentText("Emaili i përdoruesit ose fjalëkalimi është i pasaktë.");
