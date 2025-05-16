@@ -1,52 +1,79 @@
 package repository;
 
 import Models.Customer;
-import Models.DTO.CreateCustomerrDTO;
+import Models.DTO.CreateCustomerDTO;
 import Models.DTO.UpdateCustomerDTO;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 
-public class CustomerRepository {
+public class CustomerRepository extends BaseRepository<Customer, CreateCustomerDTO, UpdateCustomerDTO> {
 
-    private List<Customer> customers = new ArrayList<>();
-    private int nextId = 1;
-
-    public void create(CreateCustomerrDTO dto) {
-        Customer customer = new Customer(
-                nextId++,
-                dto.getFirstName(),
-                dto.getLastName(),
-                dto.getEmail(),
-                dto.getPhone()
-        );
-        customers.add(customer);
+    public CustomerRepository(String tableName) {
+        super("Customer");
     }
 
-    public Customer findById(int id) {
-        return customers.stream()
-                .filter(c -> c.getId() == id)
-                .findFirst()
-                .orElse(null);
-    }
-
-    public List<Customer> findAll() {
-        return new ArrayList<>(customers);
-    }
-
-    public void update(UpdateCustomerDTO dto) {
-        for (Customer customer : customers) {
-            if (customer.getId() == dto.getId()) {
-                customer.setFirstName(dto.getFirstName());
-                customer.setLastName(dto.getLastName());
-                customer.setEmail(dto.getEmail());
-                customer.setPhone(dto.getPhone());
-                break;
-            }
+    @Override
+    public Customer fromResultSet(ResultSet res) {
+        try {
+            return Customer.getInstance(res);
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return null;
         }
     }
 
-    public void delete(int id) {
-        customers.removeIf(c -> c.getId() == id);
+    @Override
+    Customer create(CreateCustomerDTO dto) {
+        String query = """
+                INSERT INTO Customer (first_name, last_name, email, phone)
+                VALUES (?, ?, ?, ?)
+                """;
+        try {
+            PreparedStatement pstm = this.connection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
+            pstm.setString(1, dto.getFirst_name());
+            pstm.setString(2, dto.getLast_name());
+            pstm.setString(3, dto.getEmail());
+            pstm.setString(4, dto.getPhone());
+            pstm.execute();
+
+            ResultSet result = pstm.getGeneratedKeys();
+            if (result.next()) {
+                int id = result.getInt(1);
+                return this.getById(id);
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    @Override
+    Customer update(UpdateCustomerDTO dto) {
+        String query = """
+                UPDATE Customer
+                SET first_name = ?, last_name = ?, email = ?, phone = ?
+                WHERE id = ?
+                """;
+        try {
+            PreparedStatement pstm = this.connection.prepareStatement(query);
+            pstm.setString(1, dto.getFirst_name());
+            pstm.setString(2, dto.getLast_name());
+            pstm.setString(3, dto.getEmail());
+            pstm.setString(4, dto.getPhone());
+            pstm.setInt(5, dto.getId());
+
+            int updated = pstm.executeUpdate();
+            if (updated == 1) {
+                return this.getById(dto.getId());
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 }

@@ -1,32 +1,27 @@
 package Models.DTO;
 
 public class CreateReservationDiscountDTO {
-    private int reservationId;
-    private int discountId;
+    private int reservation_id;
+    private int discount_id;
 
-    public CreateReservationDiscountDTO() {
+    public CreateReservationDiscountDTO(int reservation_id, int discount_id) {
+        this.reservation_id = reservation_id;
+        this.discount_id = discount_id;
     }
 
-    public CreateReservationDiscountDTO(int reservationId, int discountId) {
-        this.reservationId = reservationId;
-        this.discountId = discountId;
+    public int getReservation_id() {
+        return reservation_id;
     }
 
-
-    public int getReservationId() {
-        return reservationId;
+    public void setReservation_id(int reservation_id) {
+        this.reservation_id = reservation_id;
     }
 
-    public void setReservationId(int reservationId) {
-        this.reservationId = reservationId;
+    public int getDiscount_id() {
+        return discount_id;
     }
 
-    public int getDiscountId() {
-        return discountId;
-    }
-
-    public void setDiscountId(int discountId) {
-        this.discountId = discountId;
+    public void setDiscount_id(int discount_id) {
+        this.discount_id = discount_id;
     }
 }
-

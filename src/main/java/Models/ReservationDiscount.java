@@ -1,42 +1,36 @@
 package Models;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
 public class ReservationDiscount {
     private int id;
-    private int reservationId;
-    private int discountId;
+    private int reservation_id;
+    private int discount_id;
 
-    public ReservationDiscount() {
-    }
-
-    public ReservationDiscount(int id, int reservationId, int discountId) {
+    private ReservationDiscount(int id, int reservation_id, int discount_id) {
         this.id = id;
-        this.reservationId = reservationId;
-        this.discountId = discountId;
+        this.reservation_id = reservation_id;
+        this.discount_id = discount_id;
     }
 
-    // Getter dhe Setter
+    public static ReservationDiscount getInstance(ResultSet resultSet) throws SQLException {
+        int id = resultSet.getInt("id");
+        int reservation_id = resultSet.getInt("reservation_id");
+        int discount_id = resultSet.getInt("discount_id");
+
+        return new ReservationDiscount(id, reservation_id, discount_id);
+    }
 
     public int getId() {
         return id;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public int getReservation_id() {
+        return reservation_id;
     }
 
-    public int getReservationId() {
-        return reservationId;
-    }
-
-    public void setReservationId(int reservationId) {
-        this.reservationId = reservationId;
-    }
-
-    public int getDiscountId() {
-        return discountId;
-    }
-
-    public void setDiscountId(int discountId) {
-        this.discountId = discountId;
+    public int getDiscount_id() {
+        return discount_id;
     }
 }
