@@ -1,6 +1,8 @@
 package Models;
 
-import java.util.Date;
+import java.sql.Date;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
 public class Offer {
     private int id;
@@ -10,10 +12,8 @@ public class Offer {
     private Date startDate;
     private Date endDate;
 
-    public Offer() {
-    }
-
-    public Offer(int id, String title, String description, double discountPercentage, Date startDate, Date endDate) {
+    // Constructor privat si te RoomImage
+    private Offer(int id, String title, String description, double discountPercentage, Date startDate, Date endDate) {
         this.id = id;
         this.title = title;
         this.description = description;
@@ -22,53 +22,40 @@ public class Offer {
         this.endDate = endDate;
     }
 
-    // Getter dhe Setter
+    // getInstance(ResultSet) identik si te RoomImage
+    public static Offer getInstance(ResultSet resultSet) throws SQLException {
+        int id = resultSet.getInt("id");
+        String title = resultSet.getString("title");
+        String description = resultSet.getString("description");
+        double discountPercentage = resultSet.getDouble("discount_percentage");
+        Date startDate = resultSet.getDate("start_date");
+        Date endDate = resultSet.getDate("end_date");
 
-    public int getId() {
-        return id;
+        return new Offer(id, title, description, discountPercentage, startDate, endDate);
     }
 
-    public void setId(int id) {
-        this.id = id;
+    // Getters
+    public int getId() {
+        return id;
     }
 
     public String getTitle() {
         return title;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
     public String getDescription() {
         return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
     }
 
     public double getDiscountPercentage() {
         return discountPercentage;
     }
 
-    public void setDiscountPercentage(double discountPercentage) {
-        this.discountPercentage = discountPercentage;
-    }
-
     public Date getStartDate() {
         return startDate;
     }
 
-    public void setStartDate(Date startDate) {
-        this.startDate = startDate;
-    }
-
     public Date getEndDate() {
         return endDate;
-    }
-
-    public void setEndDate(Date endDate) {
-        this.endDate = endDate;
     }
 }

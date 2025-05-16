@@ -1,54 +1,96 @@
 package repository;
 
-import Models.Offer;
 import Models.DTO.CreateOfferDTO;
 import Models.DTO.UpdateOfferDTO;
+import Models.Offer;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 
-public class OfferRepository {
+public class OfferRepository extends BaseRepository<Offer, CreateOfferDTO, UpdateOfferDTO> {
 
-    private List<Offer> offers = new ArrayList<>();
-    private int nextId = 1;
-
-    public void create(CreateOfferDTO dto) {
-        Offer offer = new Offer(
-                nextId++,
-                dto.getTitle(),
-                dto.getDescription(),
-                dto.getDiscountPercentage(),
-                dto.getStartDate(),
-                dto.getEndDate()
-        );
-        offers.add(offer);
+    public OfferRepository(String tableName) {
+        super("Offer");
     }
 
-    public Offer findById(int id) {
-        return offers.stream()
-                .filter(o -> o.getId() == id)
-                .findFirst()
-                .orElse(null);
-    }
-
-    public List<Offer> findAll() {
-        return new ArrayList<>(offers);
-    }
-
-    public void update(UpdateOfferDTO dto) {
-        for (Offer offer : offers) {
-            if (offer.getId() == dto.getId()) {
-                offer.setTitle(dto.getTitle());
-                offer.setDescription(dto.getDescription());
-                offer.setDiscountPercentage(dto.getDiscountPercentage());
-                offer.setStartDate(dto.getStartDate());
-                offer.setEndDate(dto.getEndDate());
-                break;
-            }
+    @Override
+    public Offer fromResultSet(ResultSet res) {
+        try {
+            return Offer.getInstance(res);
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return null;
         }
     }
 
-    public void delete(int id) {
-        offers.removeIf(o -> o.getId() == id);
+    @Override
+    Offer create(CreateOfferDTO offer) {
+        String query = """
+                INSERT INTO Offer (title, description, discount_percentage, start_date, end_date)
+                VALUES (?, ?, ?, ?, ?)
+                """;
+        try {
+            PreparedStatement pstm = this.connection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
+            pstm.setString(1, offer.getTitle());
+            pstm.setString(2, offer.getDescription());
+            pstm.setDouble(3, offer.getDiscount_percentage());
+            pstm.setDate(4, offer.getStart_date());
+            pstm.setDate(5, offer.getEnd_date());
+            pstm.execute();
+
+            ResultSet result = pstm.getGeneratedKeys();
+            if (result.next()) {
+                int id = result.getInt(1);
+                return this.getById(id);
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
+
+    @Override
+    Offer update(UpdateOfferDTO offer) {
+        String query = """
+                UPDATE Offer
+                SET title = ?, description = ?, discount_percentage = ?, start_date = ?, end_date = ?
+                WHERE id = ?
+                """;
+        try {
+            PreparedStatement pstm = this.connection.prepareStatement(query);
+            pstm.setString(1, offer.getTitle());
+            pstm.setString(2, offer.getDescription());
+            pstm.setDouble(3, offer.getDiscount_percentage());
+            pstm.setDate(4, offer.getStart_date());
+            pstm.setDate(5, offer.getEnd_date());
+            pstm.setInt(6, offer.getId());
+
+            int updated = pstm.executeUpdate();
+            if (updated == 1) {
+                return this.getById(offer.getId());
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    // Nëse don me aktivizu edhe fshirjen, çele këtë metodë:
+    /*
+    public boolean delete(int id){
+        String query = "DELETE FROM Offer WHERE ID = ?";
+        try{
+            PreparedStatement pstm = this.connection.prepareStatement(query);
+            pstm.setInt(1, id);
+            return pstm.executeUpdate() == 1;
+        } catch (SQLException e){
+            e.printStackTrace();
+        }
+        return false;
+    }
+    */
 }
