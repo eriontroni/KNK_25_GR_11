@@ -11,37 +11,26 @@
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <Label layoutX="14.0" layoutY="14.0" prefHeight="35.0" prefWidth="190.0" text="Tabela e mirembajtjes" />
-      <TableView layoutX="14.0" layoutY="49.0" prefHeight="128.0" prefWidth="452.0">
+      <TableView fx:id="maintenanceTable" layoutX="14.0" layoutY="49.0" prefHeight="128.0" prefWidth="452.0">
         <columns>
-          <TableColumn prefWidth="75.0" text="id" />
-          <TableColumn prefWidth="75.0" text="elona" />
-            <TableColumn prefWidth="75.0" text="reported_by" />
-            <TableColumn prefWidth="75.0" text="description" />
-            <TableColumn prefWidth="75.0" text="status" />
-            <TableColumn prefWidth="75.0" text="reported_at" />
+          <TableColumn fx:id="maintenanceIdColumn" prefWidth="75.0" text="id" />
+          <TableColumn fx:id="roomIdColumn" prefWidth="75.0" text="room_id" />
+            <TableColumn fx:id="reportedByColumn" prefWidth="75.0" text="reported_by" />
+            <TableColumn fx:id="descriptionColumn" prefWidth="75.0" text="description" />
+            <TableColumn fx:id="statusColumn" prefWidth="75.0" text="status" />
+            <TableColumn fx:id="reportedAtColumn" prefWidth="75.0" text="reported_at" />
         </columns>
       </TableView>
       <VBox layoutX="486.0" layoutY="49.0" prefHeight="128.0" prefWidth="100.0">
          <children>
-            <Button mnemonicParsing="false" prefHeight="32.0" prefWidth="99.0" text="Shto" />
-            <Button mnemonicParsing="false" prefHeight="33.0" prefWidth="99.0" text="Fshij" />
-            <Button mnemonicParsing="false" prefHeight="29.0" prefWidth="102.0" text="Perditesim i statusit">
+            <Button fx:id="addbutton" mnemonicParsing="false" prefHeight="49.0" prefWidth="99.0" text="Add" />
+            <Button fx:id="deleteButton" mnemonicParsing="false" prefHeight="52.0" prefWidth="99.0" text="Delete" />
+            <Button fx:id="editButton" mnemonicParsing="false" prefHeight="49.0" prefWidth="100.0" text="Edit">
                <font>
                   <Font size="10.0" />
                </font>
             </Button>
-            <Button mnemonicParsing="false" prefHeight="33.0" prefWidth="99.0" text="Perditesimi i pershkrimit">
-               <font>
-                  <Font size="8.0" />
-               </font>
-            </Button>
          </children>
       </VBox>
-      <TableView layoutX="140.0" layoutY="177.0" prefHeight="200.0" prefWidth="200.0">
-        <columns>
-          <TableColumn prefWidth="75.0" text="C1" />
-          <TableColumn prefWidth="75.0" text="C2" />
-        </columns>
-      </TableView>
    </children>
 </AnchorPane>
