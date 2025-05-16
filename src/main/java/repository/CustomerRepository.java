@@ -1,4 +1,4 @@
-package Repository;
+package repository;
 
 import Models.Customer;
 import Models.DTO.CreateCustomerrDTO;

@@ -33,7 +33,7 @@ CREATE TABLE RoomType (
 CREATE TABLE Room ( 
     id SERIAL PRIMARY KEY,
     room_number VARCHAR(10) UNIQUE NOT NULL,
-    type_id INT REFERENCES RoomType(id) ON DELETE SET NULL,
+    type_id INT REFERENCES  RoomType(id) ON DELETE SET NULL,
     is_available BOOLEAN DEFAULT TRUE
 );
 
