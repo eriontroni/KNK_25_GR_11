@@ -19,21 +19,12 @@ public class CreateMaintenanceDTO {
     private String status;
     private Date reportedAt;
 
-    // konstruktori
-    public CreateMaintenanceDTO(int id, int roomId, int reportedBy, String description, String status, Date reportedAt) {
-        this.id = id;
+    public CreateMaintenanceDTO(int roomId, int reportedBy, String description, String status, Date reportedAt) {
         this.roomId = roomId;
         this.reportedBy = reportedBy;
         this.description = description;
         this.status = status;
-        this.reportedAt = reportedAt;
-    }
-
-    public CreateMaintenanceDTO(int roomId, int reportedBy, String description, String status) {
-        this.roomId = roomId;
-        this.reportedBy = reportedBy;
-        this.description = description;
-        this.status = status;
+        this.reportedAt=reportedAt;
     }
 
     // getter per fusha
