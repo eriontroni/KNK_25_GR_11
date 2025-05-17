@@ -1,13 +1,11 @@
 package repository;
 
+import DataBase.DBConnector;
 import Models.Customer;
 import Models.DTO.CreateCustomerDTO;
 import Models.DTO.UpdateCustomerDTO;
 
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 
 public class CustomerRepository extends BaseRepository<Customer, CreateCustomerDTO, UpdateCustomerDTO> {
 
@@ -23,6 +21,21 @@ public class CustomerRepository extends BaseRepository<Customer, CreateCustomerD
             e.printStackTrace();
             return null;
         }
+    }
+
+    public Customer getByEmail(String email) {
+        String query = "SELECT * FROM customers WHERE email = ?";
+        try (Connection conn = DBConnector.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(query)) {
+            stmt.setString(1, email);
+            ResultSet rs = stmt.executeQuery();
+            if (rs.next()) {
+                return Customer.getInstance(rs);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 
     @Override

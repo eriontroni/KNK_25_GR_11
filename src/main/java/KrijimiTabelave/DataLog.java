@@ -29,13 +29,13 @@ VALUES
 ('301', 5, TRUE);
 
 -- Insert në tabelën Customer (unik në email dhe telefon)
-INSERT INTO Customer (first_name, last_name, email, phone)
-VALUES
-('Albin', 'Krasniqi', 'albinkrasniqi@example.com', '+38344111222'),
-('Elisa', 'Berisha', 'elisaberisha@example.com', '+38344111333'),
-('Arber', 'Hoti', 'arberhoti@example.com', '+38344111444'),
-('Sara', 'Gashi', 'saragashi@example.com', '+38344111555'),
-('Dion', 'Bytyqi', 'dionbytyqi@example.com', '+38344111666');
+--INSERT INTO Customer (first_name, last_name, email, phone)
+--VALUES
+--('Albin', 'Krasniqi', 'albinkrasniqi@example.com', '+38344111222'),
+--('Elisa', 'Berisha', 'elisaberisha@example.com', '+38344111333'),
+--('Arber', 'Hoti', 'arberhoti@example.com', '+38344111444'),
+--('Sara', 'Gashi', 'saragashi@example.com', '+38344111555'),
+--('Dion', 'Bytyqi', 'dionbytyqi@example.com', '+38344111666');
 
 
 -- Insert në tabelën Users (klientë)

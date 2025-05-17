@@ -38,13 +38,13 @@ CREATE TABLE Room (
 );
 
 -- 3. Customer -Leoni
-CREATE TABLE Customer (
-    id SERIAL PRIMARY KEY,
-    first_name VARCHAR(100) NOT NULL,
-    last_name VARCHAR(100) NOT NULL,
-    email VARCHAR(255) UNIQUE NOT NULL,
-    phone VARCHAR(20) UNIQUE NOT NULL
-);
+--CREATE TABLE Customer (
+--  id SERIAL PRIMARY KEY,
+--    first_name VARCHAR(100) NOT NULL,
+--    last_name VARCHAR(100) NOT NULL,
+--    email VARCHAR(255) UNIQUE NOT NULL,
+--    phone VARCHAR(20) UNIQUE NOT NULL
+--);
 
 -- 4. Users -Vesa
 CREATE TABLE Users (
@@ -71,7 +71,7 @@ CREATE TABLE Employee (
 -- 6. Reservation -Natyra
 CREATE TABLE Reservation (
     id SERIAL PRIMARY KEY,
-    customer_id INT REFERENCES Customer(id) ON DELETE CASCADE,
+    customer_id INT REFERENCES Users(id) ON DELETE CASCADE,
     room_id INT REFERENCES Room(id) ON DELETE CASCADE,
     check_in_date DATE NOT NULL,
     check_out_date DATE NOT NULL,
@@ -109,7 +109,7 @@ CREATE TABLE CleaningSchedule (
 -- 10. Feedback -Era
 CREATE TABLE Feedback (
     id SERIAL PRIMARY KEY,
-    customer_id INT REFERENCES Customer(id) ON DELETE CASCADE,
+    customer_id INT REFERENCES Users(id) ON DELETE CASCADE,
     reservation_id INT REFERENCES Reservation(id) ON DELETE CASCADE,
     rating INT CHECK (rating BETWEEN 1 AND 5),
     comment TEXT,
@@ -176,7 +176,7 @@ CREATE TABLE Event (
 CREATE TABLE ReservationHistory (
     id SERIAL PRIMARY KEY,
     reservation_id INT REFERENCES Reservation(id) ON DELETE CASCADE,
-    customer_id INT REFERENCES Customer(id) ON DELETE CASCADE,
+    customer_id INT REFERENCES Users(id) ON DELETE CASCADE,
     change_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     old_status VARCHAR(50),
     new_status VARCHAR(50)

@@ -13,13 +13,13 @@ public class CreateUsersDTO {
         private String username;
         private String email;
         private String password_hash;
-        private String role;
+        private String salted_hash;
 
-        public CreateUsersDTO(String username, String email, String password_hash, String role) {
+        public CreateUsersDTO(String username, String email, String password_hash, String salted_hash) {
             this.username = username;
             this.email = email;
             this.password_hash = password_hash;
-            this.role = role;
+            this.salted_hash = salted_hash;
         }
 
 
@@ -35,7 +35,11 @@ public class CreateUsersDTO {
 
         public void setPassword_hash(String password_hash) { this.password_hash = password_hash; }
 
-        public String getRole() { return role; }
+        public String getSalted_hash() {
+            return salted_hash;
+        }
 
-        public void setRole(String role) { this.role = role; }
-    }
+        public void setSalted_hash(String salted_hash) {
+            this.salted_hash = salted_hash;
+        }
+}

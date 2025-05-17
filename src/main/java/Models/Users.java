@@ -7,25 +7,27 @@ public class Users {
     private int id;
     private String username;
     private String email;
-    private String passwordHash;
-    private String role;
+    private String password_hash;
+    private String salted_hash;
 
-    private Users(int id, String username, String email, String passwordHash, String role) {
+    
+
+    private Users(int id, String username, String email, String password_hash) {
         this.id = id;
         this.username = username;
         this.email = email;
-        this.passwordHash = passwordHash;
-        this.role = role;
+        this.password_hash = password_hash;
+        
     }
 
     public static Users getInstance(ResultSet rs) throws SQLException {
         int id = rs.getInt("id");
         String username = rs.getString("username");
         String email = rs.getString("email");
-        String passwordHash = rs.getString("password_hash");
+        String password_hash = rs.getString("password_hash");
         String role = rs.getString("role");
 
-        return new Users(id, username, email, passwordHash, role);
+        return new Users(id, username, email, password_hash);
     }
 
     public int getId() { return id; }
@@ -34,7 +36,9 @@ public class Users {
 
     public String getEmail() { return email; }
 
-    public String getPasswordHash() { return passwordHash; }
+    public String getpassword_hash() { return this.password_hash; }
 
-    public String getRole() { return role; }
+    public String getsalted_hash() {
+        return this.salted_hash;
+    }
 }

@@ -3,14 +3,14 @@ package Models.DTO;
 public class UpdateUsersDTO {
     private String username;
     private String email;
-    private String role;
+
 
     public UpdateUsersDTO() {}
 
-    public UpdateUsersDTO(String username, String email, String role) {
+    public UpdateUsersDTO(String username, String email) {
         this.username = username;
         this.email = email;
-        this.role = role;
+
     }
 
     public String getUsername() { return username; }
@@ -21,7 +21,5 @@ public class UpdateUsersDTO {
 
     public void setEmail(String email) { this.email = email; }
 
-    public String getRole() { return role; }
 
-    public void setRole(String role) { this.role = role; }
 }

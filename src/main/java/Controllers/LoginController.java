@@ -14,6 +14,7 @@ import java.io.IOException;
 
 public class LoginController {
 
+
     public Button loginButton;
     @FXML
     private TextField emailField;
@@ -21,11 +22,20 @@ public class LoginController {
     @FXML
     private PasswordField passwordField;
 
+    public Boolean isConsumer(){
+
+        return null;
+    }
+    public String isEmployee(){
+        return "Receptionist"; // or return Maintainance
+
+    }
+
+
     @FXML
     private void handleLogin() {
         String email = emailField.getText();
         String password = passwordField.getText();
-
         // Zëvendëso këtë pjesë me logjikën e vërtetë të autentikimit
         if ("eri".equals(email) && "122".equals(password)) {
             try {

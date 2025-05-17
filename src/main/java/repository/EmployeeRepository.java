@@ -1,5 +1,6 @@
 package repository;
 
+import DataBase.DBConnector;
 import Models.Employee;
 import Models.DTO.createEmployeeDTO;
 import Models.DTO.updateEmployeeDTO;
@@ -22,6 +23,22 @@ public class EmployeeRepository extends BaseRepository<Employee, createEmployeeD
             return null;
         }
     }
+
+    public Employee getByEmail(String email) {
+        String query = "SELECT * FROM employees WHERE email = ?";
+        try (Connection conn = DBConnector.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(query)) {
+            stmt.setString(1, email);
+            ResultSet rs = stmt.executeQuery();
+            if (rs.next()) {
+                return Employee.getInstance(rs);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
 
     @Override
     public Employee create(createEmployeeDTO dto) {
