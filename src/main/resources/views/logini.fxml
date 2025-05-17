@@ -10,24 +10,24 @@
 <?import javafx.scene.text.Font?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.LoginController">
-   <children>
-      <Label layoutX="281.0" layoutY="119.0" text="Email">
-         <font>
-            <Font size="16.0" />
-         </font>
-      </Label>
-      <Label layoutX="265.0" layoutY="187.0" text="Password:">
-         <font>
-            <Font size="16.0" />
-         </font>
-      </Label>
-      <TextField fx:id="emailField" layoutX="225.0" layoutY="144.0" opacity="0.75" promptText="sheno emailin" />
-      <PasswordField id="password" fx:id="passwordField" layoutX="225.0" layoutY="212.0" promptText="sheno passwordin" />
-      <Label layoutX="146.0" layoutY="14.0" text="Miresevini ne Faqen tone!">
-         <font>
-            <Font size="27.0" />
-         </font>
-      </Label>
-      <Button fx:id="loginButton" layoutX="272.0" layoutY="273.0" mnemonicParsing="false" onAction="#handleLogin" prefHeight="32.0" prefWidth="56.0" text="Login" />
-   </children>
+
+
+   <Label layoutX="281.0" layoutY="118.0" text="Email">
+      <font>
+         <Font size="16.0" />
+      </font>
+   </Label>
+   <Label layoutX="265.0" layoutY="187.0" text="Password:">
+      <font>
+         <Font size="16.0" />
+      </font>
+   </Label>
+   <TextField fx:id="emailField" layoutX="225.0" layoutY="143.0" opacity="0.75" promptText="sheno emailin" />
+   <PasswordField id="password" fx:id="passwordField" layoutX="225.0" layoutY="212.0" promptText="sheno passwordin" />
+   <Label layoutX="146.0" layoutY="14.0" text="Miresevini ne Faqen tone!">
+      <font>
+         <Font size="27.0" />
+      </font>
+   </Label>
+   <Button fx:id="loginButton" layoutX="272.0" layoutY="281.0" mnemonicParsing="false" onAction="#handleLogin" prefHeight="32.0" prefWidth="56.0" text="Login" />
 </AnchorPane>
