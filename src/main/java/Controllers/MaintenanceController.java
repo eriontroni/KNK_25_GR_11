@@ -220,16 +220,18 @@ public class MaintenanceController {
                 }
 
                 Dialog<UpdateMaintenanceDTO> editDialog = new Dialog<>();
-                editDialog.setTitle("Përditëso mirëmbajtjen me ID: " + id);
+                editDialog.setTitle("Përditëso mirëmbajtjen");
                 editDialog.setHeaderText(null);
 
                 Label lblDescription = new Label("Përshkrimi i ri:");
                 TextField tfDescription = new TextField(maintenance.getDescription());
 
                 Label lblStatus = new Label("Statusi i ri:");
-                TextField tfStatus = new TextField(maintenance.getStatus());
+                ComboBox<String> cbStatus = new ComboBox<>();
+                cbStatus.getItems().addAll("Ne Pritje", "Ne Proces", "Perfunduara");
+                cbStatus.setValue(maintenance.getStatus());
 
-                VBox content = new VBox(10, lblDescription, tfDescription, lblStatus, tfStatus);
+                VBox content = new VBox(10, lblDescription, tfDescription, lblStatus, cbStatus);
                 editDialog.getDialogPane().setContent(content);
 
                 ButtonType updateButtonType = new ButtonType("Përditëso", ButtonBar.ButtonData.OK_DONE);
@@ -238,11 +240,13 @@ public class MaintenanceController {
                 editDialog.setResultConverter(dialogButton -> {
                     if (dialogButton == updateButtonType) {
                         String newDescription = tfDescription.getText().trim();
-                        String newStatus = tfStatus.getText().trim();
-                        if (newDescription.isEmpty() || newStatus.isEmpty()) {
+                        String newStatus = cbStatus.getValue();
+
+                        if (newDescription.isEmpty() || newStatus == null || newStatus.isEmpty()) {
                             showAlert("Gabim", "Të dy fushat duhet të plotësohen.");
                             return null;
                         }
+
                         return new UpdateMaintenanceDTO(id, newDescription, newStatus);
                     }
                     return null;
@@ -254,7 +258,7 @@ public class MaintenanceController {
                         int index = maintenanceList.indexOf(maintenance);
                         maintenanceList.set(index, updated);
                         maintenanceTable.refresh();
-                        showAlert("Sukses", "Mirëmbajtja u përditësua me sukses.");
+                        showAlert("Sukses", "Mirëmbajtja me ID " + id + " u përditësua me sukses.");
                     } else {
                         showAlert("Gabim", "Përditësimi dështoi.");
                     }
@@ -264,6 +268,7 @@ public class MaintenanceController {
                 showAlert("Gabim", "ID-ja duhet të jetë numër i saktë.");
             }
         });
+
     }
 
 
