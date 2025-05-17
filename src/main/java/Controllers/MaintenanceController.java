@@ -54,7 +54,7 @@ public class MaintenanceController {
     public void initialize() {
         repository = new MaintenanceRepository();
 
-        // Inicializimi i kolonave te tabeles
+        // Inicializo kolonat e tabelës
         maintenanceIdColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
         roomIdColumn.setCellValueFactory(new PropertyValueFactory<>("roomId"));
         reportedByColumn.setCellValueFactory(new PropertyValueFactory<>("reportedBy"));
@@ -62,20 +62,66 @@ public class MaintenanceController {
         statusColumn.setCellValueFactory(new PropertyValueFactory<>("status"));
         reportedAtColumn.setCellValueFactory(new PropertyValueFactory<>("reportedAt"));
 
+        // Inicializojmë ComboBox me opsionet për kërkim
+        searchByComboBox.setItems(FXCollections.observableArrayList("id", "roomId", "reportedBy", "status", "description", "reportedAt"));
+
+        // Ngarkojmë të dhënat nga baza
         loadAllMaintenance();
-        
-        // Event per butonin Add - hap nje dialog per futjen e te dhenave te reja
+
+        // Event për butonin Search
+        searchButton.setOnAction(e -> doSearch());
+
+        // Event për butonin Add - hap një dialog për futjen e të dhënave të reja
         addbutton.setOnAction(e -> showAddDialog());
 
-        // Event per butonin Delete - fshin selektimin ne tabele
+        // Event për butonin Delete - fshin selektimin në tabelë
         deleteButton.setOnAction(e -> deleteMaintenanceById());
 
+        // Event për butonin Edit - hap dialog për përditësimin e statusit
+        editButton.setOnAction(e -> editMaintenanceById());
     }
 
     private void loadAllMaintenance() {
         List<Maintenance> all = repository.getAll();
         maintenanceList = FXCollections.observableArrayList(all);
         maintenanceTable.setItems(maintenanceList);
+    }
+
+    private void doSearch() {
+        String searchTerm = searchField.getText().trim().toLowerCase();
+        String searchBy = searchByComboBox.getValue();
+
+        if (searchBy == null || searchBy.isEmpty()) {
+            showAlert("Gabim", "Ju lutem zgjidhni fushën për kërkim.");
+            return;
+        }
+
+        if (searchTerm.isEmpty()) {
+            // Nëse fusha e kërkimit është bosh, shfaq të gjitha të dhënat
+            maintenanceTable.setItems(maintenanceList);
+            return;
+        }
+
+        List<Maintenance> filtered = maintenanceList.stream().filter(m -> {
+            switch (searchBy) {
+                case "id":
+                    return String.valueOf(m.getId()).contains(searchTerm);
+                case "roomId":
+                    return String.valueOf(m.getRoomId()).contains(searchTerm);
+                case "reportedBy":
+                    return String.valueOf(m.getReportedBy()).contains(searchTerm);
+                case "status":
+                    return m.getStatus().toLowerCase().contains(searchTerm);
+                case "description":
+                    return m.getDescription().toLowerCase().contains(searchTerm);
+                case "reportedAt":
+                    return m.getReportedAt().toString().contains(searchTerm);
+                default:
+                    return false;
+            }
+        }).collect(Collectors.toList());
+
+        maintenanceTable.setItems(FXCollections.observableArrayList(filtered));
     }
 
     private void showAddDialog() {
@@ -152,7 +198,75 @@ public class MaintenanceController {
             }
         });
     }
-    
+
+
+    private void editMaintenanceById() {
+        TextInputDialog idDialog = new TextInputDialog();
+        idDialog.setTitle("Edito mirëmbajtjen");
+        idDialog.setHeaderText(null);
+        idDialog.setContentText("Shkruaj ID-në e mirëmbajtjes që doni të editoni:");
+
+        idDialog.showAndWait().ifPresent(idStr -> {
+            try {
+                int id = Integer.parseInt(idStr.trim());
+                Maintenance maintenance = maintenanceList.stream()
+                        .filter(m -> m.getId() == id)
+                        .findFirst()
+                        .orElse(null);
+
+                if (maintenance == null) {
+                    showAlert("Gabim", "Nuk u gjet mirëmbajtja me këtë ID.");
+                    return;
+                }
+
+                Dialog<UpdateMaintenanceDTO> editDialog = new Dialog<>();
+                editDialog.setTitle("Përditëso mirëmbajtjen me ID: " + id);
+                editDialog.setHeaderText(null);
+
+                Label lblDescription = new Label("Përshkrimi i ri:");
+                TextField tfDescription = new TextField(maintenance.getDescription());
+
+                Label lblStatus = new Label("Statusi i ri:");
+                TextField tfStatus = new TextField(maintenance.getStatus());
+
+                VBox content = new VBox(10, lblDescription, tfDescription, lblStatus, tfStatus);
+                editDialog.getDialogPane().setContent(content);
+
+                ButtonType updateButtonType = new ButtonType("Përditëso", ButtonBar.ButtonData.OK_DONE);
+                editDialog.getDialogPane().getButtonTypes().addAll(updateButtonType, ButtonType.CANCEL);
+
+                editDialog.setResultConverter(dialogButton -> {
+                    if (dialogButton == updateButtonType) {
+                        String newDescription = tfDescription.getText().trim();
+                        String newStatus = tfStatus.getText().trim();
+                        if (newDescription.isEmpty() || newStatus.isEmpty()) {
+                            showAlert("Gabim", "Të dy fushat duhet të plotësohen.");
+                            return null;
+                        }
+                        return new UpdateMaintenanceDTO(id, newDescription, newStatus);
+                    }
+                    return null;
+                });
+
+                editDialog.showAndWait().ifPresent(updateDto -> {
+                    Maintenance updated = repository.update(updateDto);
+                    if (updated != null) {
+                        int index = maintenanceList.indexOf(maintenance);
+                        maintenanceList.set(index, updated);
+                        maintenanceTable.refresh();
+                        showAlert("Sukses", "Mirëmbajtja u përditësua me sukses.");
+                    } else {
+                        showAlert("Gabim", "Përditësimi dështoi.");
+                    }
+                });
+
+            } catch (NumberFormatException e) {
+                showAlert("Gabim", "ID-ja duhet të jetë numër i saktë.");
+            }
+        });
+    }
+
+
     private void showAlert(String title, String message) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle(title);
