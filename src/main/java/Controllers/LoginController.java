@@ -5,6 +5,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
@@ -13,6 +14,7 @@ import java.io.IOException;
 
 public class LoginController {
 
+    public Button loginButton;
     @FXML
     private TextField emailField;
 
@@ -27,27 +29,18 @@ public class LoginController {
         // Zëvendëso këtë pjesë me logjikën e vërtetë të autentikimit
         if ("eri".equals(email) && "122".equals(password)) {
             try {
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/ClientHomepage.fxml"));
-                Parent root = loader.load();
 
                 System.out.println("FXML loaded me sukses!");
 
-                // Merre kontrolluesin për ta dërguar emrin
-                ClientHomepageController controller = loader.getController();
-                controller.setEmriKlientit(email);  // dërgo email ose emër
 
 
-                // Krijo dhe shfaq skenën e re
-                Stage stage = new Stage();
-                stage.setScene(new Scene(root));
-                stage.setTitle("Homepage e Klientit");
-                stage.show();
+
 
                 // Mbyll dritaren aktuale (login)
                 Stage currentStage = (Stage) emailField.getScene().getWindow();
                 currentStage.close();
 
-            } catch (IOException e) {
+            } catch (Exception e) {
                 e.printStackTrace();
             }
         } else {
