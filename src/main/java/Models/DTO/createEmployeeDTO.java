@@ -16,6 +16,7 @@ public class createEmployeeDTO {
     private String last_name;
     private String position;
     private String email;
+    private String password_hash;
     private String phone;
     private Date hire_date;
 
