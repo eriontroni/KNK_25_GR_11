@@ -1,35 +1,32 @@
 package Controllers;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.chart.BarChart;
-import javafx.scene.chart.LineChart;
-import javafx.scene.control.Label;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
+import javafx.scene.Node;
+import java.io.IOException;
 
 public class ReceptionDashboardController {
 
     @FXML
-    private Label lblTitle;
+    private void handlePerRole(ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/ChartPerRole.fxml"));
+        Scene scene = new Scene(loader.load());
+        Stage stage = (Stage)((Node) event.getSource()).getScene().getWindow();
+        stage.setScene(scene);
+        stage.setTitle("Numri i përdoruesve për çdo rol");
+        stage.show();
+    }
 
     @FXML
-    private Label lblUserPerRole;
-
-    @FXML
-    private Label lblReservationsPerDay;
-
-    @FXML
-    private BarChart<String, Number> barChartUsers;
-
-    @FXML
-    private LineChart<String, Number> lineChartReservations;
-
-    @FXML
-    private void initialize() {
-        // Mund të shti këtu kodin për me mbush grafikat me të dhëna
-        System.out.println("Dashboard u inicializua.");
-
-        // Shembull: titulli me u bë dinamik
-        lblTitle.setText("Paneli i Rezervimeve");
-
-        // Këtu mund të inicializosh grafikat përmes metodave të tjera nëse ke të dhëna nga databaza
+    private void handlePerDay(ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/ChartPerDay.fxml"));
+        Scene scene = new Scene(loader.load());
+        Stage stage = (Stage)((Node) event.getSource()).getScene().getWindow();
+        stage.setScene(scene);
+        stage.setTitle("Numri i rezervimeve për çdo ditë");
+        stage.show();
     }
 }
