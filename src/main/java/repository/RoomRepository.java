@@ -1,15 +1,15 @@
 package repository;
 
 import Models.Room;
+import Models.RoomImage;
 import Models.DTO.CreateRoomDTO;
 import Models.DTO.UpdateRoomDTO;
 
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
-public class RoomRepository extends BaseRepository<Room, CreateRoomDTO, UpdateRoomDTO>{
+public class RoomRepository extends BaseRepository<Room, CreateRoomDTO, UpdateRoomDTO> {
     public RoomRepository() {
         super("Room");
     }
@@ -17,14 +17,51 @@ public class RoomRepository extends BaseRepository<Room, CreateRoomDTO, UpdateRo
     @Override
     public Room fromResultSet(ResultSet res) {
         try {
+            int id = res.getInt("id");
             String roomNumber = res.getString("room_number");
             int typeId = res.getInt("type_id");
             boolean isAvailable = res.getBoolean("is_available");
-            return new Room(roomNumber, typeId, isAvailable);
+
+            return new Room(id, roomNumber, typeId, isAvailable);
         } catch (SQLException e) {
             e.printStackTrace();
             return null;
         }
+    }
+
+    public List<RoomImage> getRoomImages(int roomId) {
+        String query = "SELECT * FROM RoomImage WHERE room_id = ?";
+        List<RoomImage> images = new ArrayList<>();
+        try (PreparedStatement pstm = this.connection.prepareStatement(query)) {
+            pstm.setInt(1, roomId);
+            ResultSet rs = pstm.executeQuery();
+            while (rs.next()) {
+                RoomImage image = RoomImage.getInstance(rs);
+                images.add(image);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return images;
+    }
+
+    @Override
+    public Room getById(int id) {
+        String query = "SELECT * FROM Room WHERE id = ?";
+        try (PreparedStatement pstm = this.connection.prepareStatement(query)) {
+            pstm.setInt(1, id);
+            ResultSet rs = pstm.executeQuery();
+            if (rs.next()) {
+                Room room = fromResultSet(rs);
+                // Nëse don me lidh imazhet:
+                // List<RoomImage> images = getRoomImages(id);
+                // room.setImages(images); // vetem nëse ke setter në Room
+                return room;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 
     @Override
@@ -36,7 +73,7 @@ public class RoomRepository extends BaseRepository<Room, CreateRoomDTO, UpdateRo
             pstm.setString(1, room.getRoomNumber());
             pstm.setInt(2, room.getTypeId());
             pstm.setBoolean(3, room.isAvailable());
-            pstm.execute();
+            pstm.executeUpdate();
 
             ResultSet result = pstm.getGeneratedKeys();
             if (result.next()) {
@@ -44,7 +81,7 @@ public class RoomRepository extends BaseRepository<Room, CreateRoomDTO, UpdateRo
                 return this.getById(id);
             }
         } catch (SQLException e) {
-            System.err.println("Gabim gjate krijimit te dhomes: " + e.getMessage());
+            System.err.println("Gabim gjatë krijimit të dhomës: " + e.getMessage());
         }
         return null;
     }
@@ -60,12 +97,13 @@ public class RoomRepository extends BaseRepository<Room, CreateRoomDTO, UpdateRo
             pstm.setInt(2, room.getTypeId());
             pstm.setBoolean(3, room.isAvailable());
             pstm.setInt(4, room.getId());
+
             int updated = pstm.executeUpdate();
             if (updated == 1) {
                 return this.getById(room.getId());
             }
         } catch (SQLException e) {
-            System.err.println("Gabim gjate perditesimit te dhomes: " + e.getMessage());
+            System.err.println("Gabim gjatë përditësimit të dhomës: " + e.getMessage());
         }
         return null;
     }
@@ -76,7 +114,7 @@ public class RoomRepository extends BaseRepository<Room, CreateRoomDTO, UpdateRo
             pstm.setInt(1, id);
             return pstm.executeUpdate() == 1;
         } catch (SQLException e) {
-            System.err.println("Gabim gjate fshirjes se dhomes: " + e.getMessage());
+            System.err.println("Gabim gjatë fshirjes së dhomës: " + e.getMessage());
         }
         return false;
     }
