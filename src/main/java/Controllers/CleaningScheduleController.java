@@ -6,11 +6,16 @@ import Models.DTO.UpdateCleaningScheduleDTO;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
 import repository.CleaningScheduleRepository;
 
+import java.io.IOException;
 import java.sql.Date;
 import java.time.LocalDate;
 import java.util.List;
@@ -276,6 +281,21 @@ public class CleaningScheduleController {
                 showAlert("Gabim", "ID-ja duhet të jetë numër i saktë.");
             }
         });
+    }
+
+    @FXML
+    private void handleback(javafx.event.ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/MainMaintenance.fxml"));
+            Parent root = loader.load();
+            Stage stage = (Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow();
+            stage.setScene(new Scene(root));
+            stage.setTitle("Menu Kryesore");
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+            showAlert("Gabim", "Nuk mund të kthehem te menuja kryesore.");
+        }
     }
 
     private void showAlert(String title, String message) {

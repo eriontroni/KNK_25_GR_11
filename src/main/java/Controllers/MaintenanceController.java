@@ -10,6 +10,12 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import repository.MaintenanceRepository;
 import javafx.scene.layout.VBox;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
+import java.io.IOException;
+
 
 import java.sql.Date;
 import java.util.List;
@@ -122,6 +128,20 @@ public class MaintenanceController {
         }).collect(Collectors.toList());
 
         maintenanceTable.setItems(FXCollections.observableArrayList(filtered));
+    }
+    @FXML
+    private void handlebback(javafx.event.ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/MainMaintenance.fxml"));
+            Parent root = loader.load();
+            Stage stage = (Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow();
+            stage.setScene(new Scene(root));
+            stage.setTitle("Menu Kryesore");
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+            showAlert("Gabim", "Nuk mund të kthehem te menuja kryesore.");
+        }
     }
 
     private void showAddDialog() {
@@ -279,4 +299,6 @@ public class MaintenanceController {
         alert.setContentText(message);
         alert.showAndWait();
     }
+
+
 }

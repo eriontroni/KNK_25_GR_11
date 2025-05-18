@@ -5,7 +5,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.provaController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.Main_MaintenanceController">
    <children>
       <Button fx:id="mirembajtjeButton" layoutX="184.0" layoutY="152.0" mnemonicParsing="false" onAction="#handleMirembajtje" prefHeight="75.0" prefWidth="116.0" text="Mirembajtje" />
 
@@ -15,6 +15,6 @@
             <Font size="24.0" />
          </font>
       </Label>
-      <Button fx:id="backToLoginButton" layoutX="256.0" layoutY="266.0" mnemonicParsing="false" onAction="#handleBackToLogin" text="Kthehu ne Log In" />
+  <Button fx:id="backToLoginButton" layoutX="256.0" layoutY="266.0" mnemonicParsing="false" onAction="#handleBackToLogin" text="Kthehu ne Log In" />
    </children>
 </AnchorPane>
