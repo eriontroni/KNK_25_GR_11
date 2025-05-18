@@ -7,8 +7,7 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
-
-<AnchorPane fx:id="searchbutton" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="468.0" prefWidth="716.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane fx:id="searchbutton" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="468.0" prefWidth="716.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.CleaningScheduleController">
    <children>
       <TableView fx:id="cleaningTable" layoutX="37.0" layoutY="96.0" prefHeight="301.0" prefWidth="442.0">
         <columns>
@@ -19,9 +18,9 @@
             <TableColumn fx:id="colStatus" prefWidth="87.20003662109377" text="Status" />
         </columns>
       </TableView>
-      <Button fx:id="btnAdd" layoutX="528.0" layoutY="111.0" mnemonicParsing="false" onAction="#handleAdd" prefHeight="46.0" prefWidth="114.0" text="Add" />
-      <Button fx:id="btnDelete" layoutX="528.0" layoutY="166.0" mnemonicParsing="false" onAction="#handleDelete" prefHeight="46.0" prefWidth="114.0" text="Delete" />
-      <Button fx:id="btnUpdate" layoutX="528.0" layoutY="223.0" mnemonicParsing="false" onAction="#handleUpdate" prefHeight="46.0" prefWidth="114.0" text="Edit" />
+      <Button fx:id="btnAdd" layoutX="528.0" layoutY="111.0" mnemonicParsing="false" onAction="#showAddDialog" prefHeight="46.0" prefWidth="114.0" text="Add" />
+      <Button fx:id="btnDelete" layoutX="528.0" layoutY="166.0" mnemonicParsing="false" onAction="#deleteCleaningById" prefHeight="46.0" prefWidth="114.0" text="Delete" />
+      <Button fx:id="btnUpdate" layoutX="528.0" layoutY="223.0" mnemonicParsing="false" onAction="#editCleaningById" prefHeight="46.0" prefWidth="114.0" text="Edit" />
       <TextField layoutX="14.0" layoutY="14.0" prefHeight="26.0" prefWidth="182.0" style="-fx-background-color: white;" text="Tabela per oraret e pastrimit" />
       <TextField fx:id="searchBox" layoutX="298.0" layoutY="21.0" promptText="Search" />
       <ComboBox fx:id="comboBox" layoutX="469.0" layoutY="21.0" prefWidth="150.0" promptText="Search By" />
