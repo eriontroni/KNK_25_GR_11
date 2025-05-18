@@ -43,5 +43,6 @@
             <Label text="Total rows: 0" />
          </children>
       </HBox>
+      <Button fx:id="goback" layoutX="25.0" layoutY="320.0" mnemonicParsing="false" onAction="#handlebback" text="Back" />
    </children>
 </AnchorPane>
