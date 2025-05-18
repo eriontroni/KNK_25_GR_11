@@ -7,7 +7,7 @@
 <?import javafx.scene.text.Font?>
 
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.HomeController">
+<fx:root maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" type="Pane" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.HomeController">
    <children>
       <Label alignment="CENTER" layoutX="153.0" layoutY="26.0" prefHeight="63.0" prefWidth="262.0" text="Hotel ">
          <font>
@@ -16,27 +16,27 @@
       </Label>
       <HBox alignment="CENTER" layoutX="17.0" layoutY="103.0" prefHeight="51.0" prefWidth="563.0" spacing="10.0">
          <children>
-            <Button fx:id="btnHome" mnemonicParsing="false" prefHeight="30.0" prefWidth="100.0" text="Home">
+            <Button fx:id="btnHome" mnemonicParsing="false" onAction="#handleHome" prefHeight="30.0" prefWidth="100.0" text="Home">
                <font>
                   <Font name="Baskerville Old Face" size="16.0" />
                </font>
             </Button>
-            <Button fx:id="btnRooms" mnemonicParsing="false" prefHeight="30.0" prefWidth="100.0" text="Rooms">
+            <Button fx:id="btnRooms" mnemonicParsing="false" onAction="#handleRooms" prefHeight="30.0" prefWidth="100.0" text="Rooms">
                <font>
                   <Font name="Baskerville Old Face" size="16.0" />
                </font>
             </Button>
-            <Button fx:id="btnOffers" mnemonicParsing="false" prefHeight="30.0" prefWidth="100.0" text="Offers">
+            <Button fx:id="btnOffers" mnemonicParsing="false" onAction="#handleOffers" prefHeight="30.0" prefWidth="100.0" text="Offers">
                <font>
                   <Font name="Baskerville Old Face" size="16.0" />
                </font>
             </Button>
-            <Button fx:id="btnEvents" mnemonicParsing="false" prefHeight="30.0" prefWidth="100.0" text="Events">
+            <Button fx:id="btnEvents" mnemonicParsing="false" onAction="#handleEvents" prefHeight="30.0" prefWidth="100.0" text="Events">
                <font>
                   <Font name="Baskerville Old Face" size="16.0" />
                </font>
             </Button>
-            <Button fx:id="btnReservations" mnemonicParsing="false" prefHeight="30.0" prefWidth="100.0" text="Reservations">
+            <Button fx:id="btnReservations" mnemonicParsing="false" onAction="#handleReservations" prefHeight="30.0" prefWidth="100.0" text="Reservations">
                <font>
                   <Font name="Baskerville Old Face" size="14.0" />
                </font>
@@ -44,4 +44,4 @@
          </children>
       </HBox>
    </children>
-</Pane>
+</fx:root>

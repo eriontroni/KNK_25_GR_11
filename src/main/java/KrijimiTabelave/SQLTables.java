@@ -37,14 +37,14 @@ CREATE TABLE Room (
     is_available BOOLEAN DEFAULT TRUE
 );
 
--- 3. Customer -Leoni
---CREATE TABLE Customer (
---  id SERIAL PRIMARY KEY,
---    first_name VARCHAR(100) NOT NULL,
---    last_name VARCHAR(100) NOT NULL,
---    email VARCHAR(255) UNIQUE NOT NULL,
---    phone VARCHAR(20) UNIQUE NOT NULL
---);
+-- 3. Customer Leoni
+CREATE TABLE Customer (
+  id SERIAL PRIMARY KEY,
+    first_name VARCHAR(100) NOT NULL,
+    last_name VARCHAR(100) NOT NULL,
+    email VARCHAR(255) UNIQUE NOT NULL,
+    phone VARCHAR(20) UNIQUE NOT NULL
+);
 
 -- 4. Users -Vesa
 CREATE TABLE Users (

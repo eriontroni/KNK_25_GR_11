@@ -30,27 +30,27 @@ public class HomeController {
             btnReservations.setOnAction(e -> handleReservations());
         }
 
-        private void handleHome() {
+    public void handleHome() {
             System.out.println("Home clicked");
             // logjika për home
         }
 
-        private void handleRooms() {
+    public void handleRooms() {
             System.out.println("Rooms clicked");
             // logjika për rooms
         }
 
-        private void handleOffers() {
+    public void handleOffers() {
             System.out.println("Offers clicked");
             // logjika për offers
         }
 
-        private void handleEvents() {
+    public void handleEvents() {
             System.out.println("Events clicked");
             // logjika për events
         }
 
-        private void handleReservations() {
+    public void handleReservations() {
             System.out.println("Reservations clicked");
             // logjika për reservations
         }
