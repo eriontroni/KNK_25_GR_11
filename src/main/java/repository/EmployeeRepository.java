@@ -53,7 +53,7 @@ public class EmployeeRepository extends BaseRepository<Employee, createEmployeeD
             pstm.setString(3, dto.getPosition());
             pstm.setString(4, dto.getEmail());
             pstm.setString(5, dto.getPhone());
-            pstm.setDate(6, new java.sql.Date(dto.getHire_date().getTime()));
+            pstm.setDate(6, new java.sql.Date(System.currentTimeMillis()));
             pstm.execute();
 
             ResultSet result = pstm.getGeneratedKeys();
