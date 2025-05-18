@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.text.*?>
+
+<BorderPane xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.RoomsController">
+    <top>
+        <HBox alignment="CENTER" style="-fx-background-color: #2c3e50; -fx-padding: 15;">
+            <Label text="Hotel Room Management" style="-fx-text-fill: white; -fx-font-size: 24; -fx-font-weight: bold;"/>
+        </HBox>
+    </top>
+
+    <center>
+        <ScrollPane fitToWidth="true">
+            <GridPane hgap="20" vgap="20" alignment="TOP_CENTER" style="-fx-padding: 20;">
+                <!-- Room cards will be dynamically added here -->
+                <!-- Each room will be represented by a VBox with image and details -->
+
+                <!-- Example room card (this would be generated dynamically in your controller) -->
+                <VBox fx:id="roomCard101" style="-fx-background-color: #f5f5f5; -fx-border-color: #ddd; -fx-border-radius: 5; -fx-padding: 10;" spacing="5" GridPane.columnIndex="0" GridPane.rowIndex="0">
+                    <ImageView fx:id="roomImage" fitWidth="200" fitHeight="150" pickOnBounds="true" preserveRatio="true">
+                        <image>
+                            <Image url="@/images/img.png"/>
+                        </image>
+                    </ImageView>
+
+
+                    <Label text="Room 101" style="-fx-font-size: 16; -fx-font-weight: bold;"/>
+                    <Label text="Standard Room"/>
+                    <Label text="Capacity: 2 persons"/>
+                    <Label text="Price: $80/night"/>
+                    <HBox spacing="10" alignment="CENTER_LEFT">
+                        <Label text="Available:"/>
+                        <Label text="Yes" style="-fx-text-fill: green; -fx-font-weight: bold;"/>
+                    </HBox>
+                    <Button text="Book Now" style="-fx-background-color: #3498db; -fx-text-fill: white;"/>
+                </VBox>
+
+                <!-- You would repeat this structure for each room in your database -->
+            </GridPane>
+        </ScrollPane>
+    </center>
+
+    <bottom>
+        <HBox alignment="CENTER" style="-fx-background-color: #ecf0f1; -fx-padding: 10;">
+            <Label text="© 2023 Hotel Management System"/>
+        </HBox>
+    </bottom>
+</BorderPane>

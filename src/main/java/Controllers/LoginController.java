@@ -1,5 +1,6 @@
 package Controllers;
-
+import Services.LoginService;
+import Services.PasswordHasher;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -22,13 +23,12 @@ public class LoginController {
     @FXML
     private PasswordField passwordField;
 
-    public Boolean isConsumer(){
-
-        return null;
-    }
-    public String isEmployee(){
-        return "Receptionist"; // or return Maintainance
-
+    private void showAlert(String msg) {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("Error");
+        alert.setHeaderText(null);
+        alert.setContentText(msg);
+        alert.showAndWait();
     }
 
 
@@ -36,30 +36,32 @@ public class LoginController {
     private void handleLogin() {
         String email = emailField.getText();
         String password = passwordField.getText();
-        // Zëvendëso këtë pjesë me logjikën e vërtetë të autentikimit
-        if ("eri".equals(email) && "122".equals(password)) {
-            try {
-
-                System.out.println("FXML loaded me sukses!");
 
 
 
 
+        if(LoginService.emailExists(email,"Employee")) {
 
-                // Mbyll dritaren aktuale (login)
-                Stage currentStage = (Stage) emailField.getScene().getWindow();
-                currentStage.close();
+            if (LoginService.checkPassword(email,password,"Employee")) {
 
-            } catch (Exception e) {
-                e.printStackTrace();
+                if (LoginService.positionExists(email, "Receptionist")) {
+                    // TODO: Me shku te faqja e recepcionistit
+
+                } else if (LoginService.positionExists(email, "Maintanance")) {
+                    // TODO: Me shku te faqja e maintanance
+
+
+                }
+            }else{
+                showAlert("Passwordi i gabuar!");
             }
-        } else {
-            // kur t deshton
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Gabim");
-            alert.setHeaderText(null);
-            alert.setContentText("Emaili i përdoruesit ose fjalëkalimi është i pasaktë.");
-            alert.showAndWait();
+        }else if(LoginService.emailExists(email,"Users")){
+            if(LoginService.checkPassword(email,password,"Users")) {
+
+                //TODO: Me shku te faqja e Userit apo klientit
+            }else{
+                showAlert("Passwordi i gabuar!");
+            }
         }
     }
 }
