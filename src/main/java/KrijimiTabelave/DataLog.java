@@ -39,26 +39,26 @@ VALUES
 
 
 -- Insert në tabelën Users (klientë)
-INSERT INTO Users (username, email, password_hash, salted_hash)
-VALUES
-('klient_aferdita', 'aferdita.klient@example.com', 'hashed_pass7', 'salted_hash7'),
-('klient_dren', 'dren.klient@example.com', 'hashed_pass8', 'salted_hash8'),
-('klient_alba', 'alba.klient@example.com', 'hashed_pass9', 'salted_hash9'),
-('klient_erion', 'erion.klient@example.com', 'hashed_pass10', 'salted_hash10'),
-('klient_fiona', 'fiona.klient@example.com', 'hashed_pass11', 'salted_hash11');
+--INSERT INTO Users (username, email, password_hash, salted_hash)
+--VALUES
+--('klient_aferdita', 'aferdita.klient@example.com', 'hashed_pass7', 'salted_hash7'),
+--('klient_dren', 'dren.klient@example.com', 'hashed_pass8', 'salted_hash8'),
+--('klient_alba', 'alba.klient@example.com', 'hashed_pass9', 'salted_hash9'),
+--('klient_erion', 'erion.klient@example.com', 'hashed_pass10', 'salted_hash10'),
+--('klient_fiona', 'fiona.klient@example.com', 'hashed_pass11', 'salted_hash11');
 
 -- Insert në tabelën Employee
-INSERT INTO Employee (first_name, last_name, position, email, phone, password_hash, salted_hash, hire_date)
-VALUES
+--INSERT INTO Employee (first_name, last_name, position, email, phone, password_hash, salted_hash, hire_date)
+--VALUES
 -- Recepsionistë
-('Erza', 'Krasniqi', 'Receptionist', 'erza.krasniqi@example.com', '+38344111001', 'hashed_pass1', 'salted_hash1', '2022-01-10'),
-('Luan', 'Gashi', 'Receptionist', 'luan.gashi@example.com', '+38344111002', 'hashed_pass2', 'salted_hash2', '2021-11-15'),
+--('Erza', 'Krasniqi', 'Receptionist', 'erza.krasniqi@example.com', '+38344111001', 'hashed_pass1', 'salted_hash1', '2022-01-10'),
+--('Luan', 'Gashi', 'Receptionist', 'luan.gashi@example.com', '+38344111002', 'hashed_pass2', 'salted_hash2', '2021-11-15'),
 
 -- Mirëmbajtës
-('Arta', 'Hoxha', 'Mirëmbajtëse', 'arta.hoxha@example.com', '+38344111003', 'hashed_pass3', 'salted_hash3', '2023-02-20'),
-('Dion', 'Beka', 'Mirëmbajtës', 'dion.beka@example.com', '+38344111004', 'hashed_pass4', 'salted_hash4', '2023-05-18'),
-('Vjollca', 'Rama', 'Mirëmbajtëse', 'vjollca.rama@example.com', '+38344111005', 'hashed_pass5', 'salted_hash5', '2022-09-07'),
-('Florian', 'Tahiri', 'Mirëmbajtës', 'florian.tahiri@example.com', '+38344111006', 'hashed_pass6', 'salted_hash6', '2023-01-12');
+--('Arta', 'Hoxha', 'Mirëmbajtëse', 'arta.hoxha@example.com', '+38344111003', 'hashed_pass3', 'salted_hash3', '2023-02-20'),
+--('Dion', 'Beka', 'Mirëmbajtës', 'dion.beka@example.com', '+38344111004', 'hashed_pass4', 'salted_hash4', '2023-05-18'),
+--('Vjollca', 'Rama', 'Mirëmbajtëse', 'vjollca.rama@example.com', '+38344111005', 'hashed_pass5', 'salted_hash5', '2022-09-07'),
+--('Florian', 'Tahiri', 'Mirëmbajtës', 'florian.tahiri@example.com', '+38344111006', 'hashed_pass6', 'salted_hash6', '2023-01-12');
 
 
 -- Insert në tabelën Reservation (customer_id dhe room_id duhet të jenë ekzistuese nga tabela Customer dhe Room)

@@ -17,57 +17,69 @@ public class createEmployeeDTO {
     private String position;
     private String email;
     private String password_hash;
+    private String salted_hash;
     private String phone;
-    private Date hire_date;
 
-    public createEmployeeDTO(String first_name, String last_name, String position, String email, String phone, Date hire_date) {
+    public createEmployeeDTO(String first_name, String last_name, String position, String email,String password_hash,String salted_hash, String phone) {
         this.first_name = first_name;
         this.last_name = last_name;
         this.position = position;
         this.email = email;
+        this.password_hash = password_hash;
+        this.salted_hash = salted_hash;
         this.phone = phone;
-        this.hire_date = hire_date;
+
     }
+
     public String getFirst_name() {
         return first_name;
     }
-
     public void setFirst_name(String first_name) {
         this.first_name = first_name;
     }
+
     public String getLast_name() {
         return last_name;
     }
-
     public void setLast_name(String last_name) {
         this.last_name = last_name;
     }
+
     public String getPosition() {
         return position;
     }
-
     public void setPosition(String position) {
         this.position = position;
     }
+
     public String getEmail() {
         return email;
     }
-
     public void setEmail(String email) {
         this.email = email;
     }
+
     public String getPhone() {
         return phone;
     }
-
     public void setPhone(String phone) {
         this.phone = phone;
     }
-    public Date getHire_date() {
-        return hire_date;
+
+    public String getPassword_hash() {
+        return password_hash;
     }
 
-    public void setHire_date(Date hire_date) {
-        this.hire_date = hire_date;
+    public void setPassword_hash(String password_hash) {
+        this.password_hash = password_hash;
     }
+
+    public String getSalted_hash() {
+        return salted_hash;
+    }
+
+    public void setSalted_hash(String salted_hash) {
+        this.salted_hash = salted_hash;
+    }
+
 }
