@@ -109,11 +109,11 @@ VALUES
 -- Insert në tabelën RoomImage
 INSERT INTO RoomImage (room_id, image_url, uploaded_at)
 VALUES
-(1, 'https://example.com/images/room1.jpg', CURRENT_TIMESTAMP),
-(2, 'https://example.com/images/room2.jpg', CURRENT_TIMESTAMP),
-(3, 'https://example.com/images/room3.jpg', CURRENT_TIMESTAMP),
-(4, 'https://example.com/images/room4.jpg', CURRENT_TIMESTAMP),
-(5, 'https://example.com/images/room5.jpg', CURRENT_TIMESTAMP);
+(1, '/images/img.png', CURRENT_TIMESTAMP),
+(2, '/images/img_1.png', CURRENT_TIMESTAMP),
+(3, '/images/img_2.png', CURRENT_TIMESTAMP),
+(4, '/images/img_3.png', CURRENT_TIMESTAMP),
+(5, '/images/img_4.png', CURRENT_TIMESTAMP);
 
 -- Insert në tabelën Discount
 INSERT INTO Discount (code, description, percentage, valid_from, valid_to)
