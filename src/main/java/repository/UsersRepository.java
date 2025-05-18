@@ -27,14 +27,14 @@ public class UsersRepository extends BaseRepository<Users, CreateUsersDTO, Updat
 
     @Override
     public Users create(CreateUsersDTO dto) {
-        String query = "INSERT INTO Users (username, email, password_hash, role) " +
+        String query = "INSERT INTO Users (username, email, password_hash, salted_hash) " +
                 "VALUES (?, ?, ?, ?) RETURNING *";
         try {
             PreparedStatement stmt = this.connection.prepareStatement(query);
             stmt.setString(1, dto.getUsername());
             stmt.setString(2, dto.getEmail());
             stmt.setString(3, dto.getPassword_hash());
-            stmt.setString(4, dto.getRole());
+            stmt.setString(4, dto.getSalted_hash());
 
             ResultSet res = stmt.executeQuery();
             if (res.next()) {
@@ -54,12 +54,11 @@ public class UsersRepository extends BaseRepository<Users, CreateUsersDTO, Updat
     }
 
     public Users updateById(int id, UpdateUsersDTO dto) {
-        String query = "UPDATE Users SET username = ?, email = ?, role = ? WHERE id = ? RETURNING *";
+        String query = "UPDATE Users SET username = ?, email = ? WHERE id = ? RETURNING *";
         try {
             PreparedStatement stmt = this.connection.prepareStatement(query);
             stmt.setString(1, dto.getUsername());
             stmt.setString(2, dto.getEmail());
-            stmt.setString(3, dto.getRole());
             stmt.setInt(4, id);
 
             ResultSet res = stmt.executeQuery();
