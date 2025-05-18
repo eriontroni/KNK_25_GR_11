@@ -22,6 +22,18 @@ public class Main_MaintenanceController {
             e.printStackTrace();
         }
     }
+    @FXML
+    private void handleBackToLogin(ActionEvent event) {
+        try {
+            Parent root = FXMLLoader.load(getClass().getResource("/views/logini.fxml"));
+            Stage stage = (Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow();
+            stage.setScene(new Scene(root));
+            stage.setTitle("Mirembajtje");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
 
     @FXML
     private void handlePastrim(ActionEvent event) {
