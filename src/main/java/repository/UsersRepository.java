@@ -16,7 +16,7 @@ public class UsersRepository extends BaseRepository<Users, CreateUsersDTO, Updat
     }
 
     @Override
-    Users fromResultSet(ResultSet rs) {
+    public Users fromResultSet(ResultSet rs) {
         try {
             return Users.getInstance(rs);
         } catch (SQLException e) {
