@@ -59,7 +59,7 @@ public class UsersRepository extends BaseRepository<Users, CreateUsersDTO, Updat
             PreparedStatement stmt = this.connection.prepareStatement(query);
             stmt.setString(1, dto.getUsername());
             stmt.setString(2, dto.getEmail());
-            stmt.setString(3, dto.getRole());
+          //  stmt.setString(3, dto.getRole());
             stmt.setInt(4, id);
 
             ResultSet res = stmt.executeQuery();
