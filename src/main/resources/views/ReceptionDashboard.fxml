@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.chart.BarChart?>
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.LineChart?>
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="475.0" prefWidth="678.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.ReceptionDashboardController"
+>
+   <children>
+      <Label fx:id="lblTitle" layoutX="225.0" layoutY="68.0" text="Paneli i Recepsionit">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Label>
+      <BarChart fx:id="barChartUsers" layoutX="283.0" layoutY="103.0" prefHeight="150.0" prefWidth="316.0">
+        <xAxis>
+          <CategoryAxis side="BOTTOM" />
+        </xAxis>
+        <yAxis>
+          <NumberAxis side="LEFT" />
+        </yAxis>
+      </BarChart>
+      <LineChart fx:id="lineChartReservations" layoutX="283.0" layoutY="261.0" prefHeight="194.0" prefWidth="316.0">
+        <xAxis>
+          <CategoryAxis side="BOTTOM" tickLabelFill="RED" />
+        </xAxis>
+        <yAxis>
+          <NumberAxis side="LEFT" />
+        </yAxis>
+      </LineChart>
+      <Label fx:id="lblUserPerRole" layoutX="40.0" layoutY="170.0" prefHeight="17.0" prefWidth="259.0" text="Numri i përdoruesve për çdo rol :">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Label>
+      <Label fx:id="lblReservationsPerDay" layoutX="36.0" layoutY="322.0" prefHeight="17.0" prefWidth="237.0" text="Numri i rezervimeve për çdo ditë :">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Label>
+   </children>
+</Pane>
