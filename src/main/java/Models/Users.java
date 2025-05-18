@@ -12,11 +12,12 @@ public class Users {
 
     
 
-    private Users(int id, String username, String email, String password_hash) {
+    private Users(int id, String username, String email, String password_hash,String salted_hash) {
         this.id = id;
         this.username = username;
         this.email = email;
         this.password_hash = password_hash;
+        this.salted_hash = salted_hash;
         
     }
 
@@ -25,9 +26,8 @@ public class Users {
         String username = rs.getString("username");
         String email = rs.getString("email");
         String password_hash = rs.getString("password_hash");
-        String role = rs.getString("role");
-
-        return new Users(id, username, email, password_hash);
+        String salted_hash = rs.getString("salted_hash");
+        return new Users(id, username, email, password_hash,salted_hash);
     }
 
     public int getId() { return id; }

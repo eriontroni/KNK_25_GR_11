@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.String?>
+<?import javafx.collections.FXCollections?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.SignupStafiController">
+   <children>
+      <TextField fx:id="signupEmail" layoutX="237.0" layoutY="200.0" promptText="name@example.com" />
+      <Label layoutX="227.0" layoutY="14.0" text="Signup STAFF">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Label>
+      <Label layoutX="143.0" layoutY="165.0" text="Zgjedh poziten" />
+      <Label layoutX="163.0" layoutY="204.0" text="Sheno email" />
+      <PasswordField fx:id="signupPass" layoutX="237.0" layoutY="234.0" promptText="min. 8-characters" />
+      <Button layoutX="262.0" layoutY="336.0" mnemonicParsing="false" onAction="#handleSignup" prefHeight="35.0" prefWidth="81.0" text="Signup" />
+      <Label layoutX="163.0" layoutY="98.0" text="Sheno Emrin" />
+      <TextField fx:id="signupName" layoutX="237.0" layoutY="94.0" />
+      <Label layoutX="141.0" layoutY="130.0" text="Sheno Mbiemrin" />
+      <TextField fx:id="signupSurname" layoutX="237.0" layoutY="126.0" />
+      <ChoiceBox fx:id="positionBox" layoutX="237.0" layoutY="161.0" prefWidth="150.0">
+         <items>
+            <FXCollections fx:factory="observableArrayList">
+               <String fx:value="Mirembajtes" />
+               <String fx:value="Recepcionist" />
+            </FXCollections>
+         </items>
+      </ChoiceBox>
+      <Label layoutX="138.0" layoutY="238.0" text="Sheno password" />
+      <Label layoutX="163.0" layoutY="273.0" text="Sheno Tel." />
+      <TextField fx:id="nrTel" layoutX="237.0" layoutY="269.0" promptText="+383 4X XXX XXX" />
+   </children>
+</Pane>
