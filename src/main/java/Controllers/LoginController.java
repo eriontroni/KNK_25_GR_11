@@ -62,6 +62,8 @@ public class LoginController {
             }else{
                 showAlert("Passwordi i gabuar!");
             }
+        }else{
+            showAlert("Passwordi dhe Emaili nuk u pershtaten");
         }
     }
 }
