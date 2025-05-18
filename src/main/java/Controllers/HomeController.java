@@ -1,7 +1,13 @@
 package Controllers;
 
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.stage.Stage;
+
+import java.io.IOException;
 
 public class HomeController {
 
@@ -41,13 +47,21 @@ public class HomeController {
         }
 
     public void handleOffers() {
-            System.out.println("Offers clicked");
-            // logjika për offers
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/offers.fxml"));
+            Parent offersRoot = loader.load();
+
+            // Merr skenën aktuale nga butoni (ose çdo Node tjetër në skenë)
+            Stage stage = (Stage) btnOffers.getScene().getWindow();
+            Scene scene = new Scene(offersRoot);
+            stage.setScene(scene);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         }
 
     public void handleEvents() {
-            System.out.println("Events clicked");
-            // logjika për events
+
         }
 
     public void handleReservations() {
