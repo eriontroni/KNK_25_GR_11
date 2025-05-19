@@ -20,7 +20,6 @@ public class RoomImage {
         int id = resultset.getInt("id");
         int roomID = resultset.getInt("room_id");
         String imgURL = resultset.getString("img_url");
-        String uploadedAtString = resultset.getString("uploaded_at");
 
         return new RoomImage(id, roomID, imgURL);
     }
