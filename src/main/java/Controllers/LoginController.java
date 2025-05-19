@@ -1,6 +1,8 @@
 package Controllers;
+import Models.Users;
 import Services.LoginService;
 import Services.PasswordHasher;
+import Services.SessionManager;
 import Utils.SceneLocator;
 import Utils.SceneManager;
 import javafx.event.ActionEvent;
@@ -13,6 +15,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import repository.UsersRepository;
 
 import java.io.IOException;
 
@@ -22,7 +25,6 @@ public class LoginController {
     public Button loginButton;
     @FXML
     private TextField emailField;
-
     @FXML
     private PasswordField passwordField;
 
@@ -61,6 +63,11 @@ public class LoginController {
         }else if(LoginService.emailExists(email,"Users")){
             if(LoginService.checkPassword(email,password,"Users")) {
                 showAlert("JENI QASUR!");
+                SessionManager sessionManager = SessionManager.getInstance();
+                UsersRepository ur = new UsersRepository();
+                Users user = ur.getByEmail(email);
+                sessionManager.setCurrentUser(user);
+
                 //TODO: Me shku te faqja e Userit apo klientit
             }else{
                 showAlert("Passwordi i gabuar!");

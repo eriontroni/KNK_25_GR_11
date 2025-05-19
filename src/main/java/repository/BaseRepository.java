@@ -40,6 +40,20 @@ abstract class BaseRepository<Model, CreateModelDto, UpdateModelDto> {
         }
         return null;
     }
+    public Model getByEmail(String email){
+        String query = "SELECT * FROM " + this.tableName + " WHERE email = ?";
+        try{
+            PreparedStatement statement = this.connection.prepareStatement(query);
+            statement.setString(1, email);
+            ResultSet res = statement.executeQuery();
+            if(res.next()){
+                return this.fromResultSet(res);
+            }
+        } catch (SQLException e){
+            e.printStackTrace();
+        }
+        return null;
+    }
 
     public ArrayList<Model> getAll(){
         ArrayList<Model> models = new ArrayList<>();

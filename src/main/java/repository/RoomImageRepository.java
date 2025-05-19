@@ -29,7 +29,7 @@ public class RoomImageRepository extends BaseRepository<RoomImage, CreateRoomIma
     RoomImage create(CreateRoomImageDTO RoomImage) {
         String query = """
                 INSERT INTO RoomImage (room_id, image_url, uploaded_at)
-                VALUES (?, ?, ?)
+                VALUES (?, ?)
                 """;
         try{
             PreparedStatement pstm = this.connection.prepareStatement(
@@ -37,7 +37,6 @@ public class RoomImageRepository extends BaseRepository<RoomImage, CreateRoomIma
             );
             pstm.setInt(1, RoomImage.getRoom_id());
             pstm.setString(2, RoomImage.getImage_url());
-            pstm.setDate(3,RoomImage.getUploaded_at() );
             pstm.execute();
             ResultSet result = pstm.getGeneratedKeys();
             if(result.next()){

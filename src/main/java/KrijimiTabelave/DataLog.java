@@ -22,11 +22,11 @@ VALUES
 -- Insert në tabelën Room (sigurohet që type_id është i saktë nga RoomType)
 INSERT INTO Room (room_number, type_id, is_available)
 VALUES
-('101', 1, TRUE),
-('102', 2, TRUE),
-('201', 3, FALSE),
-('202', 4, TRUE),
-('301', 5, TRUE);
+('101', 1, TRUE,5),
+('102', 2, TRUE,4),
+('201', 3, FALSE,3),
+('202', 4, TRUE,1),
+('301', 5, TRUE,2);
 
 -- Insert në tabelën Customer (unik në email dhe telefon)
 --INSERT INTO Customer (first_name, last_name, email, phone)
@@ -109,11 +109,11 @@ VALUES
 -- Insert në tabelën RoomImage
 INSERT INTO RoomImage (room_id, image_url, uploaded_at)
 VALUES
-(1, '/images/img.png', CURRENT_TIMESTAMP),
-(2, '/images/img_1.png', CURRENT_TIMESTAMP),
-(3, '/images/img_2.png', CURRENT_TIMESTAMP),
-(4, '/images/img_3.png', CURRENT_TIMESTAMP),
-(5, '/images/img_4.png', CURRENT_TIMESTAMP);
+(1, '/images/img.png'),
+(2, '/images/img_1.png'),
+(3, '/images/img_2.png'),
+(4, '/images/img_3.png'),
+(5, '/images/img_4.png');
 
 -- Insert në tabelën Discount
 INSERT INTO Discount (code, description, percentage, valid_from, valid_to)

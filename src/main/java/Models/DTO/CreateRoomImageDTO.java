@@ -12,12 +12,11 @@ import java.time.LocalDateTime;
 public class CreateRoomImageDTO {
     private int room_id;
     private String image_url;
-    private Date uploaded_at;
 
-    public CreateRoomImageDTO(int room_id, String image_url, Date uploaded_at) {
+
+    public CreateRoomImageDTO(int room_id, String image_url) {
         this.room_id = room_id;
         this.image_url = image_url;
-        this.uploaded_at = uploaded_at;
     }
 
     public int getRoom_id() {
@@ -36,11 +35,5 @@ public class CreateRoomImageDTO {
         this.image_url = image_url;
     }
 
-    public Date getUploaded_at() {
-        return uploaded_at;
-    }
 
-    public void setUploaded_at(Date uploaded_at) {
-        this.uploaded_at = uploaded_at;
-    }
 }
