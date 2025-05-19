@@ -43,8 +43,8 @@ public class EmployeeRepository extends BaseRepository<Employee, createEmployeeD
     @Override
     public Employee create(createEmployeeDTO dto) {
         String query = """
-                INSERT INTO Employee (first_name, last_name, position, email, phone, hire_date)
-                VALUES (?, ?, ?, ?, ?, ?)
+                INSERT INTO Employee (first_name, last_name, position, email, password_hash, salted_hash, phone, hire_date)
+                VALUES (?, ?, ?,?,?, ?, ?, ?)
                 """;
         try {
             PreparedStatement pstm = this.connection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
@@ -52,8 +52,10 @@ public class EmployeeRepository extends BaseRepository<Employee, createEmployeeD
             pstm.setString(2, dto.getLast_name());
             pstm.setString(3, dto.getPosition());
             pstm.setString(4, dto.getEmail());
-            pstm.setString(5, dto.getPhone());
-            pstm.setDate(6, new java.sql.Date(System.currentTimeMillis()));
+            pstm.setString(6, dto.getSalted_hash());
+            pstm.setString(5, dto.getPassword_hash());
+            pstm.setString(7, dto.getPhone());
+            pstm.setDate(8, new java.sql.Date(System.currentTimeMillis()));
             pstm.execute();
 
             ResultSet result = pstm.getGeneratedKeys();
@@ -91,4 +93,3 @@ public class EmployeeRepository extends BaseRepository<Employee, createEmployeeD
         return null;
     }
 }
-

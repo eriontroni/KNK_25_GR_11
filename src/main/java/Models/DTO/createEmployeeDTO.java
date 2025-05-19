@@ -28,7 +28,6 @@ public class createEmployeeDTO {
         this.password_hash = password_hash;
         this.salted_hash = salted_hash;
         this.phone = phone;
-
     }
 
     public String getFirst_name() {

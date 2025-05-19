@@ -13,6 +13,7 @@ import javafx.scene.control.TextField;
 import repository.EmployeeRepository;
 
 import java.sql.Date;
+import java.util.Objects;
 
 public class SignupStafiController {
     @FXML
@@ -57,14 +58,15 @@ public class SignupStafiController {
         }
         if(position == null){
             showAlert("Duhet te zgjedhesh poziten!");
+            return;
         }
 
         String salt = PasswordHasher.generateSalt();
         String password_hash = PasswordHasher.generateSaltedHash(pass, salt);
-        createEmployeeDTO emp = new createEmployeeDTO(name,surname,email,position,password_hash,salt,phone);
+        createEmployeeDTO emp = new createEmployeeDTO(name,surname,position,email,password_hash,salt,phone);
         EmployeeRepository employeeRepository = new EmployeeRepository();
         Employee employee = employeeRepository.create(emp);
-        if (employee != null) {
+        if (!Objects.equals(employee.getFirst_name(), null)) {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Success");
             alert.setHeaderText(null);

@@ -1,6 +1,9 @@
 package Controllers;
 import Services.LoginService;
 import Services.PasswordHasher;
+import Utils.SceneLocator;
+import Utils.SceneManager;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -57,7 +60,7 @@ public class LoginController {
             }
         }else if(LoginService.emailExists(email,"Users")){
             if(LoginService.checkPassword(email,password,"Users")) {
-
+                showAlert("JENI QASUR!");
                 //TODO: Me shku te faqja e Userit apo klientit
             }else{
                 showAlert("Passwordi i gabuar!");
@@ -65,5 +68,10 @@ public class LoginController {
         }else{
             showAlert("Passwordi dhe Emaili nuk u pershtaten");
         }
+    }
+
+    public void goBack(ActionEvent actionEvent) {
+        Stage stage = (Stage) loginButton.getScene().getWindow();
+        SceneManager.switchScene(stage, SceneLocator.First_Page,"First Page");
     }
 }

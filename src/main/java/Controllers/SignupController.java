@@ -3,11 +3,14 @@ package Controllers;
 import Models.DTO.CreateUsersDTO;
 import Models.Users;
 import Services.PasswordHasher;
+import Utils.SceneLocator;
+import Utils.SceneManager;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 import repository.UsersRepository;
 import Services.Validator;
 
@@ -73,5 +76,10 @@ public class SignupController {
         } else {
             showAlert("Gabim gjatë krijimit të userit!");
         }
+    }
+
+    public void goBack(ActionEvent actionEvent) {
+        Stage stage = (Stage) signupUsername.getScene().getWindow();
+        SceneManager.switchScene(stage, SceneLocator.First_Page,"First Page");
     }
 }
