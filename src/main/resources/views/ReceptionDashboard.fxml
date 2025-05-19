@@ -13,7 +13,6 @@
             <Font size="30.0" />
          </font>
       </Label>
-      <Label text="Label" />
       <Label layoutX="80.0" layoutY="216.0" prefHeight="43.0" prefWidth="215.0" text="Zgjidh nje nga opsionet ">
          <font>
             <Font size="20.0" />
@@ -21,15 +20,9 @@
       </Label>
       <Line endX="-6.20001220703125" endY="50.399993896484375" layoutX="448.0" layoutY="244.0" startX="-128.70709228515625" startY="-5.7928619384765625" />
       <Line endX="5.20001220703125" endY="-32.99998474121094" layoutX="437.0" layoutY="228.0" startX="-119.0" startY="8.500015258789062" />
-      <Button fx:id="btnPerRole" onAction="#handlePerRole"
-              layoutX="459.0" layoutY="173.0" mnemonicParsing="false"
-              prefHeight="43.0" prefWidth="180.0"
-              text="Numri perdoruesve per cdo rol" />
+      <Button fx:id="btnPerRole" layoutX="459.0" layoutY="173.0" mnemonicParsing="false" onAction="#handlePerRole" prefHeight="43.0" prefWidth="180.0" text="Numri perdoruesve per cdo rol" />
 
-      <Button fx:id="btnPerDay" onAction="#handlePerDay"
-              layoutX="459.0" layoutY="274.0" mnemonicParsing="false"
-              prefHeight="43.0" prefWidth="188.0"
-              text="Numri rezervimeve per cdo dite" />
+      <Button fx:id="btnPerDay" layoutX="459.0" layoutY="274.0" mnemonicParsing="false" onAction="#handlePerDay" prefHeight="43.0" prefWidth="188.0" text="Numri rezervimeve per cdo dite" />
 
    </children>
 </Pane>
