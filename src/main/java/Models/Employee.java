@@ -41,7 +41,7 @@ public class Employee {
         return new Employee(id, first_name, last_name, position, email, phone, password_hash, salted_hash, hire_date);
     }
 
-        
+
     public int getId(){return id;};
     public String getFirst_name() {return first_name;}
     public String getLast_name() {return last_name;}
