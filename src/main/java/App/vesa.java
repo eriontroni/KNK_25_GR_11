@@ -15,3 +15,4 @@ public class vesa extends Application {
         stage.show();
     }
 }
+//C:\Users\Erion\Documents\GitHub\KNK_25_GR_11\src\main\resources\images\img.png

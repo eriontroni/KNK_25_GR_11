@@ -12,7 +12,7 @@ public class SceneManager {
      *         Stage stage = (Stage) signupUsername.getScene().getWindow();
      *         SceneManager.switchScene(stage, SceneLocator.First_Page,"First Page");
      *     }
-     *     
+     *
      */
     public static void switchScene(Stage stage, String fxmlPath, String title) {
         try {
