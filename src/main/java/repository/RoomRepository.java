@@ -17,12 +17,7 @@ public class RoomRepository extends BaseRepository<Room, CreateRoomDTO, UpdateRo
     @Override
     public Room fromResultSet(ResultSet res) {
         try {
-            int id = res.getInt("id");
-            String roomNumber = res.getString("room_number");
-            int typeId = res.getInt("type_id");
-            boolean isAvailable = res.getBoolean("is_available");
-
-            return new Room(id, roomNumber, typeId, isAvailable);
+            return Room.getInstance(res);
         } catch (SQLException e) {
             e.printStackTrace();
             return null;

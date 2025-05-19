@@ -18,21 +18,13 @@ public class CreateRoomDTO {
     private int typeId;
     private boolean isAvailable;
 
-    private CreateRoomDTO(int id, String roomNumber, int typeId, boolean isAvailable) {
+    public CreateRoomDTO(int id, String roomNumber, int typeId, boolean isAvailable) {
         this.id = id;
         this.roomNumber = roomNumber;
         this.typeId = typeId;
         this.isAvailable = isAvailable;
     }
 
-    public static CreateRoomDTO getInstance(ResultSet resultSet) throws SQLException {
-        int id = resultSet.getInt("id");
-        String roomNumber = resultSet.getString("room_number");
-        int typeId = resultSet.getInt("type_id");
-        boolean isAvailable = resultSet.getBoolean("is_available");
-
-        return new CreateRoomDTO(id, roomNumber, typeId, isAvailable);
-    }
 
     public int getId() {
         return id;
