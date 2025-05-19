@@ -11,6 +11,8 @@ public class Employee {
     private String position;
     private String email;
     private String phone;
+    private String password_hash;
+    private String salted_hash;
     private Date hire_date;
 
     Employee(int id, String first_name, String last_name, String position, String email, String phone, Date hire_date) {
@@ -30,6 +32,7 @@ public class Employee {
         String position = resultSet.getString("positon");
         String email = resultSet.getString("email");
         String phone = resultSet.getString("phone");
+        
         Date hire_date = resultSet.getDate("hire_date");
 
         return new Employee(id, first_name, last_name, position, email, phone, hire_date);

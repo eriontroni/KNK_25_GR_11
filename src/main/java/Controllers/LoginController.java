@@ -41,7 +41,7 @@ public class LoginController {
     private void handleLogin() {
         String email = emailField.getText();
         String password = passwordField.getText();
-
+        Stage stage = (Stage) loginButton.getScene().getWindow();
 
 
 
@@ -51,7 +51,7 @@ public class LoginController {
 
                 if (LoginService.positionExists(email, "Receptionist")) {
                     // TODO: Me shku te faqja e recepcionistit
-
+                    SceneManager.switchScene(stage,"/views/ReceptionDashboard.fxml","ReceptionDashboard");
                 } else if (LoginService.positionExists(email, "Maintanance")) {
                     // TODO: Me shku te faqja e maintanance
 
@@ -67,8 +67,8 @@ public class LoginController {
                 UsersRepository ur = new UsersRepository();
                 Users user = ur.getByEmail(email);
                 sessionManager.setCurrentUser(user);
-
-                //TODO: Me shku te faqja e Userit apo klientit
+                SceneManager.switchScene(stage,"/views/home.fxml","ClientHome");
+                //TODO: Me shku te faqja e Userit apo klientit XX
             }else{
                 showAlert("Passwordi i gabuar!");
             }
