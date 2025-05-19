@@ -16,11 +16,11 @@ public class createEmployeeDTO {
     private String last_name;
     private String position;
     private String email;
+    private String phone;
     private String password_hash;
     private String salted_hash;
-    private String phone;
 
-    public createEmployeeDTO(String first_name, String last_name, String position, String email,String password_hash,String salted_hash, String phone) {
+    public createEmployeeDTO(String first_name, String last_name, String position, String email,String phone,String password_hash,String salted_hash) {
         this.first_name = first_name;
         this.last_name = last_name;
         this.position = position;

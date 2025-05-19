@@ -63,7 +63,7 @@ public class SignupStafiController {
 
         String salt = PasswordHasher.generateSalt();
         String password_hash = PasswordHasher.generateSaltedHash(pass, salt);
-        createEmployeeDTO emp = new createEmployeeDTO(name,surname,position,email,password_hash,salt,phone);
+        createEmployeeDTO emp = new createEmployeeDTO(name,surname,position,email, phone,password_hash,salt);
         EmployeeRepository employeeRepository = new EmployeeRepository();
         Employee employee = employeeRepository.create(emp);
         if (!Objects.equals(employee.getFirst_name(), null)) {
