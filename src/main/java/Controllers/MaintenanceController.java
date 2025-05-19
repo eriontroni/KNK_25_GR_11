@@ -3,6 +3,7 @@ package Controllers;
 import Models.Maintenance;
 import Models.DTO.CreateMaintenanceDTO;
 import Models.DTO.UpdateMaintenanceDTO;
+import Utils.SceneManager;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -129,19 +130,11 @@ public class MaintenanceController {
 
         maintenanceTable.setItems(FXCollections.observableArrayList(filtered));
     }
+
     @FXML
     private void handlebback(javafx.event.ActionEvent event) {
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/MainMaintenance.fxml"));
-            Parent root = loader.load();
-            Stage stage = (Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow();
-            stage.setScene(new Scene(root));
-            stage.setTitle("Menu Kryesore");
-            stage.show();
-        } catch (IOException e) {
-            e.printStackTrace();
-            showAlert("Gabim", "Nuk mund të kthehem te menuja kryesore.");
-        }
+        Stage stage = (Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow();
+        SceneManager.switchScene(stage, "/views/MainMaintenance.fxml", "Menu Kryesore");
     }
 
     private void showAddDialog() {
