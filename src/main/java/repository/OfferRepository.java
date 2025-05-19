@@ -78,6 +78,26 @@ public class OfferRepository extends BaseRepository<Offer, CreateOfferDTO, Updat
         }
         return null;
     }
+    /*
+    * Ne Controller:
+    * OfferRepository or = new OfferRepository();
+    * Offer offer = or.getByTitle("**titulliOfertes**");
+    *
+    * */
+    public Offer getByTitle(String title){
+        String query = "SELECT * FROM Offer WHERE title = ?";
+        try{
+            PreparedStatement statement = this.connection.prepareStatement(query);
+            statement.setString(1, title);
+            ResultSet res = statement.executeQuery();
+            if(res.next()){
+                return this.fromResultSet(res);
+            }
+        } catch (SQLException e){
+            e.printStackTrace();
+        }
+        return null;
+    }
 
     // Nëse don me aktivizu edhe fshirjen, çele këtë metodë:
     /*

@@ -1,38 +1,30 @@
 package Controllers;
 
-import Models.Room;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.control.Label;
-import javafx.scene.control.ScrollPane;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
-import javafx.scene.layout.GridPane;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
-
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.sql.*;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.VBox;
 
 public class RoomsController {
 
-    public ImageView roomImage;
     @FXML
-    private ScrollPane scrollPane;
-
-    @FXML
-    private GridPane gridPane;
-
-
+    private VBox roomCard101;
 
     @FXML
-    public void handleClick(ActionEvent actionEvent) {
+    private ImageView roomImage;
 
+    @FXML
+    private void handleClick(ActionEvent event) {
+        // Mundesh me marrë butonin që u kliku
+        Button clickedButton = (Button) event.getSource();
+
+        // Reagim i thjesht për testim
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Booking");
+        alert.setHeaderText(null);
+        alert.setContentText("You clicked 'Book Now' for Room 101!");
+        alert.showAndWait();
     }
 }
