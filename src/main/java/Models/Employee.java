@@ -15,13 +15,15 @@ public class Employee {
     private String salted_hash;
     private Date hire_date;
 
-    Employee(int id, String first_name, String last_name, String position, String email, String phone, Date hire_date) {
+    Employee(int id, String first_name, String last_name, String position, String email, String phone,String password_hash,String salted_hash, Date hire_date) {
         this.id = id;
         this.first_name = first_name;
         this.last_name = last_name;
         this.position = position;
         this.email = email;
         this.phone = phone;
+        this.password_hash = password_hash;
+        this.salted_hash = salted_hash;
         this.hire_date = hire_date;
     }
 
@@ -29,14 +31,17 @@ public class Employee {
         int id = resultSet.getInt("id");
         String first_name = resultSet.getString("first_name");
         String last_name = resultSet.getString("last_name");
-        String position = resultSet.getString("positon");
+        String position = resultSet.getString("position"); // E rregulluar
         String email = resultSet.getString("email");
         String phone = resultSet.getString("phone");
-        
+        String salted_hash = resultSet.getString("salted_hash");
+        String password_hash = resultSet.getString("password_hash");
         Date hire_date = resultSet.getDate("hire_date");
 
-        return new Employee(id, first_name, last_name, position, email, phone, hire_date);
+        return new Employee(id, first_name, last_name, position, email, phone, password_hash, salted_hash, hire_date);
     }
+
+        
     public int getId(){return id;};
     public String getFirst_name() {return first_name;}
     public String getLast_name() {return last_name;}
