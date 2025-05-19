@@ -59,12 +59,14 @@ public class SignupController {
             showAlert("Ju lutem rishikoni a keni shënuar njëjtë email ose password!");
             return;
         }
-
-        // Mund të shtosh edhe kontroll për ekzistencë të emailit ose username në DB këtu (opsionale)
+        UsersRepository usersRepository = new UsersRepository();
+        if(usersRepository.getByEmail(email1) != null) {
+            showAlert("Emaili egziston tashme, zgjedh nje format tjeter!");
+        }
         String salt = PasswordHasher.generateSalt();
         String password_hash = PasswordHasher.generateSaltedHash(pass1, salt);
         CreateUsersDTO newUser = new CreateUsersDTO(username, email1, password_hash, salt);
-        UsersRepository usersRepository = new UsersRepository();
+//        UsersRepository usersRepository = new UsersRepository();
 
         Users user = usersRepository.create(newUser);
         if (user != null) {
