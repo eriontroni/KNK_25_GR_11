@@ -75,8 +75,16 @@ public class HomeController {
     }
 
     public void handleReservations() {
-        System.out.println("Reservations clicked");
-        // logjika për reservations
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/Reservations.fxml"));
+            Parent offersRoot = loader.load();
+
+            Stage stage = (Stage) btnReservations.getScene().getWindow();
+            Scene scene = new Scene(offersRoot);
+            stage.setScene(scene);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public void handleAccount() {
