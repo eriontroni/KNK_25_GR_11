@@ -4,18 +4,18 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-// qet klas e boni run 1 her per me i shti tabelat n databaz;
+// Qet klas e boni run 1 her per me i shti tabelat n databaz;
 public class SQLTables {
     public static void main(String[] args) {
         Connection connection = DBConnector.getConnection();
         /*
-        * Erioni - RoomImage, ReservationHistory, Notifications
-        * Leoni  - Customer, ReservationDiscount, Offer
-        * Natyra - Room, Reservation, Maintenance
-        * Vesa   - Users, Payment, Discount
-        * Elona  - RoomType, Employee, Event
-        * Era    - RoomService, CleaningSchedule, Feedback
-        * */
+         * Erioni - RoomImage, ReservationHistory, Notifications
+         * Leoni  - Customer, ReservationDiscount, Offer
+         * Natyra - Room, Reservation, Maintenance
+         * Vesa   - Users, Payment, Discount
+         * Elona  - RoomType, Employee, Event
+         * Era    - RoomService, CleaningSchedule, Feedback
+         * */
         String query = """
 
 -- 1. RoomType -Elona
@@ -29,25 +29,23 @@ CREATE TABLE RoomType (
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
--- 2. Room -Natyra
-CREATE TABLE Room ( 
+-- 2. RoomImage -Erioni
+CREATE TABLE RoomImage (
     id SERIAL PRIMARY KEY,
-    room_number VARCHAR(10) UNIQUE NOT NULL,
-    type_id INT REFERENCES  RoomType(id) ON DELETE SET NULL,
-    is_available BOOLEAN DEFAULT TRUE
-    RoomImage_id REFERENCES RoomImages(id) ON DELETE SET NULL,           
+    image_url TEXT NOT NULL
 );
 
--- 3. Customer Leoni
---CREATE TABLE Customer (
---  id SERIAL PRIMARY KEY,
---    first_name VARCHAR(100) NOT NULL,
---    last_name VARCHAR(100) NOT NULL,
---   email VARCHAR(255) UNIQUE NOT NULL,
---    phone VARCHAR(20) UNIQUE NOT NULL
---);
+-- 3. Room -Natyra
+CREATE TABLE Room (
+    id SERIAL PRIMARY KEY,
+    room_number VARCHAR(10) UNIQUE NOT NULL,
+    type_id INT REFERENCES RoomType(id) ON DELETE SET NULL,
+    is_available BOOLEAN DEFAULT TRUE,
+    RoomImage_id INT REFERENCES RoomImage(id) ON DELETE SET NULL
+);
 
--- 4. Users -Vesa
+
+-- 5. Users -Vesa
 CREATE TABLE Users (
     id SERIAL PRIMARY KEY,
     username VARCHAR(100) UNIQUE NOT NULL,
@@ -56,7 +54,7 @@ CREATE TABLE Users (
     salted_hash TEXT NOT NULL
 );
 
--- 5. Employee -Elona
+-- 6. Employee -Elona
 CREATE TABLE Employee (
     id SERIAL PRIMARY KEY,
     first_name VARCHAR(100) NOT NULL,
@@ -69,7 +67,7 @@ CREATE TABLE Employee (
     hire_date DATE
 );
 
--- 6. Reservation -Natyra
+-- 7. Reservation -Natyra
 CREATE TABLE Reservation (
     id SERIAL PRIMARY KEY,
     customer_id INT REFERENCES Users(id) ON DELETE CASCADE,
@@ -80,7 +78,7 @@ CREATE TABLE Reservation (
     total_price DECIMAL(10,2) NOT NULL
 );
 
--- 7. Payment -Vesa
+-- 8. Payment -Vesa
 CREATE TABLE Payment (
     id SERIAL PRIMARY KEY,
     reservation_id INT REFERENCES Reservation(id) ON DELETE CASCADE,
@@ -89,7 +87,7 @@ CREATE TABLE Payment (
     payment_status VARCHAR(50) CHECK (payment_status IN ('Pending', 'Completed', 'Failed')) DEFAULT 'Pending'
 );
 
--- 8. RoomService -Era
+-- 9. RoomService -Era
 CREATE TABLE RoomService (
     id SERIAL PRIMARY KEY,
     reservation_id INT REFERENCES Reservation(id) ON DELETE CASCADE,
@@ -98,7 +96,7 @@ CREATE TABLE RoomService (
     requested_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
--- 9. CleaningSchedule -Era
+-- 10. CleaningSchedule -Era
 CREATE TABLE CleaningSchedule (
     id SERIAL PRIMARY KEY,
     room_id INT REFERENCES Room(id) ON DELETE CASCADE,
@@ -107,7 +105,7 @@ CREATE TABLE CleaningSchedule (
     status VARCHAR(50) CHECK (status IN ('Scheduled', 'Completed', 'Missed')) DEFAULT 'Scheduled'
 );
 
--- 10. Feedback -Era
+-- 11. Feedback -Era
 CREATE TABLE Feedback (
     id SERIAL PRIMARY KEY,
     customer_id INT REFERENCES Users(id) ON DELETE CASCADE,
@@ -115,12 +113,6 @@ CREATE TABLE Feedback (
     rating INT CHECK (rating BETWEEN 1 AND 5),
     comment TEXT,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-);
-
--- 11. RoomImage -Erioni
-CREATE TABLE RoomImage (
-    id SERIAL PRIMARY KEY,
-    image_url TEXT NOT NULL,
 );
 
 -- 12. Discount -Vesa
@@ -198,7 +190,5 @@ CREATE TABLE Notification (
         }catch(SQLException ex){
             ex.printStackTrace();
         }
-}
-
-
+    }
 }
