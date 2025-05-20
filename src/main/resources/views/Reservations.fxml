@@ -2,35 +2,39 @@
 
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.collections.FXCollections?>
 
+<?import java.lang.String?>
 <Pane xmlns="http://javafx.com/javafx/23.0.1"
       xmlns:fx="http://javafx.com/fxml/1"
       fx:controller="Controllers.ReservationsController"
-      prefWidth="800.0" prefHeight="600.0"
-      style="-fx-background-color: #ffffff;">
+      prefWidth="800.0" prefHeight="180.0"
+      style="-fx-background-color: #1c1c1c;">
 
     <children>
-        <!-- Titulli -->
-        <Label layoutX="320.0" layoutY="20.0" text="Rezervimet"
-               style="-fx-font-size: 24; -fx-font-weight: bold; -fx-text-fill: #2c3e50;" />
+        <!-- ARRIVAL -->
+        <Label layoutX="30" layoutY="20" text="ARRIVAL" style="-fx-text-fill: white; -fx-font-weight: bold;" />
+        <DatePicker fx:id="arrivalDate" layoutX="30" layoutY="45" prefWidth="160" />
 
-        <!-- TableView për listën e rezervimeve -->
-        <TableView fx:id="reservationTable" layoutX="50.0" layoutY="70.0"
-                   prefWidth="700.0" prefHeight="400.0">
-            <columns>
-                <TableColumn fx:id="colRoom" text="Room ID" prefWidth="100.0" />
-                <TableColumn fx:id="colUser" text="Customer ID" prefWidth="100.0" />
-                <TableColumn fx:id="colDate" text="Data (Check-in/Check-out)" prefWidth="200.0" />
-                <TableColumn fx:id="colStatus" text="Statusi" prefWidth="100.0" />
-                <TableColumn fx:id="colActions" text="Veprime" prefWidth="150.0" />
-            </columns>
-        </TableView>
+        <!-- DEPARTURE -->
+        <Label layoutX="210" layoutY="20" text="DEPARTURE" style="-fx-text-fill: white; -fx-font-weight: bold;" />
+        <DatePicker fx:id="departureDate" layoutX="210" layoutY="45" prefWidth="160" />
 
-        <!-- Butoni Shto Rezervim -->
-        <Button layoutX="600.0" layoutY="500.0" mnemonicParsing="false"
-                onAction="#handleAddReservation"
-                style="-fx-background-color: #3498db; -fx-text-fill: white; -fx-font-weight: bold;"
-                text="Shto Rezervim" />
+        <!-- PAYMENT METHOD -->
+        <Label layoutX="390" layoutY="20" text="PAYMENT METHOD" style="-fx-text-fill: white; -fx-font-weight: bold;" />
+        <ComboBox fx:id="paymentMethod" layoutX="390" layoutY="45" prefWidth="160">
+            <items>
+                <FXCollections fx:factory="observableArrayList">
+                    <String fx:value="Credit Card" />
+                    <String fx:value="PayPal" />
+                    <String fx:value="Cash" />
+                </FXCollections>
+            </items>
+        </ComboBox>
 
+        <!-- BOOK BUTTON -->
+        <Button fx:id="bookButton" text="BOOK" layoutX="570" layoutY="45" prefWidth="120"
+                style="-fx-background-color: white; -fx-text-fill: black; -fx-font-weight: bold;"
+                onAction="#handleBook"/>
     </children>
 </Pane>
