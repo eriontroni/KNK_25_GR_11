@@ -13,7 +13,7 @@ public class Reservation {
     private String status;
     private double totalPrice;
 
-    private Reservation(int id, int customerId, int roomId, Date checkInDate, Date checkOutDate, String status, double totalPrice) {
+    public Reservation(int id, int customerId, int roomId, Date checkInDate, Date checkOutDate, String status, double totalPrice) {
         this.id = id;
         this.customerId = customerId;
         this.roomId = roomId;
