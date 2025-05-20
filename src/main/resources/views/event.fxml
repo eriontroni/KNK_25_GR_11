@@ -4,17 +4,38 @@
 <?import javafx.scene.layout.*?>
 
 <AnchorPane xmlns:fx="http://javafx.com/fxml" fx:controller="Controllers.EventController"
-            prefWidth="800" prefHeight="600">
+            prefWidth="900" prefHeight="600"
+            style="-fx-background-color: linear-gradient(to bottom right, #dfe9f3, #ffffff);">
+
     <children>
-        <TableView fx:id="eventTable" layoutX="20" layoutY="20" prefWidth="760" prefHeight="560">
-            <columns>
-                <TableColumn fx:id="nameCol" text="Event Name" prefWidth="120"/>
-                <TableColumn fx:id="organizerCol" text="Organizer" prefWidth="120"/>
-                <TableColumn fx:id="dateCol" text="Date" prefWidth="100"/>
-                <TableColumn fx:id="timeCol" text="Time" prefWidth="100"/>
-                <TableColumn fx:id="roomCol" text="Room ID" prefWidth="80"/>
-                <TableColumn fx:id="descCol" text="Description" prefWidth="220"/>
-            </columns>
-        </TableView>
+        <VBox spacing="20" alignment="TOP_CENTER"
+              AnchorPane.topAnchor="30" AnchorPane.leftAnchor="30"
+              AnchorPane.rightAnchor="30" AnchorPane.bottomAnchor="30">
+
+            <!-- Titulli -->
+            <Label text="📅 Event Dashboard" style="
+                    -fx-font-size: 32px;
+                    -fx-font-weight: bold;
+                    -fx-text-fill: linear-gradient(to right, #2c3e50, #4ca1af);
+                    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.25), 8, 0, 2, 2);" />
+
+            <!-- Tabela -->
+            <TableView fx:id="eventTable" prefHeight="500" prefWidth="840" style="
+                    -fx-background-color: rgba(255, 255, 255, 0.8);
+                    -fx-background-radius: 16;
+                    -fx-border-radius: 16;
+                    -fx-border-color: #ffffff99;
+                    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.15), 12, 0.2, 0, 6);">
+
+                <columns>
+                    <TableColumn fx:id="nameCol" text="📝 Name" prefWidth="140"/>
+                    <TableColumn fx:id="organizerCol" text="👤 Organizer" prefWidth="140"/>
+                    <TableColumn fx:id="dateCol" text="📅 Date" prefWidth="100"/>
+                    <TableColumn fx:id="timeCol" text="⏰ Time" prefWidth="100"/>
+                    <TableColumn fx:id="roomCol" text="🏨 Room" prefWidth="80"/>
+                    <TableColumn fx:id="descCol" text="🧾 Description" prefWidth="240"/>
+                </columns>
+            </TableView>
+        </VBox>
     </children>
 </AnchorPane>
