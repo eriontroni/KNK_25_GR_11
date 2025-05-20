@@ -23,6 +23,10 @@ public class EventRepository extends BaseRepository<Event, createEventDTO, updat
         }
     }
 
+    public ArrayList<Event> getAllEvents() {
+        return super.getAll();
+    }
+
     @Override
     public Event create(createEventDTO dto) {
         String query = """

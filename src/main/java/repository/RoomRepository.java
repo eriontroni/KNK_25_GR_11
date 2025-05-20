@@ -55,21 +55,8 @@ public class RoomRepository extends BaseRepository<Room, CreateRoomDTO, UpdateRo
         return null;
     }
 
-    public ArrayList<Room> getAll() {
-        List<Room> rooms = new ArrayList<>();
-        String query = "SELECT * FROM Room";
-        try (PreparedStatement pstm = this.connection.prepareStatement(query)) {
-            ResultSet rs = pstm.executeQuery();
-            while (rs.next()) {
-                rooms.add(fromResultSet(rs));
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return (ArrayList<Room>) rooms;
-    }
-
-
+    RoomRepository rr = new RoomRepository();
+    ArrayList<Room> rooms = rr.getAll(); // kjo e perdor getAll() nga BaseRepository
 
     @Override
     public Room getById(int id) {
