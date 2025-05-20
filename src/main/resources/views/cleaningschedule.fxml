@@ -7,22 +7,23 @@
 <AnchorPane fx:id="searchbutton" prefHeight="468.0" prefWidth="716.0"
             xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1"
             fx:controller="Controllers.CleaningScheduleController"
-            style="-fx-background-color: linear-gradient(to bottom right, #dfe9f3, #ffffff);">
+            style="-fx-background-color: linear-gradient(to bottom right, #f5f1ea, #d6c8b8);">
 
     <children>
         <!-- Titulli -->
-        <TextField layoutX="14.0" layoutY="14.0" prefHeight="32.0" prefWidth="260.0"
+        <TextField layoutX="14.0" layoutY="14.0" prefHeight="32.0" prefWidth="300.0"
                    text="🧹 Cleaning Schedule Table"
                    editable="false"
                    style="
-                       -fx-font-size: 20px;
+                       -fx-font-size: 22px;
                        -fx-font-weight: bold;
-                       -fx-text-fill: #2c3e50;
+                       -fx-text-fill: #5a4a3c;
                        -fx-background-color: transparent;
-                       -fx-border-color: transparent;" />
+                       -fx-border-color: transparent;
+                       -fx-font-family: 'Segoe UI Semibold';" />
 
         <!-- Fusha e kërkimit -->
-        <TextField fx:id="searchBox" layoutX="298.0" layoutY="21.0" promptText="🔍 Search"
+        <TextField fx:id="searchBox" layoutX="320.0" layoutY="21.0" promptText="🔍 Search"
                    style="
                        -fx-background-radius: 12;
                        -fx-border-radius: 12;
@@ -30,16 +31,16 @@
                        -fx-background-color: white;
                        -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 4, 0, 1, 1);" />
 
-        <ComboBox fx:id="comboBox" layoutX="469.0" layoutY="21.0" prefWidth="150.0" promptText="Search By"
+        <ComboBox fx:id="comboBox" layoutX="489.0" layoutY="21.0" prefWidth="130.0" promptText="Search By"
                   style="
                       -fx-background-radius: 12;
                       -fx-border-radius: 12;
                       -fx-padding: 4 8;
                       -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.05), 3, 0, 1, 1);" />
 
-        <Button fx:id="se" layoutX="642.0" layoutY="21.0" text="🔍"
+        <Button fx:id="se" layoutX="635.0" layoutY="21.0" text="🔍"
                 style="
-                    -fx-background-color: #4ca1af;
+                    -fx-background-color: #a1866f;
                     -fx-text-fill: white;
                     -fx-background-radius: 12;
                     -fx-font-weight: bold;" />
@@ -47,11 +48,11 @@
         <!-- Tabela -->
         <TableView fx:id="cleaningTable" layoutX="37.0" layoutY="96.0" prefHeight="301.0" prefWidth="442.0"
                    style="
-                       -fx-background-color: rgba(255,255,255,0.85);
-                       -fx-background-radius: 16;
-                       -fx-border-radius: 16;
+                       -fx-background-color: rgba(255,255,255,0.9);
+                       -fx-background-radius: 12;
+                       -fx-border-radius: 12;
                        -fx-border-color: #ffffff99;
-                       -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.15), 12, 0.2, 0, 6);">
+                       -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 8, 0.2, 0, 4);">
             <columns>
                 <TableColumn fx:id="colId" prefWidth="75.0" text="🆔 ID" />
                 <TableColumn fx:id="colRoomId" prefWidth="75.0" text="🏨 Room ID" />
@@ -64,17 +65,17 @@
         <!-- Butonat -->
         <Button fx:id="btnAdd" layoutX="528.0" layoutY="111.0" onAction="#showAddDialog"
                 prefHeight="46.0" prefWidth="114.0" text="➕ Add"
-                style="-fx-background-color: #27ae60; -fx-text-fill: white; -fx-background-radius: 10;" />
+                style="-fx-background-color: #a1866f; -fx-text-fill: white; -fx-background-radius: 12;" />
 
         <Button fx:id="btnDelete" layoutX="528.0" layoutY="166.0" onAction="#deleteCleaningById"
                 prefHeight="46.0" prefWidth="114.0" text="🗑️ Delete"
-                style="-fx-background-color: #e74c3c; -fx-text-fill: white; -fx-background-radius: 10;" />
+                style="-fx-background-color: #8c7b68; -fx-text-fill: white; -fx-background-radius: 12;" />
 
         <Button fx:id="btnUpdate" layoutX="528.0" layoutY="223.0" onAction="#editCleaningById"
                 prefHeight="46.0" prefWidth="114.0" text="✏️ Edit"
-                style="-fx-background-color: #f39c12; -fx-text-fill: white; -fx-background-radius: 10;" />
+                style="-fx-background-color: #b49a7a; -fx-text-fill: white; -fx-background-radius: 12;" />
 
         <Button fx:id="backbutton" layoutX="37.0" layoutY="414.0" onAction="#handleback" text="⬅️ Back"
-                style="-fx-background-color: #95a5a6; -fx-text-fill: white; -fx-background-radius: 10;" />
+                style="-fx-background-color: #7e6a58; -fx-text-fill: white; -fx-background-radius: 12;" />
     </children>
 </AnchorPane>
