@@ -20,7 +20,7 @@ VALUES
 ('Economy', 'Dhomë ekonomike me facilitete bazë', 1, 25.00);
 
 -- Insert në tabelën Room (sigurohet që type_id është i saktë nga RoomType)
-INSERT INTO Room (room_number, type_id, is_available)
+INSERT INTO Room (room_number, type_id, is_available,RoomImage_id)
 VALUES
 ('101', 1, TRUE,5),
 ('102', 2, TRUE,4),
