@@ -11,7 +11,7 @@ public class Room {
     private boolean isAvailable;
     private int RoomImage_id;
 
-    private Room(int id, String roomNumber, int typeId, boolean isAvailable, int roomImage_id) {
+    private Room(int id, String roomNumber, int typeId, boolean isAvailable, int RoomImage_id) {
         this.id = id;
         this.roomNumber = roomNumber;
         this.typeId = typeId;
