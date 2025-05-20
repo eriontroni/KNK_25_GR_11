@@ -31,11 +31,11 @@ public class CleaningSchedule {
 
     public int getId() { return id; }
 
-    public int getRoom_id() { return room_id; }
+    public int getRoomId() { return room_id; }
 
-    public int getEmployee_id() { return employee_id; }
+    public int getEmployeeId() { return employee_id; }
 
-    public Date getScheduled_date() { return scheduled_date; }
+    public Date getScheduledDate() { return scheduled_date; }
 
     public String getStatus() { return status; }
 }

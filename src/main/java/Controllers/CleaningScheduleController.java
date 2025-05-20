@@ -110,11 +110,11 @@ public class CleaningScheduleController {
                 case "id":
                     return String.valueOf(c.getId()).contains(searchTerm);
                 case "roomId":
-                    return String.valueOf(c.getRoom_id()).contains(searchTerm);
+                    return String.valueOf(c.getRoomId()).contains(searchTerm);
                 case "employeeId":
-                    return String.valueOf(c.getEmployee_id()).contains(searchTerm);
+                    return String.valueOf(c.getEmployeeId()).contains(searchTerm);
                 case "scheduledDate":
-                    return c.getScheduled_date().toString().contains(searchTerm);
+                    return c.getScheduledDate().toString().contains(searchTerm);
                 case "status":
                     return c.getStatus().toLowerCase().contains(searchTerm);
                 default:
@@ -233,10 +233,10 @@ public class CleaningScheduleController {
                 cbStatus.setValue(cleaning.getStatus());
 
                 Label lblEmployee = new Label("ID i punëtorit:");
-                TextField txtEmployee = new TextField(String.valueOf(cleaning.getEmployee_id()));
+                TextField txtEmployee = new TextField(String.valueOf(cleaning.getEmployeeId()));
 
                 Label lblDate = new Label("Data e re:");
-                DatePicker datePicker = new DatePicker(cleaning.getScheduled_date().toLocalDate());
+                DatePicker datePicker = new DatePicker(cleaning.getScheduledDate().toLocalDate());
 
                 VBox content = new VBox(10, lblStatus, cbStatus, lblEmployee, txtEmployee, lblDate, datePicker);
                 editDialog.getDialogPane().setContent(content);
