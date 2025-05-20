@@ -257,12 +257,13 @@ public class MaintenanceController {
 
                 VBox content = new VBox(10, lblDescription, tfDescription, lblStatus, cbStatus);
                 editDialog.getDialogPane().setContent(content);
-
-                ButtonType updateButtonType = new ButtonType("Përditëso", ButtonBar.ButtonData.OK_DONE);
-                editDialog.getDialogPane().getButtonTypes().addAll(updateButtonType, ButtonType.CANCEL);
+                editDialog.getDialogPane().getButtonTypes().addAll(
+                        new ButtonType("Përditëso", ButtonBar.ButtonData.OK_DONE),
+                        ButtonType.CANCEL
+                );
 
                 editDialog.setResultConverter(dialogButton -> {
-                    if (dialogButton == updateButtonType) {
+                    if (dialogButton.getButtonData() == ButtonBar.ButtonData.OK_DONE) {
                         String newDescription = tfDescription.getText().trim();
                         String newStatus = cbStatus.getValue();
 
@@ -292,7 +293,6 @@ public class MaintenanceController {
                 showAlert("Gabim", "ID-ja duhet të jetë numër i saktë.");
             }
         });
-
     }
 
 
