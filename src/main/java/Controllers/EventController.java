@@ -7,15 +7,16 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import repository.EventRepository;
 
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class EventController {
 
-    @FXML
-    private TableView<Event> eventTable;
+    @FXML private TableView<Event> eventTable;
 
-    @FXML
-    private TableColumn<Event, String> nameCol;
+    @FXML private TableColumn<Event, String> nameCol;
 
     @FXML
     private TableColumn<Event, String> organizerCol;
@@ -46,9 +47,15 @@ public class EventController {
         loadEvents();
     }
 
+
     private void loadEvents() {
         ArrayList<Event> events = eventRepo.getAllEvents();
-        ObservableList<Event> eventList = FXCollections.observableArrayList(events);
-        eventTable.setItems(eventList);
+        if (events != null) {
+            System.out.println("Events loaded: " + events.size()); // Debug
+            ObservableList<Event> eventList = FXCollections.observableArrayList(events);
+            eventTable.setItems(eventList);
+        } else {
+            System.out.println("Events list is null.");
+        }
     }
 }
