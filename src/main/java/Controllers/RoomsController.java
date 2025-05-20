@@ -4,14 +4,19 @@ import Models.Room;
 import Models.RoomImage;
 import Models.RoomType;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
 import repository.RoomRepository;
 
+import java.io.IOException;
 import java.util.List;
 
 public class RoomsController {
@@ -68,6 +73,17 @@ public class RoomsController {
             roomBox.getChildren().addAll(imageView, detailsBox);
 
             roomListVBox.getChildren().add(roomBox);
+        }
+    }
+    @FXML private Button btnBackToHome;
+    @FXML
+    private void goBackToHome() {
+        try {
+            Parent homeRoot = FXMLLoader.load(getClass().getResource("/views/home.fxml"));
+            Stage stage = (Stage) btnBackToHome.getScene().getWindow();
+            stage.setScene(new Scene(homeRoot));
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 

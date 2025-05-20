@@ -35,8 +35,16 @@ public class HomeController {
         }
 
     public void handleRooms() {
-            System.out.println("Rooms clicked");
-            // logjika për rooms
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/Room.fxml"));
+            Parent offersRoot = loader.load();
+
+            Stage stage = (Stage) btnOffers.getScene().getWindow();
+            Scene scene = new Scene(offersRoot);
+            stage.setScene(scene);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         }
 
     public void handleOffers() {
