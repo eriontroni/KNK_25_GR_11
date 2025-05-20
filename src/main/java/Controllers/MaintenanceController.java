@@ -12,7 +12,12 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import repository.MaintenanceRepository;
 import javafx.scene.layout.VBox;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.stage.Stage;
+import java.io.IOException;
+
 
 import java.sql.Date;
 import java.util.ArrayList;
@@ -23,6 +28,8 @@ public class MaintenanceController {
 
     @FXML
     private TableView<Maintenance> maintenanceTable;
+    @FXML
+    private Label rowCountLabel;
 
     @FXML
     private TableColumn<Maintenance, Integer> maintenanceIdColumn;
@@ -133,6 +140,7 @@ public class MaintenanceController {
         }).collect(Collectors.toList());
 
         maintenanceTable.setItems(FXCollections.observableArrayList(filtered));
+        rowCountLabel.setText("Total rows: " + filtered.size());
     }
 
     @FXML
@@ -191,6 +199,7 @@ public class MaintenanceController {
                 showAlert("Gabim", "Shtimi i mirëmbajtjes dështoi.");
             }
         });
+
     }
 
     private void deleteMaintenanceById() {
