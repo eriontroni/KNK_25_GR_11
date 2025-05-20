@@ -4,6 +4,7 @@ import Models.Room;
 import Models.RoomImage;
 import Models.DTO.CreateRoomDTO;
 import Models.DTO.UpdateRoomDTO;
+import Models.RoomType;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -39,6 +40,36 @@ public class RoomRepository extends BaseRepository<Room, CreateRoomDTO, UpdateRo
         }
         return images;
     }
+
+    public RoomType getRoomTypeForRoom(int roomId) {
+        String query = "SELECT rt.* FROM Room r JOIN RoomType rt ON r.type_id = rt.id WHERE r.id = ?";
+        try (PreparedStatement pstm = this.connection.prepareStatement(query)) {
+            pstm.setInt(1, roomId);
+            ResultSet rs = pstm.executeQuery();
+            if (rs.next()) {
+                return RoomType.getInstance(rs);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    public ArrayList<Room> getAll() {
+        List<Room> rooms = new ArrayList<>();
+        String query = "SELECT * FROM Room";
+        try (PreparedStatement pstm = this.connection.prepareStatement(query)) {
+            ResultSet rs = pstm.executeQuery();
+            while (rs.next()) {
+                rooms.add(fromResultSet(rs));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return (ArrayList<Room>) rooms;
+    }
+
+
 
     @Override
     public Room getById(int id) {
