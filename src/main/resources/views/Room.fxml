@@ -3,16 +3,13 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.layout.ColumnConstraints?>
-<?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.VBox?>
 
 <BorderPane xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.RoomsController">
+
     <top>
         <HBox alignment="CENTER" style="-fx-background-color: #2c3e50; -fx-padding: 15;">
             <Label style="-fx-text-fill: white; -fx-font-size: 24; -fx-font-weight: bold;" text="Hotel Room Management" />
@@ -20,45 +17,19 @@
     </top>
 
     <center>
-        <ScrollPane fitToWidth="true">
-            <GridPane alignment="TOP_CENTER" hgap="20" style="-fx-padding: 20;" vgap="20">
-                <!-- Room cards will be dynamically added here -->
-                <!-- Each room will be represented by a VBox with image and details -->
-
-                <!-- Example room card (this would be generated dynamically in your controller) -->
-                <VBox fx:id="roomCard101" spacing="5" style="-fx-background-color: #f5f5f5; -fx-border-color: #ddd; -fx-border-radius: 5; -fx-padding: 10;" GridPane.columnIndex="0" GridPane.rowIndex="0">
-                    <ImageView fx:id="roomImage" fitHeight="150" fitWidth="200" pickOnBounds="true" preserveRatio="true">
-                  <image>
-                     <Image url="@../images/img.png" />
-                  </image>
-                    </ImageView>
-
-
-                    <Label style="-fx-font-size: 16; -fx-font-weight: bold;" text="Room 101" />
-                    <Label text="Standard Room" />
-                    <Label text="Capacity: 2 persons" />
-                    <Label text="Price: $80/night" />
-                    <HBox alignment="CENTER_LEFT" spacing="10">
-                        <Label text="Available:" />
-                        <Label style="-fx-text-fill: green; -fx-font-weight: bold;" text="Yes" />
-                    </HBox>
-                    <Button onAction="#handleClick" style="-fx-background-color: #3498db; -fx-text-fill: white;" text="Book Now" />
-                </VBox>
-            <columnConstraints>
-               <ColumnConstraints />
-            </columnConstraints>
-            <rowConstraints>
-               <RowConstraints />
-            </rowConstraints>
-
-                <!-- You would repeat this structure for each room in your database -->
-            </GridPane>
+        <ScrollPane fitToHeight="true" fitToWidth="true" style="-fx-padding: 10;">
+            <VBox fx:id="roomListVBox" alignment="TOP_CENTER" spacing="20" style="-fx-padding: 20;" />
         </ScrollPane>
     </center>
 
     <bottom>
-        <HBox alignment="CENTER" style="-fx-background-color: #ecf0f1; -fx-padding: 10;">
-            <Label text="© 2023 Hotel Management System" />
+        <HBox style="-fx-background-color: #ecf0f1; -fx-padding: 10;">
+            <Button fx:id="btnBackToHome" onAction="#goBackToHome" prefWidth="100" text="Home" />
+
+            <Region fx:id="spacer" HBox.hgrow="ALWAYS" />
+
+            <Label alignment="CENTER" text="© 2025 Hotel Management System" />
         </HBox>
     </bottom>
+
 </BorderPane>

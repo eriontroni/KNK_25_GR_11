@@ -27,7 +27,7 @@ public class Employee {
         int id = resultSet.getInt("id");
         String first_name = resultSet.getString("first_name");
         String last_name = resultSet.getString("last_name");
-        String position = resultSet.getString("position");
+        String position = resultSet.getString("positon");
         String email = resultSet.getString("email");
         String phone = resultSet.getString("phone");
         Date hire_date = resultSet.getDate("hire_date");

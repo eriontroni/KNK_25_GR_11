@@ -2,14 +2,14 @@ package Services;
 
 import Models.Users;
 
-public class SessionManager {
-    private static SessionManager instance;
+public class UserSessionManager {
+    private static UserSessionManager instance;
     //    Anetaret e Sessionit
     private Users user;
 
-    public static SessionManager getInstance(){
+    public static UserSessionManager getInstance(){
         if(instance == null){
-            instance = new SessionManager();
+            instance = new UserSessionManager();
         }
         return instance;
     }

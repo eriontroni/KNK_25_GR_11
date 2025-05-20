@@ -20,7 +20,7 @@ VALUES
 ('Economy', 'Dhomë ekonomike me facilitete bazë', 1, 25.00);
 
 -- Insert në tabelën Room (sigurohet që type_id është i saktë nga RoomType)
-INSERT INTO Room (room_number, type_id, is_available,RoomImage_id)
+INSERT INTO Room (room_number, type_id, is_available)
 VALUES
 ('101', 1, TRUE,5),
 ('102', 2, TRUE,4),
@@ -107,13 +107,13 @@ VALUES
 (5, 5, 5, 'Fantastike! Do ta rekomandoja!', CURRENT_TIMESTAMP);
 
 -- Insert në tabelën RoomImage
-INSERT INTO RoomImage (image_url,)
+INSERT INTO RoomImage (room_id, image_url, uploaded_at)
 VALUES
-('/images/img.png'),
-('/images/img_1.png'),
-('/images/img_2.png'),
-('/images/img_3.png'),
-('/images/img_4.png');
+(1, '/images/img.png'),
+(2, '/images/img_1.png'),
+(3, '/images/img_2.png'),
+(4, '/images/img_3.png'),
+(5, '/images/img_4.png');
 
 -- Insert në tabelën Discount
 INSERT INTO Discount (code, description, percentage, valid_from, valid_to)

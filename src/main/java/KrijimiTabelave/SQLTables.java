@@ -29,19 +29,13 @@ CREATE TABLE RoomType (
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
--- 11. RoomImage -Erioni
-CREATE TABLE RoomImage (
-    id SERIAL PRIMARY KEY,
-    image_url TEXT NOT NULL
-);
-
 -- 2. Room -Natyra
-CREATE TABLE Room (
+CREATE TABLE Room ( 
     id SERIAL PRIMARY KEY,
     room_number VARCHAR(10) UNIQUE NOT NULL,
     type_id INT REFERENCES  RoomType(id) ON DELETE SET NULL,
-    is_available BOOLEAN DEFAULT TRUE,
-    RoomImage_id INT REFERENCES RoomImage(id) ON DELETE SET NULL
+    is_available BOOLEAN DEFAULT TRUE
+    RoomImage_id REFERENCES RoomImages(id) ON DELETE SET NULL,           
 );
 
 -- 3. Customer Leoni
@@ -123,7 +117,11 @@ CREATE TABLE Feedback (
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
-
+-- 11. RoomImage -Erioni
+CREATE TABLE RoomImage (
+    id SERIAL PRIMARY KEY,
+    image_url TEXT NOT NULL,
+);
 
 -- 12. Discount -Vesa
 CREATE TABLE Discount (
