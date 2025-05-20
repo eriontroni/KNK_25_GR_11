@@ -20,19 +20,19 @@ public class HomeController {
 
     // initialize() quhet automatikisht kur ngarkohet FXML
     @FXML
-        public void initialize() {
-            btnHome.setOnAction(e -> handleHome());
-            btnRooms.setOnAction(e -> handleRooms());
-            btnOffers.setOnAction(e -> handleOffers());
-            btnEvents.setOnAction(e -> handleEvents());
-            btnReservations.setOnAction(e -> handleReservations());
-            accBtn.setOnAction(e -> handleAccount());
-        }
+    public void initialize() {
+        btnHome.setOnAction(e -> handleHome());
+        btnRooms.setOnAction(e -> handleRooms());
+        btnOffers.setOnAction(e -> handleOffers());
+        btnEvents.setOnAction(e -> handleEvents());
+        btnReservations.setOnAction(e -> handleReservations());
+        accBtn.setOnAction(e -> handleAccount());
+    }
 
     public void handleHome() {
-            System.out.println("Home clicked");
-            // logjika për home
-        }
+        System.out.println("Home clicked");
+        // logjika për home
+    }
 
     public void handleRooms() {
         try {
@@ -45,7 +45,7 @@ public class HomeController {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        }
+    }
 
     public void handleOffers() {
         try {
@@ -58,28 +58,27 @@ public class HomeController {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        }
+    }
 
     public void handleEvents() {
 
-        }
+    }
 
     public void handleReservations() {
-            System.out.println("Reservations clicked");
-            // logjika për reservations
-        }
+        System.out.println("Reservations clicked");
+        // logjika për reservations
+    }
 
     public void handleAccount() {
         try {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/firstpage.fxml"));
-        Parent offersRoot = loader.load();
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/firstpage.fxml"));
+            Parent offersRoot = loader.load();
 
-        Stage stage = (Stage) accBtn.getScene().getWindow();
-        Scene scene = new Scene(offersRoot);
-        stage.setScene(scene);
-    } catch (IOException e) {
-        e.printStackTrace();
+            Stage stage = (Stage) accBtn.getScene().getWindow();
+            Scene scene = new Scene(offersRoot);
+            stage.setScene(scene);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }
-    }
-
