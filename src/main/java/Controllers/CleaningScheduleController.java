@@ -229,7 +229,7 @@ public class CleaningScheduleController {
 
                 Label lblStatus = new Label("Statusi i ri:");
                 ComboBox<String> cbStatus = new ComboBox<>();
-                cbStatus.getItems().addAll("Scheduled", "In Progress", "Completed");
+                cbStatus.getItems().addAll("Scheduled","Missed", "Completed");
                 cbStatus.setValue(cleaning.getStatus());
 
                 Label lblEmployee = new Label("ID i punëtorit:");
