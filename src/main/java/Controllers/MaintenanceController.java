@@ -4,6 +4,7 @@ import Models.Maintenance;
 import Models.DTO.CreateMaintenanceDTO;
 import Models.DTO.UpdateMaintenanceDTO;
 import Utils.SceneManager;
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -19,6 +20,7 @@ import java.io.IOException;
 
 
 import java.sql.Date;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -90,9 +92,18 @@ public class MaintenanceController {
 
     private void loadAllMaintenance() {
         List<Maintenance> all = repository.getAll();
+        if (all == null) {
+            all = new ArrayList<>();
+        }
         maintenanceList = FXCollections.observableArrayList(all);
-        maintenanceTable.setItems(maintenanceList);
+
+        if (Platform.isFxApplicationThread()) {
+            maintenanceTable.setItems(maintenanceList);
+        } else {
+            Platform.runLater(() -> maintenanceTable.setItems(maintenanceList));
+        }
     }
+
 
     private void doSearch() {
         String searchTerm = searchField.getText().trim().toLowerCase();
