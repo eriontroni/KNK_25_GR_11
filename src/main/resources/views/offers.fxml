@@ -7,23 +7,43 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="600" prefWidth="800" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.OffersController">
-   <children>
-      <Label fx:id="currentDateLabel" alignment="CENTER" layoutX="350.0" layoutY="520.0" prefWidth="100.0" text="todays date" AnchorPane.leftAnchor="100.0" AnchorPane.rightAnchor="100.0" />
-      <Label fx:id="lblTitle" alignment="CENTER" layoutX="300.0" layoutY="20.0" prefHeight="40.0" prefWidth="175.0" text="Current Offers " AnchorPane.leftAnchor="100.0" AnchorPane.rightAnchor="100.0">
-         <font>
-            <Font name="Baskerville Old Face" size="24.0" />
-         </font>
-      </Label>
-      <TableView fx:id="offersTable" layoutX="50.0" layoutY="70.0" prefHeight="420.0" prefWidth="700.0">
-        <columns>
-            <TableColumn fx:id="titleCol" prefWidth="100.0" text="Title" />
-            <TableColumn fx:id="descriptionCol" prefWidth="236.00006103515625" text="Description" />
-            <TableColumn fx:id="discountCol" prefWidth="100.0" text="Discount %" />
-            <TableColumn fx:id="startDateCol" prefWidth="133.0" text="Start Date" />
-            <TableColumn fx:id="endDateCol" prefWidth="133.0" text="End Date" />
-        </columns>
-      </TableView>
-      <Button fx:id="btnBackToHome" layoutX="50.0" layoutY="510.0" mnemonicParsing="false" prefWidth="100" text="Home" />
-   </children>
+<AnchorPane prefHeight="600.0" prefWidth="800.0"
+            xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="Controllers.OffersController"
+            style="-fx-background-color: linear-gradient(to bottom, #ecf0f1, #dfe6e9); -fx-padding: 20;">
+
+    <children>
+        <!-- Titulli Kryesor -->
+        <Label fx:id="lblTitle" layoutX="312.0" layoutY="20.0" prefHeight="40.0" prefWidth="175.0"
+               text="Current Offers"
+               style="-fx-text-fill: #2d3436; -fx-border-color: #636e72; -fx-border-width: 0 0 2 0; -fx-padding: 0 0 5 0;">
+            <font>
+                <Font name="Segoe UI Semibold" size="26.0" />
+            </font>
+        </Label>
+
+        <!-- Tabela -->
+        <TableView fx:id="offersTable" layoutX="50.0" layoutY="80.0" prefHeight="400.0" prefWidth="700.0"
+                   style="-fx-background-color: white; -fx-border-color: #b2bec3; -fx-border-radius: 10; -fx-background-radius: 10; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.15), 8, 0, 0, 2);">
+            <columns>
+                <TableColumn fx:id="titleCol" prefWidth="100.0" text="Title" />
+                <TableColumn fx:id="descriptionCol" prefWidth="236.0" text="Description" />
+                <TableColumn fx:id="discountCol" prefWidth="100.0" text="Discount %" />
+                <TableColumn fx:id="startDateCol" prefWidth="133.0" text="Start Date" />
+                <TableColumn fx:id="endDateCol" prefWidth="133.0" text="End Date" />
+            </columns>
+        </TableView>
+
+        <!-- Data e sotme -->
+        <Label fx:id="currentDateLabel" layoutX="600.0" layoutY="510.0" prefWidth="150.0"
+               text="Today's Date"
+               style="-fx-background-color: #dfe6e9; -fx-border-color: #b2bec3; -fx-border-radius: 5; -fx-background-radius: 5; -fx-alignment: center; -fx-padding: 5; -fx-font-size: 13px; -fx-text-fill: #2d3436;" />
+
+        <!-- Butoni -->
+        <Button fx:id="btnBackToHome" layoutX="50.0" layoutY="510.0" prefWidth="120.0" prefHeight="35.0"
+                text="← Home"
+                style="-fx-background-color: #6c5ce7; -fx-text-fill: white; -fx-font-size: 14px; -fx-font-weight: bold; -fx-background-radius: 6; -fx-cursor: hand;"
+ />
+    </children>
 </AnchorPane>
