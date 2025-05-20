@@ -35,15 +35,6 @@ CREATE TABLE RoomImage (
     image_url TEXT NOT NULL
 );
 
--- 3. Room -Natyra
-CREATE TABLE Room (
-    id SERIAL PRIMARY KEY,
-    room_number VARCHAR(10) UNIQUE NOT NULL,
-    type_id INT REFERENCES RoomType(id) ON DELETE SET NULL,
-    is_available BOOLEAN DEFAULT TRUE,
-    RoomImage_id INT REFERENCES RoomImage(id) ON DELETE SET NULL
-);
-
 
 -- 5. Users -Vesa
 CREATE TABLE Users (
@@ -67,6 +58,35 @@ CREATE TABLE Employee (
     hire_date DATE
 );
 
+-- 12. Discount -Vesa
+CREATE TABLE Discount (
+    id SERIAL PRIMARY KEY,
+    code VARCHAR(50) UNIQUE NOT NULL,
+    description TEXT,
+    percentage DECIMAL(5,2) CHECK (percentage > 0 AND percentage <= 100),
+    valid_from DATE NOT NULL,
+    valid_to DATE NOT NULL
+);
+
+-- 15. Offer -Leoni
+CREATE TABLE Offer (
+    id SERIAL PRIMARY KEY,
+    title VARCHAR(100) NOT NULL,
+    description TEXT,
+    discount_percentage DECIMAL(5,2) CHECK (discount_percentage BETWEEN 0 AND 100) NOT NULL,
+    start_date DATE NOT NULL,
+    end_date DATE NOT NULL
+);
+
+-- 3. Room -Natyra
+CREATE TABLE Room (
+    id SERIAL PRIMARY KEY,
+    room_number VARCHAR(10) UNIQUE NOT NULL,
+    type_id INT REFERENCES RoomType(id) ON DELETE SET NULL,
+    is_available BOOLEAN DEFAULT TRUE,
+    RoomImage_id INT REFERENCES RoomImage(id) ON DELETE SET NULL
+);
+
 -- 7. Reservation -Natyra
 CREATE TABLE Reservation (
     id SERIAL PRIMARY KEY,
@@ -76,6 +96,27 @@ CREATE TABLE Reservation (
     check_out_date DATE NOT NULL,
     status VARCHAR(50) CHECK (status IN ('Pending', 'Confirmed', 'Cancelled')) DEFAULT 'Pending',
     total_price DECIMAL(10,2) NOT NULL
+);
+
+-- 16. Event -Elona
+CREATE TABLE Event (
+    id SERIAL PRIMARY KEY,
+    event_name VARCHAR(255) NOT NULL,
+    organizer_name VARCHAR(255) NOT NULL,
+    event_date DATE NOT NULL,
+    event_time TIME NOT NULL,
+    room_id INT REFERENCES Room(id) ON DELETE SET NULL,
+    description TEXT
+);
+
+-- 14. Maintenance -Natyra
+CREATE TABLE Maintenance (
+    id SERIAL PRIMARY KEY,
+    room_id INT REFERENCES Room(id) ON DELETE CASCADE,
+    reported_by INT REFERENCES Employee(id) ON DELETE SET NULL,
+    description TEXT,
+    status VARCHAR(20) DEFAULT 'Pending', -- Pending, In Progress, Completed
+    reported_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
 -- 8. Payment -Vesa
@@ -115,15 +156,7 @@ CREATE TABLE Feedback (
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
--- 12. Discount -Vesa
-CREATE TABLE Discount (
-    id SERIAL PRIMARY KEY,
-    code VARCHAR(50) UNIQUE NOT NULL,
-    description TEXT,
-    percentage DECIMAL(5,2) CHECK (percentage > 0 AND percentage <= 100),
-    valid_from DATE NOT NULL,
-    valid_to DATE NOT NULL
-);
+
 
 -- 13. ReservationDiscount -Leoni
 CREATE TABLE ReservationDiscount (
@@ -132,36 +165,11 @@ CREATE TABLE ReservationDiscount (
     discount_id INT REFERENCES Discount(id) ON DELETE CASCADE
 );
 
--- 14. Maintenance -Natyra
-CREATE TABLE Maintenance (
-    id SERIAL PRIMARY KEY,
-    room_id INT REFERENCES Room(id) ON DELETE CASCADE,
-    reported_by INT REFERENCES Employee(id) ON DELETE SET NULL,
-    description TEXT,
-    status VARCHAR(20) DEFAULT 'Pending', -- Pending, In Progress, Completed
-    reported_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-);
 
--- 15. Offer -Leoni
-CREATE TABLE Offer (
-    id SERIAL PRIMARY KEY,
-    title VARCHAR(100) NOT NULL,
-    description TEXT,
-    discount_percentage DECIMAL(5,2) CHECK (discount_percentage BETWEEN 0 AND 100) NOT NULL,
-    start_date DATE NOT NULL,
-    end_date DATE NOT NULL
-);
 
--- 16. Event -Elona
-CREATE TABLE Event (
-    id SERIAL PRIMARY KEY,
-    event_name VARCHAR(255) NOT NULL,
-    organizer_name VARCHAR(255) NOT NULL,
-    event_date DATE NOT NULL,
-    event_time TIME NOT NULL,
-    room_id INT REFERENCES Room(id) ON DELETE SET NULL,
-    description TEXT
-);
+
+
+
 
 -- 17. ReservationHistory -Erioni
 CREATE TABLE ReservationHistory (
