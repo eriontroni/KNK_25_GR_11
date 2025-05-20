@@ -13,7 +13,7 @@ public class ReservationsApp extends Application {
         Pane root = loader.load();
 
         Scene scene = new Scene(root);
-        stage.setTitle("Lista e Rezervimeve");
+        stage.setTitle("Forma e Rezervimit");
         stage.setScene(scene);
         stage.setResizable(false);
         stage.show();
@@ -23,3 +23,4 @@ public class ReservationsApp extends Application {
         launch(args);
     }
 }
+    
