@@ -107,7 +107,7 @@ VALUES
 (5, 5, 5, 'Fantastike! Do ta rekomandoja!', CURRENT_TIMESTAMP);
 
 -- Insert në tabelën RoomImage
-INSERT INTO RoomImage (room_id, image_url, uploaded_at)
+INSERT INTO RoomImage (room_id, image_url)
 VALUES
 (1, '/images/img.png'),
 (2, '/images/img_1.png'),
