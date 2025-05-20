@@ -55,9 +55,6 @@ public class RoomRepository extends BaseRepository<Room, CreateRoomDTO, UpdateRo
         return null;
     }
 
-    RoomRepository rr = new RoomRepository();
-    ArrayList<Room> rooms = rr.getAll(); // kjo e perdor getAll() nga BaseRepository
-
     @Override
     public Room getById(int id) {
         String query = "SELECT * FROM Room WHERE id = ?";
@@ -66,9 +63,6 @@ public class RoomRepository extends BaseRepository<Room, CreateRoomDTO, UpdateRo
             ResultSet rs = pstm.executeQuery();
             if (rs.next()) {
                 Room room = fromResultSet(rs);
-                // Nëse don me lidh imazhet:
-                // List<RoomImage> images = getRoomImages(id);
-                // room.setImages(images); // vetem nëse ke setter në Room
                 return room;
             }
         } catch (SQLException e) {
