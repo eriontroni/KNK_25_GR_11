@@ -61,6 +61,16 @@ public class HomeController {
     }
 
     public void handleEvents() {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/event.fxml"));
+            Parent offersRoot = loader.load();
+
+            Stage stage = (Stage) btnEvents.getScene().getWindow();
+            Scene scene = new Scene(offersRoot);
+            stage.setScene(scene);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
     }
 
