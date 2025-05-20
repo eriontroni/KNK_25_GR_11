@@ -12,16 +12,8 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import Models.Offer;
 import repository.OfferRepository;
-
-
 import java.io.IOException;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
 
 public class OffersController {
 
@@ -34,7 +26,6 @@ public class OffersController {
     @FXML private Button btnBackToHome;
     @FXML private Label currentDateLabel;
     @FXML private Label lblTitle;
-    private Connection connection;
 
 
     @FXML
@@ -46,43 +37,36 @@ public class OffersController {
         // Back button action
         btnBackToHome.setOnAction(e -> goBackToHome());
 
-        // Setup columns
+
         titleCol.setCellValueFactory(new PropertyValueFactory<>("title"));
         descriptionCol.setCellValueFactory(new PropertyValueFactory<>("description"));
         discountCol.setCellValueFactory(new PropertyValueFactory<>("discountPercentage"));
         startDateCol.setCellValueFactory(new PropertyValueFactory<>("startDate"));
         endDateCol.setCellValueFactory(new PropertyValueFactory<>("endDate"));
 
-        // Populate the table
+
         loadOffers();
     }
     private void loadOffers() {
         OfferRepository offerRepository = new OfferRepository("Offer");
-        var offers = offerRepository.getAll(); // kjo do kthejë listën e ofertave
+        var offers = offerRepository.getAll();
 
         if (offers != null) {
+            System.out.println("Offers loaded: " + offers.size()); // Debug
             offersTable.getItems().setAll(offers);
+        } else {
+            System.out.println("Offers list is null.");
         }
     }
-    public List<Offer> getAll() {
-        List<Offer> offers = new ArrayList<>();
-        String query = "SELECT * FROM Offer";
+    private void fetchOfferByTitle(String title) {
+        OfferRepository offerRepository = new OfferRepository("Offer");
+        Offer offer = offerRepository.getByTitle(title);
 
-        try {
-            PreparedStatement statement = this.connection.prepareStatement(query);
-            ResultSet res = statement.executeQuery();
-
-            while (res.next()) {
-                Offer offer = Offer.getInstance(res);;
-                if (offer != null) {
-                    offers.add(offer);
-                }
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
+        if (offer != null) {
+            System.out.println("Ofertë u gjet: " + offer.getTitle() + " - " + offer.getDescription());
+        } else {
+            System.out.println("Asnjë ofertë nuk u gjet me titullin: " + title);
         }
-
-        return offers;
     }
 
     private void goBackToHome() {
