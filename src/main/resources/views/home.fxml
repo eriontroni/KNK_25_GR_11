@@ -7,47 +7,40 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="600.0" maxWidth="800.0" minHeight="600.0" minWidth="800.0" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.HomeController">
-   <children>
-      <Pane maxHeight="600.0" maxWidth="800.0" minHeight="600.0" minWidth="800.0" prefHeight="600.0" prefWidth="800.0">
-         <children>
-            <Label alignment="CENTER" layoutX="269.0" layoutY="40.0" prefHeight="63.0" prefWidth="262.0" text="Hotel ">
-               <font>
-                  <Font name="Baskerville Old Face" size="36.0" />
-               </font>
-            </Label>
-            <HBox alignment="CENTER" layoutX="100.0" layoutY="150.0" prefHeight="60.0" prefWidth="600.0" spacing="20.0">
-               <children>
-                  <Button fx:id="btnHome" mnemonicParsing="false" onAction="#handleHome" prefHeight="40.0" prefWidth="100.0" text="Home">
-                     <font>
-                        <Font name="Baskerville Old Face" size="16.0" />
-                     </font>
-                  </Button>
-                  <Button fx:id="btnRooms" mnemonicParsing="false" onAction="#handleRooms" prefHeight="40.0" prefWidth="100.0" text="Rooms">
-                     <font>
-                        <Font name="Baskerville Old Face" size="16.0" />
-                     </font>
-                  </Button>
-                  <Button fx:id="btnOffers" mnemonicParsing="false" onAction="#handleOffers" prefHeight="40.0" prefWidth="100.0" text="Offers">
-                     <font>
-                        <Font name="Baskerville Old Face" size="16.0" />
-                     </font>
-                  </Button>
-                  <Button fx:id="btnEvents" mnemonicParsing="false" onAction="#handleEvents" prefHeight="40.0" prefWidth="100.0" text="Events">
-                     <font>
-                        <Font name="Baskerville Old Face" size="16.0" />
-                     </font>
-                  </Button>
-                  <Button fx:id="btnReservations" mnemonicParsing="false" onAction="#handleReservations" prefHeight="40.0" prefWidth="100.0" text="Reservations">
-                     <font>
-                        <Font name="Baskerville Old Face" size="14.0" />
-                     </font>
-                  </Button>
-               </children>
-            </HBox>
-            <Button fx:id="accBtn" alignment="CENTER" layoutX="320.0" layoutY="342.0" mnemonicParsing="false" text="Sing in or Create an Accont" textAlignment="CENTER" />
-            <Label layoutX="311.0" layoutY="317.0" text="If you want to make a reservation" />
-         </children>
-      </Pane>
-   </children>
+<AnchorPane maxHeight="600.0" maxWidth="800.0" minHeight="600.0" minWidth="800.0" prefHeight="600.0" prefWidth="800.0" style="-fx-background-color: linear-gradient(to bottom right, #f5f1ea, #d6c8b8);" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.HomeController">
+
+    <children>
+        <Pane prefHeight="600.0" prefWidth="800.0" style="-fx-background-color: transparent;">
+            <children>
+
+                <!-- Titulli -->
+                <Label layoutX="254.0" layoutY="41.0" prefHeight="63.0" prefWidth="292.0" style="-fx-text-fill: #5a4a3c;" text="🏨 Hotel Dashboard">
+                    <font>
+                        <Font name="Segoe UI Semibold" size="32.0" />
+                    </font>
+                </Label>
+
+                <!-- Navigation Buttons -->
+                <HBox alignment="CENTER" layoutX="100.0" layoutY="150.0" prefHeight="60.0" prefWidth="600.0" spacing="20.0">
+                    <children>
+                        <Button fx:id="btnHome" onAction="#handleHome" prefHeight="40.0" prefWidth="100.0" style="-fx-background-color: #a1866f; -fx-text-fill: white; -fx-background-radius: 12;" text="🏠 Home" />
+                        <Button fx:id="btnRooms" onAction="#handleRooms" prefHeight="40.0" prefWidth="100.0" style="-fx-background-color: #8c7b68; -fx-text-fill: white; -fx-background-radius: 12;" text="🛏️ Rooms" />
+                        <Button fx:id="btnOffers" onAction="#handleOffers" prefHeight="40.0" prefWidth="100.0" style="-fx-background-color: #b49a7a; -fx-text-fill: white; -fx-background-radius: 12;" text="🎁 Offers" />
+                        <Button fx:id="btnEvents" onAction="#handleEvents" prefHeight="40.0" prefWidth="100.0" style="-fx-background-color: #c9a66b; -fx-text-fill: white; -fx-background-radius: 12;" text="📅 Events" />
+                        <Button fx:id="btnReservations" onAction="#handleReservations" prefHeight="40.0" prefWidth="100.0" style="-fx-background-color: #7e6a58; -fx-text-fill: white; -fx-background-radius: 12;" text="📌 Reservations" />
+                    </children>
+                </HBox>
+
+                <!-- Sign in Section -->
+                <Label layoutX="311.0" layoutY="317.0" style="-fx-text-fill: #7d6e63;" text="If you want to make a reservation">
+                    <font>
+                        <Font name="Segoe UI" size="14.0" />
+                    </font>
+                </Label>
+
+                <Button fx:id="accBtn" layoutX="320.0" layoutY="342.0" prefHeight="38.0" prefWidth="200.0" style="-fx-background-color: #6b5746; -fx-text-fill: white; -fx-background-radius: 12;" text="🔐 Sign in or Create an Account" textAlignment="CENTER" />
+
+            </children>
+        </Pane>
+    </children>
 </AnchorPane>
