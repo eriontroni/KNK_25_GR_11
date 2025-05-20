@@ -19,14 +19,40 @@ VALUES
 ('Family', 'Dhomë e madhe familjare', 5, 95.00),
 ('Economy', 'Dhomë ekonomike me facilitete bazë', 1, 25.00);
 
--- Insert në tabelën Room (sigurohet që type_id është i saktë nga RoomType)
-INSERT INTO Room (room_number, type_id, is_available,RoomImage_id)
+-- Insert në tabelën RoomImage
+INSERT INTO RoomImage (image_url)
 VALUES
-('101', 1, TRUE,5),
-('102', 2, TRUE,4),
-('201', 3, FALSE,3),
-('202', 4, TRUE,1),
-('301', 5, TRUE,2);
+('/images/img.png'),
+('/images/img_1.png'),
+('/images/img_2.png'),
+('/images/img_3.png'),
+('/images/img_4.png');
+
+-- Insert në tabelën Discount
+INSERT INTO Discount (code, description, percentage, valid_from, valid_to)
+VALUES
+('SUMMER20', 'Ulje vere 20%', 20.00, '2024-06-01', '2024-08-31'),
+('WELCOME10', 'Ulje për klientët e rinj 10%', 10.00, '2024-05-01', '2024-12-31'),
+('FESTIVE15', 'Ulje gjatë festave 15%', 15.00, '2024-12-01', '2024-12-31'),
+('WEEKEND5', 'Ulje për fundjavë 5%', 5.00, '2024-05-01', '2024-09-30'),
+('VIP25', 'Ulje speciale për klientët VIP 25%', 25.00, '2024-01-01', '2024-12-31');
+
+-- Insert në tabelën Offer
+INSERT INTO Offer (title, description, discount_percentage, start_date, end_date)
+VALUES
+('Oferta Pranverore', 'Ulje speciale për muajin Prill dhe Maj', 15.00, '2024-04-01', '2024-05-31'),
+('Fundjava Relax', 'Ulje 10% për fundjava', 10.00, '2024-06-01', '2024-08-31'),
+('Oferta për Çiftet', 'Ulje speciale 20% për çiftet', 20.00, '2024-02-01', '2024-12-31'),
+('Oferta Ditore', 'Ulje ditore për rezervime të minutës së fundit', 5.00, '2024-05-01', '2024-12-31'),
+('Oferta VIP', 'Ulje 25% për klientët VIP', 25.00, '2024-01-01', '2024-12-31');
+
+-- Insert në tabelën Room (sigurohet që type_id është i saktë nga RoomType)
+INSERT INTO Room (room_number, type_id, is_available, RoomImage_id) VALUES
+('101', 1, TRUE, 5),
+('102', 2, TRUE, 4),
+('201', 3, FALSE, 3),
+('202', 4, TRUE, 1),
+('301', 5, TRUE, 2);
 
 -- Insert në tabelën Customer (unik në email dhe telefon)
 --INSERT INTO Customer (first_name, last_name, email, phone)
@@ -70,6 +96,24 @@ VALUES
 (4, 4, '2024-08-01', '2024-08-05', 'Confirmed', 400.00),
 (5, 5, '2024-09-10', '2024-09-15', 'Pending', 125.00);
 
+-- Insert në tabelën Event
+INSERT INTO Event (event_name, organizer_name, event_date, event_time, room_id, description)
+VALUES
+('Konferencë Biznesi', 'ABC Corporation', '2024-07-15', '09:00:00', 1, 'Konferencë mbi inovacionin dhe teknologjinë.'),
+('Dasmë', 'Familja Krasniqi', '2024-08-20', '18:00:00', 2, 'Ceremonia martesore dhe darka festive.'),
+('Workshop Marketingu', 'Marketing Group', '2024-09-10', '10:30:00', 3, 'Workshop për marketing dixhital dhe strategji.'),
+('Ekspozitë Arti', 'Galeria Art Prishtina', '2024-10-05', '15:00:00', 4, 'Ekspozitë pikturash dhe veprash artistike.'),
+('Seminar Mjekësor', 'QKUK', '2024-11-12', '08:00:00', 5, 'Seminar për zhvillimet e fundit në mjekësi.');
+
+
+-- Insert në tabelën Maintenance
+INSERT INTO Maintenance (room_id, reported_by, description, status, reported_at)
+VALUES
+(1, 4, 'Problem me kondicionerin, nuk ftoh mirë.', 'Pending', CURRENT_TIMESTAMP),
+(2, 5, 'Lavaman i bllokuar.', 'In Progress', CURRENT_TIMESTAMP),
+(3, 4, 'Ndriçimi në banjë nuk funksionon.', 'Completed', CURRENT_TIMESTAMP),
+(4, 5, 'Dera e ballkonit nuk mbyllet mirë.', 'Pending', CURRENT_TIMESTAMP),
+(5, 4, 'Probleme me televizorin.', 'In Progress', CURRENT_TIMESTAMP);
 -- Insert në tabelën Payment
 INSERT INTO Payment (reservation_id, amount, payment_method, payment_status)
 VALUES
@@ -106,24 +150,6 @@ VALUES
 (4, 4, 3, 'Mirë, por mund të përmirësohet.', CURRENT_TIMESTAMP),
 (5, 5, 5, 'Fantastike! Do ta rekomandoja!', CURRENT_TIMESTAMP);
 
--- Insert në tabelën RoomImage
-INSERT INTO RoomImage (image_url)
-VALUES
-('/images/img.png'),
-('/images/img_1.png'),
-('/images/img_2.png'),
-('/images/img_3.png'),
-('/images/img_4.png');
-
--- Insert në tabelën Discount
-INSERT INTO Discount (code, description, percentage, valid_from, valid_to)
-VALUES
-('SUMMER20', 'Ulje vere 20%', 20.00, '2024-06-01', '2024-08-31'),
-('WELCOME10', 'Ulje për klientët e rinj 10%', 10.00, '2024-05-01', '2024-12-31'),
-('FESTIVE15', 'Ulje gjatë festave 15%', 15.00, '2024-12-01', '2024-12-31'),
-('WEEKEND5', 'Ulje për fundjavë 5%', 5.00, '2024-05-01', '2024-09-30'),
-('VIP25', 'Ulje speciale për klientët VIP 25%', 25.00, '2024-01-01', '2024-12-31');
-
 -- Insert në tabelën ReservationDiscount
 INSERT INTO ReservationDiscount (reservation_id, discount_id)
 VALUES
@@ -133,32 +159,6 @@ VALUES
 (4, 4),
 (5, 5);
 
--- Insert në tabelën Maintenance
-INSERT INTO Maintenance (room_id, reported_by, description, status, reported_at)
-VALUES
-(1, 4, 'Problem me kondicionerin, nuk ftoh mirë.', 'Pending', CURRENT_TIMESTAMP),
-(2, 5, 'Lavaman i bllokuar.', 'In Progress', CURRENT_TIMESTAMP),
-(3, 4, 'Ndriçimi në banjë nuk funksionon.', 'Completed', CURRENT_TIMESTAMP),
-(4, 5, 'Dera e ballkonit nuk mbyllet mirë.', 'Pending', CURRENT_TIMESTAMP),
-(5, 4, 'Probleme me televizorin.', 'In Progress', CURRENT_TIMESTAMP);
-
--- Insert në tabelën Offer
-INSERT INTO Offer (title, description, discount_percentage, start_date, end_date)
-VALUES
-('Oferta Pranverore', 'Ulje speciale për muajin Prill dhe Maj', 15.00, '2024-04-01', '2024-05-31'),
-('Fundjava Relax', 'Ulje 10% për fundjava', 10.00, '2024-06-01', '2024-08-31'),
-('Oferta për Çiftet', 'Ulje speciale 20% për çiftet', 20.00, '2024-02-01', '2024-12-31'),
-('Oferta Ditore', 'Ulje ditore për rezervime të minutës së fundit', 5.00, '2024-05-01', '2024-12-31'),
-('Oferta VIP', 'Ulje 25% për klientët VIP', 25.00, '2024-01-01', '2024-12-31');
-
--- Insert në tabelën Event
-INSERT INTO Event (event_name, organizer_name, event_date, event_time, room_id, description)
-VALUES
-('Konferencë Biznesi', 'ABC Corporation', '2024-07-15', '09:00:00', 1, 'Konferencë mbi inovacionin dhe teknologjinë.'),
-('Dasmë', 'Familja Krasniqi', '2024-08-20', '18:00:00', 2, 'Ceremonia martesore dhe darka festive.'),
-('Workshop Marketingu', 'Marketing Group', '2024-09-10', '10:30:00', 3, 'Workshop për marketing dixhital dhe strategji.'),
-('Ekspozitë Arti', 'Galeria Art Prishtina', '2024-10-05', '15:00:00', 4, 'Ekspozitë pikturash dhe veprash artistike.'),
-('Seminar Mjekësor', 'QKUK', '2024-11-12', '08:00:00', 5, 'Seminar për zhvillimet e fundit në mjekësi.');
 
 -- Insert në tabelën ReservationHistory
 INSERT INTO ReservationHistory (reservation_id, customer_id, change_date, old_status, new_status)
