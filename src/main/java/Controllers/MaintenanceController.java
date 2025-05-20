@@ -12,12 +12,7 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import repository.MaintenanceRepository;
 import javafx.scene.layout.VBox;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.stage.Stage;
-import java.io.IOException;
-
 
 import java.sql.Date;
 import java.util.ArrayList;
@@ -72,7 +67,7 @@ public class MaintenanceController {
         reportedAtColumn.setCellValueFactory(new PropertyValueFactory<>("reportedAt"));
 
         // Inicializojmë ComboBox me opsionet për kërkim
-        searchByComboBox.setItems(FXCollections.observableArrayList("id", "roomId", "reportedBy", "status", "description", "reportedAt"));
+        searchByComboBox.setItems(FXCollections.observableArrayList("id", "roomId", "reportedBy", "status", "reportedAt"));
 
         // Ngarkojmë të dhënat nga baza
         loadAllMaintenance();
@@ -130,8 +125,6 @@ public class MaintenanceController {
                     return String.valueOf(m.getReportedBy()).contains(searchTerm);
                 case "status":
                     return m.getStatus().toLowerCase().contains(searchTerm);
-                case "description":
-                    return m.getDescription().toLowerCase().contains(searchTerm);
                 case "reportedAt":
                     return m.getReportedAt().toString().contains(searchTerm);
                 default:
