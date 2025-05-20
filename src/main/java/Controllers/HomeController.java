@@ -11,20 +11,12 @@ import java.io.IOException;
 
 public class HomeController {
 
-    @FXML
-    private Button btnHome;
-
-    @FXML
-    private Button btnRooms;
-
-    @FXML
-    private Button btnOffers;
-
-    @FXML
-    private Button btnEvents;
-
-    @FXML
-    private Button btnReservations;
+    @FXML private Button btnHome;
+    @FXML private Button btnRooms;
+    @FXML private Button btnOffers;
+    @FXML private Button btnEvents;
+    @FXML private Button btnReservations;
+    @FXML private Button accBtn;
 
     // initialize() quhet automatikisht kur ngarkohet FXML
     @FXML
@@ -34,6 +26,7 @@ public class HomeController {
             btnOffers.setOnAction(e -> handleOffers());
             btnEvents.setOnAction(e -> handleEvents());
             btnReservations.setOnAction(e -> handleReservations());
+            accBtn.setOnAction(e -> handleAccount());
         }
 
     public void handleHome() {
@@ -51,7 +44,6 @@ public class HomeController {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/offers.fxml"));
             Parent offersRoot = loader.load();
 
-            // Merr skenën aktuale nga butoni (ose çdo Node tjetër në skenë)
             Stage stage = (Stage) btnOffers.getScene().getWindow();
             Scene scene = new Scene(offersRoot);
             stage.setScene(scene);
@@ -68,5 +60,18 @@ public class HomeController {
             System.out.println("Reservations clicked");
             // logjika për reservations
         }
+
+    public void handleAccount() {
+        try {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/firstpage.fxml"));
+        Parent offersRoot = loader.load();
+
+        Stage stage = (Stage) accBtn.getScene().getWindow();
+        Scene scene = new Scene(offersRoot);
+        stage.setScene(scene);
+    } catch (IOException e) {
+        e.printStackTrace();
+    }
+}
     }
 
