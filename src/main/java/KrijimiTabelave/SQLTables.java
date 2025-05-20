@@ -20,7 +20,7 @@ public class SQLTables {
 
 -- 1. RoomType -Elona
 CREATE TABLE RoomType (
-    id SERIAL PRIMARY KEY,
+    id INT PRIMARY KEY,
     name VARCHAR(100) NOT NULL,
     description TEXT,
     capacity INT CHECK (capacity > 0),
@@ -31,7 +31,7 @@ CREATE TABLE RoomType (
 
 -- 2. RoomImage -Erioni
 CREATE TABLE RoomImage (
-    id SERIAL PRIMARY KEY,
+    id INT PRIMARY KEY,
     image_url TEXT NOT NULL
 );
 
@@ -60,7 +60,7 @@ CREATE TABLE Employee (
 
 -- 12. Discount -Vesa
 CREATE TABLE Discount (
-    id SERIAL PRIMARY KEY,
+    id INT PRIMARY KEY,
     code VARCHAR(50) UNIQUE NOT NULL,
     description TEXT,
     percentage DECIMAL(5,2) CHECK (percentage > 0 AND percentage <= 100),
@@ -70,7 +70,7 @@ CREATE TABLE Discount (
 
 -- 15. Offer -Leoni
 CREATE TABLE Offer (
-    id SERIAL PRIMARY KEY,
+    id INT PRIMARY KEY,
     title VARCHAR(100) NOT NULL,
     description TEXT,
     discount_percentage DECIMAL(5,2) CHECK (discount_percentage BETWEEN 0 AND 100) NOT NULL,
@@ -80,7 +80,7 @@ CREATE TABLE Offer (
 
 -- 3. Room -Natyra
 CREATE TABLE Room (
-    id SERIAL PRIMARY KEY,
+    id INT PRIMARY KEY,
     room_number VARCHAR(10) UNIQUE NOT NULL,
     type_id INT REFERENCES RoomType(id) ON DELETE SET NULL,
     is_available BOOLEAN DEFAULT TRUE,
@@ -89,7 +89,7 @@ CREATE TABLE Room (
 
 -- 7. Reservation -Natyra
 CREATE TABLE Reservation (
-    id SERIAL PRIMARY KEY,
+    id INT PRIMARY KEY,
     customer_id INT REFERENCES Users(id) ON DELETE CASCADE,
     room_id INT REFERENCES Room(id) ON DELETE CASCADE,
     check_in_date DATE NOT NULL,
@@ -100,7 +100,7 @@ CREATE TABLE Reservation (
 
 -- 16. Event -Elona
 CREATE TABLE Event (
-    id SERIAL PRIMARY KEY,
+    id INT PRIMARY KEY,
     event_name VARCHAR(255) NOT NULL,
     organizer_name VARCHAR(255) NOT NULL,
     event_date DATE NOT NULL,
@@ -111,7 +111,7 @@ CREATE TABLE Event (
 
 -- 14. Maintenance -Natyra
 CREATE TABLE Maintenance (
-    id SERIAL PRIMARY KEY,
+    id INT PRIMARY KEY,
     room_id INT REFERENCES Room(id) ON DELETE CASCADE,
     reported_by INT REFERENCES Employee(id) ON DELETE SET NULL,
     description TEXT,
@@ -121,7 +121,7 @@ CREATE TABLE Maintenance (
 
 -- 8. Payment -Vesa
 CREATE TABLE Payment (
-    id SERIAL PRIMARY KEY,
+    id INT PRIMARY KEY,
     reservation_id INT REFERENCES Reservation(id) ON DELETE CASCADE,
     amount DECIMAL(10,2) NOT NULL,
     payment_method VARCHAR(50) CHECK (payment_method IN ('Credit Card', 'Debit Card', 'Cash', 'PayPal')) NOT NULL,
@@ -130,7 +130,7 @@ CREATE TABLE Payment (
 
 -- 9. RoomService -Era
 CREATE TABLE RoomService (
-    id SERIAL PRIMARY KEY,
+    id INT PRIMARY KEY,
     reservation_id INT REFERENCES Reservation(id) ON DELETE CASCADE,
     service_name VARCHAR(100) NOT NULL,
     price DECIMAL(10,2) NOT NULL,
@@ -139,7 +139,7 @@ CREATE TABLE RoomService (
 
 -- 10. CleaningSchedule -Era
 CREATE TABLE CleaningSchedule (
-    id SERIAL PRIMARY KEY,
+    id INT PRIMARY KEY,
     room_id INT REFERENCES Room(id) ON DELETE CASCADE,
     employee_id INT REFERENCES Employee(id),
     scheduled_date DATE NOT NULL,
@@ -148,7 +148,7 @@ CREATE TABLE CleaningSchedule (
 
 -- 11. Feedback -Era
 CREATE TABLE Feedback (
-    id SERIAL PRIMARY KEY,
+    id INT PRIMARY KEY,
     customer_id INT REFERENCES Users(id) ON DELETE CASCADE,
     reservation_id INT REFERENCES Reservation(id) ON DELETE CASCADE,
     rating INT CHECK (rating BETWEEN 1 AND 5),
@@ -156,24 +156,16 @@ CREATE TABLE Feedback (
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
-
-
 -- 13. ReservationDiscount -Leoni
 CREATE TABLE ReservationDiscount (
-    id SERIAL PRIMARY KEY,
+    id INT PRIMARY KEY,
     reservation_id INT REFERENCES Reservation(id) ON DELETE CASCADE,
     discount_id INT REFERENCES Discount(id) ON DELETE CASCADE
 );
 
-
-
-
-
-
-
 -- 17. ReservationHistory -Erioni
 CREATE TABLE ReservationHistory (
-    id SERIAL PRIMARY KEY,
+    id INT PRIMARY KEY,
     reservation_id INT REFERENCES Reservation(id) ON DELETE CASCADE,
     customer_id INT REFERENCES Users(id) ON DELETE CASCADE,
     change_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
@@ -183,7 +175,7 @@ CREATE TABLE ReservationHistory (
 
 -- 18. Notification -Erioni
 CREATE TABLE Notification (
-    id SERIAL PRIMARY KEY,
+    id INT PRIMARY KEY,
     user_id INT REFERENCES Users(id) ON DELETE CASCADE,
     message TEXT NOT NULL,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
