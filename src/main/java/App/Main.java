@@ -1,6 +1,5 @@
 package App;
 
-import Utils.SceneLocator;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -8,11 +7,13 @@ import javafx.stage.Stage;
 
 public class Main extends Application {
     @Override
-    public void start(Stage stage) throws Exception{
-        FXMLLoader loader = new FXMLLoader(getClass().getResource(SceneLocator.First_Page));
+    public void start(Stage stage) throws Exception {
+        // FXML duhet të jetë në të njëjtin folder me Main ose brenda një resource package, p.sh. /fxml/logini.fxml
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/logini.fxml"));
         Scene scene = new Scene(loader.load());
         stage.setScene(scene);
-        stage.setTitle("Login");
+        stage.setTitle("Log In");
+        stage.setResizable(false);
         stage.show();
     }
 

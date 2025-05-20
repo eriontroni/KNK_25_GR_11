@@ -1,4 +1,5 @@
 package Controllers;
+
 import Models.Employee;
 import Models.Users;
 import Services.EmployeeSessionManager;
@@ -18,75 +19,80 @@ import repository.UsersRepository;
 
 public class LoginController {
 
-
-    public Button loginButton;
+    @FXML
+    private Button loginButton;
     @FXML
     private TextField emailField;
     @FXML
     private PasswordField passwordField;
 
+    // Shfaq alert për gabime ose informata
     private void showAlert(String msg) {
         Alert alert = new Alert(Alert.AlertType.ERROR);
-        alert.setTitle("Error");
+        alert.setTitle("Gabim");
         alert.setHeaderText(null);
         alert.setContentText(msg);
         alert.showAndWait();
     }
 
-
     @FXML
     private void handleLogin() {
-        String email = emailField.getText();
+        String email = emailField.getText().trim();
         String password = passwordField.getText();
+
         Stage stage = (Stage) loginButton.getScene().getWindow();
 
-
-        if (LoginService.emailExists(email, "Employee")) {
-
-            if (LoginService.checkPassword(email, password, "Employee")) {
-
-                if (LoginService.positionExists(email, "Receptionist")) {
-
-                    EmployeeRepository er = new EmployeeRepository();
-                    Employee employee = er.getByEmail(email);
-                    EmployeeSessionManager employeeSessionManager = new EmployeeSessionManager();
-                    employeeSessionManager.setCurrentUser(employee);
-
-                    // TODO: Me shku te faqja e recepcionistit DONE
-                    SceneManager.switchScene(stage, SceneLocator.Reception_Dashboard_Page, "ReceptionDashboard");
-                } else if (LoginService.positionExists(email, "Maintanance")) {
-
-                    EmployeeRepository er = new EmployeeRepository();
-                    Employee employee = er.getByEmail(email);
-                    EmployeeSessionManager employeeSessionManager = new EmployeeSessionManager();
-                    employeeSessionManager.setCurrentUser(employee);
-
-                    SceneManager.switchScene(stage, SceneLocator.Maintenance_Page, "Maintanance");
-                    // TODO: Me shku te faqja e maintanancewerq DONE
-                } else {
-                    showAlert("Passwordi i gabuar!");
-                }
-            } else if (LoginService.emailExists(email, "Users")) {
-                if (LoginService.checkPassword(email, password, "Users")) {
-
-                    showAlert("JENI QASUR!");
-                    UserSessionManager userSessionManager = UserSessionManager.getInstance();
-                    UsersRepository ur = new UsersRepository();
-                    Users user = ur.getByEmail(email);
-                    userSessionManager.setCurrentUser(user);
-
-                    //TODO: Me shku te faqja e Userit apo klientit DONE
-                    SceneManager.switchScene(stage, SceneLocator.Home_Page, "ClientHome");
-                } else {
-                    showAlert("Passwordi i gabuar!");
-                }
-            } else {
-                showAlert("Passwordi dhe Emaili nuk u pershtaten");
-            }
+        // Validim që të dy fushat janë plotësuar
+        if (email.isEmpty() || password.isEmpty()) {
+            showAlert("Ju lutem plotësoni të gjitha fushat!");
+            return;
         }
 
+        // Kontrollo fillimisht Employee
+        if (LoginService.emailExists(email, "Employee")) {
+            if (LoginService.checkPassword(email, password, "Employee")) {
+                if (LoginService.positionExists(email, "Receptionist")) {
+                    EmployeeRepository er = new EmployeeRepository();
+                    Employee employee = er.getByEmail(email);
+                    EmployeeSessionManager employeeSessionManager = new EmployeeSessionManager();
+                    employeeSessionManager.setCurrentUser(employee);
+                    SceneManager.switchScene(stage, SceneLocator.Reception_Dashboard_Page, "ReceptionDashboard");
+                } else if (LoginService.positionExists(email, "Maintanance")) {
+                    EmployeeRepository er = new EmployeeRepository();
+                    Employee employee = er.getByEmail(email);
+                    EmployeeSessionManager employeeSessionManager = new EmployeeSessionManager();
+                    employeeSessionManager.setCurrentUser(employee);
+                    SceneManager.switchScene(stage, SceneLocator.Maintenance_Page, "Maintanance");
+                } else {
+                    showAlert("Nuk keni pozitë të përcaktuar të lejuar për qasje.");
+                }
+            } else {
+                showAlert("Passwordi i gabuar!");
+            }
+            return;
+        }
+
+        // Pastaj kontrollo si User (klient)
+        if (LoginService.emailExists(email, "Users")) {
+            if (LoginService.checkPassword(email, password, "Users")) {
+                UsersRepository ur = new UsersRepository();
+                Users user = ur.getByEmail(email);
+                UserSessionManager userSessionManager = UserSessionManager.getInstance();
+
+                userSessionManager.setCurrentUser(user);
+                SceneManager.switchScene(stage, SceneLocator.Home_Page, "ClientHome");
+            } else {
+                showAlert("Passwordi i gabuar!");
+            }
+            return;
+        }
+
+        // Nëse nuk ekziston as si Employee as si User
+        showAlert("Ky email nuk ekziston në sistem!");
     }
-    public void goBack(ActionEvent actionEvent){
+
+    @FXML
+    public void goBack(ActionEvent actionEvent) {
         Stage stage = (Stage) loginButton.getScene().getWindow();
         SceneManager.switchScene(stage, SceneLocator.First_Page, "First Page");
     }
