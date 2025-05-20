@@ -41,7 +41,7 @@
             </children>
         </VBox>
 
-        <Label layoutX="20.0" layoutY="455.0" style="-fx-text-fill: #7d6e63;" text="Total rows: 0">
+        <Label fx:id="rowCountLabel" layoutX="20.0" layoutY="455.0" style="-fx-text-fill: #7d6e63;" text="Total rows: 0">
             <font>
                 <Font name="Segoe UI" size="14.0" />
             </font>
