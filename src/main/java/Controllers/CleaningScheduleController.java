@@ -26,6 +26,8 @@ public class CleaningScheduleController {
 
     @FXML
     private TableView<CleaningSchedule> cleaningTable;
+    @FXML
+    private Label rowCountLabel;
 
     @FXML
     private TableColumn<CleaningSchedule, Integer> colId;
@@ -89,6 +91,7 @@ public class CleaningScheduleController {
         List<CleaningSchedule> all = repository.getAll();
         cleaningList = FXCollections.observableArrayList(all);
         cleaningTable.setItems(cleaningList);
+        rowCountLabel.setText("Total rows: " + all.size());
     }
 
     private void doSearch() {
@@ -123,6 +126,7 @@ public class CleaningScheduleController {
         }).collect(Collectors.toList());
 
         cleaningTable.setItems(FXCollections.observableArrayList(filtered));
+        rowCountLabel.setText("Total rows: " + filtered.size());
     }
 
     @FXML

@@ -104,6 +104,8 @@ public class MaintenanceController {
         } else {
             Platform.runLater(() -> maintenanceTable.setItems(maintenanceList));
         }
+
+        rowCountLabel.setText("Total rows: " + maintenanceList.size());
     }
 
 
