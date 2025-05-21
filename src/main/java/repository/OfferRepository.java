@@ -100,19 +100,4 @@ public class OfferRepository extends BaseRepository<Offer, CreateOfferDTO, Updat
         }
         return null;
     }
-
-    // Nëse don me aktivizu edhe fshirjen, çele këtë metodë:
-    /*
-    public boolean delete(int id){
-        String query = "DELETE FROM Offer WHERE ID = ?";
-        try{
-            PreparedStatement pstm = this.connection.prepareStatement(query);
-            pstm.setInt(1, id);
-            return pstm.executeUpdate() == 1;
-        } catch (SQLException e){
-            e.printStackTrace();
-        }
-        return false;
-    }
-    */
 }

@@ -33,6 +33,7 @@
                 <TableColumn fx:id="discountCol" prefWidth="100.0" text="Discount (%)" />
                 <TableColumn fx:id="startDateCol" prefWidth="120.0" text="Start Date" />
                 <TableColumn fx:id="endDateCol" prefWidth="120.0" text="End Date" />
+                <TableColumn fx:id="codeCol" prefWidth="120.0" text="Code" />
             </columns>
         </TableView>
 
