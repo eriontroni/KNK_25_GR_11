@@ -63,27 +63,27 @@ public class RoomsController {
             VBox detailsBox = new VBox(8);
             detailsBox.setStyle("-fx-padding: 10;");
 
-            Label roomNumberLabel = new Label("Room " + room.getRoomNumber());
+            Label roomNumberLabel = new Label("Dhoma " + room.getRoomNumber());
             roomNumberLabel.setStyle("-fx-font-size: 20px; -fx-font-weight: bold; -fx-text-fill: #5a4a3c;");
 
             Label typeLabel = new Label(type.getName() + " — " + type.getDescription());
             typeLabel.setStyle("-fx-font-size: 14px; -fx-text-fill: #6b5746;");
 
-            Label capacityLabel = new Label("Capacity: " + type.getCapacity() + " persons");
+            Label capacityLabel = new Label("Kapaciteti: " + type.getCapacity() + " persona");
             capacityLabel.setStyle("-fx-text-fill: #7e6a58;");
 
-            Label priceLabel = new Label("$" + String.format("%.2f", type.getPrice_per_night()) + " / night");
+            Label priceLabel = new Label(type.getPrice_per_night() + " € / nata");
             priceLabel.setStyle("-fx-text-fill: #7e6a58;");
 
-            Label availableLabel = new Label("Availability: ");
+            Label availableLabel = new Label("Disponueshmëria:");
             availableLabel.setStyle("-fx-text-fill: #6b5746;");
 
-            Label isAvailableLabel = new Label(room.isAvailable() ? "Available" : "Not Available");
+            Label isAvailableLabel = new Label(room.isAvailable() ? "E Lirë" : "E Zënë");
             isAvailableLabel.setStyle("-fx-font-weight: bold; -fx-text-fill: " + (room.isAvailable() ? "#2ecc71" : "#e74c3c") + ";");
 
             HBox availabilityBox = new HBox(10, availableLabel, isAvailableLabel);
 
-            Button bookButton = new Button("Book Now");
+            Button bookButton = new Button("Rezervo tani");
             bookButton.setStyle("""
     -fx-background-color: linear-gradient(to right, #a1866f, #bca48b);
     -fx-text-fill: white;
@@ -92,7 +92,15 @@ public class RoomsController {
     -fx-padding: 6 16;
     -fx-cursor: hand;
 """);
-            bookButton.setOnAction(e -> handleClick(room.getId()));
+            bookButton.setOnAction(e -> {
+                try {
+                    Parent reservationRoot = FXMLLoader.load(getClass().getResource("/views/Reservations.fxml"));
+                    Stage stage = (Stage) roomListVBox.getScene().getWindow();
+                    stage.setScene(new Scene(reservationRoot));
+                } catch (IOException ex) {
+                    ex.printStackTrace();
+                }
+            });
 
             detailsBox.getChildren().addAll(
                     roomNumberLabel, typeLabel, capacityLabel, priceLabel, availabilityBox, bookButton
@@ -115,9 +123,4 @@ public class RoomsController {
         }
     }
 
-
-    private void handleClick(int roomId) {
-        System.out.println("Room " + roomId + " selected for booking.");
-        // mduhet me permirsu ktu
-    }
 }
