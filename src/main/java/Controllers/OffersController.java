@@ -32,7 +32,7 @@ public class OffersController {
     @FXML
     public void initialize() {
         // Initialize UI elements
-        lblTitle.setText("Special Offers");
+        lblTitle.setText("Ofertat Speciale");
         currentDateLabel.setText(LocalDate.now().toString());
         btnBackToHome.setOnAction(e -> goBackToHome());
 
