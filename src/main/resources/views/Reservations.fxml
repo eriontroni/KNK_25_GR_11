@@ -1,31 +1,35 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.*?>
+<?import java.lang.String?>
 <?import javafx.collections.FXCollections?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<?import java.lang.String?>
 <AnchorPane prefHeight="300.0" prefWidth="800.0" style="-fx-background-color: linear-gradient(to bottom right, #f5f1ea, #d6c8b8);" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.ReservationsController">
     <children>
 
         <!-- TITULLI -->
-        <Label layoutX="270.0" layoutY="20.0" text="📌 Make a Reservation" style="-fx-text-fill: #5a4a3c;">
+        <Label layoutX="266.0" layoutY="23.0" style="-fx-text-fill: #5a4a3c;" text="📌 Krijo Rezervimin">
             <font>
                 <Font name="Segoe UI Semibold" size="24.0" />
             </font>
         </Label>
 
         <!-- ARRIVAL -->
-        <Label layoutX="30.0" layoutY="70.0" text="ARRIVAL" style="-fx-text-fill: #7d6e63; -fx-font-weight: bold;" />
+        <Label layoutX="30.0" layoutY="70.0" style="-fx-text-fill: #7d6e63; -fx-font-weight: bold;" text="Nga" />
         <DatePicker fx:id="arrivalDate" layoutX="30.0" layoutY="95.0" prefWidth="160.0" />
 
         <!-- DEPARTURE -->
-        <Label layoutX="210.0" layoutY="70.0" text="DEPARTURE" style="-fx-text-fill: #7d6e63; -fx-font-weight: bold;" />
+        <Label layoutX="210.0" layoutY="70.0" style="-fx-text-fill: #7d6e63; -fx-font-weight: bold;" text="Deri" />
         <DatePicker fx:id="departureDate" layoutX="210.0" layoutY="95.0" prefWidth="160.0" />
 
         <!-- PAYMENT METHOD -->
-        <Label layoutX="390.0" layoutY="70.0" text="PAYMENT METHOD" style="-fx-text-fill: #7d6e63; -fx-font-weight: bold;" />
+        <Label layoutX="390.0" layoutY="70.0" style="-fx-text-fill: #7d6e63; -fx-font-weight: bold;" text="Menyra e pageses" />
         <ComboBox fx:id="paymentMethod" layoutX="390.0" layoutY="95.0" prefWidth="160.0">
             <items>
                 <FXCollections fx:factory="observableArrayList">
@@ -37,7 +41,7 @@
         </ComboBox>
 
         <!-- ROOM TYPE -->
-        <Label layoutX="30.0" layoutY="140.0" text="ROOM TYPE" style="-fx-text-fill: #7d6e63; -fx-font-weight: bold;" />
+        <Label layoutX="30.0" layoutY="140.0" style="-fx-text-fill: #7d6e63; -fx-font-weight: bold;" text="Lloji i dhomes" />
         <ComboBox fx:id="roomType" layoutX="30.0" layoutY="165.0" prefWidth="160.0">
             <items>
                 <FXCollections fx:factory="observableArrayList">
@@ -49,17 +53,14 @@
         </ComboBox>
 
         <!-- CODE -->
-        <Label layoutX="210.0" layoutY="140.0" text="CODE" style="-fx-text-fill: #7d6e63; -fx-font-weight: bold;" />
+        <Label layoutX="210.0" layoutY="140.0" style="-fx-text-fill: #7d6e63; -fx-font-weight: bold;" text="Kodi promocional(Opcional" />
         <TextField fx:id="reservationCode" layoutX="210.0" layoutY="165.0" prefWidth="160.0" />
 
         <!-- TOTAL PRICE -->
-        <Label layoutX="390.0" layoutY="140.0" text="TOTAL PRICE" style="-fx-text-fill: #7d6e63; -fx-font-weight: bold;" />
-        <Label fx:id="totalPriceLabel" layoutX="390.0" layoutY="165.0" prefWidth="160.0"
-               style="-fx-background-color: #e4d8c7; -fx-text-fill: #5a4a3c; -fx-font-weight: bold; -fx-padding: 5;" text="€0.00" />
+        <Label layoutX="390.0" layoutY="140.0" style="-fx-text-fill: #7d6e63; -fx-font-weight: bold;" text="Totali" />
+        <Label fx:id="totalPriceLabel" layoutX="390.0" layoutY="165.0" prefWidth="160.0" style="-fx-background-color: #e4d8c7; -fx-text-fill: #5a4a3c; -fx-font-weight: bold; -fx-padding: 5;" text="€0.00" />
 
         <!-- BOOK BUTTON -->
-        <Button fx:id="bookButton" layoutX="580.0" layoutY="165.0" prefWidth="160.0" prefHeight="38.0"
-                style="-fx-background-color: #6b5746; -fx-text-fill: white; -fx-background-radius: 12; -fx-font-weight: bold;"
-                text="✔ Book Now" onAction="#handleBook" />
+        <Button fx:id="bookButton" layoutX="580.0" layoutY="165.0" onAction="#handleBook" prefHeight="38.0" prefWidth="160.0" style="-fx-background-color: #6b5746; -fx-text-fill: white; -fx-background-radius: 12; -fx-font-weight: bold;" text="✔ Book Now" />
     </children>
 </AnchorPane>
