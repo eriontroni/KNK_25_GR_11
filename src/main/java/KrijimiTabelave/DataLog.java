@@ -23,6 +23,14 @@ VALUES
 (4,'Family', 'Dhomë e madhe familjare', 5, 95.00),
 (5,'Economy', 'Dhomë ekonomike me facilitete bazë', 1, 25.00);
 
+-- Insert në tabelën Room (sigurohet që type_id është i saktë nga RoomType)
+INSERT INTO Room (id,room_number, type_id, is_available) VALUES
+(1,'101', 1, TRUE),
+(2,'102', 2, TRUE),
+(3,'201', 3, FALSE),
+(4,'202', 4, TRUE),
+(5,'301', 5, TRUE);
+
 -- Insert në tabelën RoomImage
 INSERT INTO RoomImage (id,image_url,room_id)
 VALUES
@@ -40,14 +48,6 @@ VALUES
 (3,'Oferta për Çiftet', 'Ulje speciale 20% për çiftet',478, 20.00, '2024-02-01', '2024-12-31'),
 (4,'Oferta Ditore', 'Ulje ditore për rezervime të minutës së fundit',986, 5.00, '2024-05-01', '2024-12-31'),
 (5,'Oferta VIP', 'Ulje 25% për klientët VIP',357, 25.00, '2024-01-01', '2024-12-31');
-
--- Insert në tabelën Room (sigurohet që type_id është i saktë nga RoomType)
-INSERT INTO Room (id,room_number, type_id, is_available) VALUES
-(1,'101', 1, TRUE),
-(2,'102', 2, TRUE),
-(3,'201', 3, FALSE),
-(4,'202', 4, TRUE),
-(5,'301', 5, TRUE);
 
 -- Insert në tabelën Reservation (customer_id dhe room_id duhet të jenë ekzistuese nga tabela Customer dhe Room)
 INSERT INTO Reservation (id,customer_id, room_id,offer_id, check_in_date, check_out_date, status, total_price)
