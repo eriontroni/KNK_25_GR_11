@@ -1,5 +1,6 @@
 package Controllers;
 
+import Services.ChartsService;
 import javafx.fxml.FXML;
 import javafx.scene.chart.BarChart;
 import javafx.scene.chart.CategoryAxis;
@@ -41,9 +42,10 @@ public class ChartPerRoleController {
         data.setName("Përdoruesit");
 
         // Vlerat
-        int nrKlient = 15;
-        int nrRecepsionist = 7;
-        int nrMirmbajtes = 4;
+        int nrKlient = ChartsService.getNrUsers();
+        int nrRecepsionist = ChartsService.getNrRole("Recepcionist");
+        int nrMirmbajtes = ChartsService.getNrRole("Mirembajtes");
+
 
         XYChart.Data<String, Number> klient = new XYChart.Data<>("Klient", nrKlient);
         XYChart.Data<String, Number> recep = new XYChart.Data<>("Recepsionist", nrRecepsionist);

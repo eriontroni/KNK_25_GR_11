@@ -33,6 +33,7 @@ CREATE TABLE RoomType (
 CREATE TABLE RoomImage (
     id INT PRIMARY KEY,
     image_url TEXT NOT NULL
+    room_id INT REFERENCES Room(id) ON DELETE CASCADE
 );
 
 
@@ -84,7 +85,6 @@ CREATE TABLE Room (
     room_number VARCHAR(10) UNIQUE NOT NULL,
     type_id INT REFERENCES RoomType(id) ON DELETE SET NULL,
     is_available BOOLEAN DEFAULT TRUE,
-    RoomImage_id INT REFERENCES RoomImage(id) ON DELETE SET NULL
 );
 
 -- 7. Reservation -Natyra
@@ -111,7 +111,7 @@ CREATE TABLE Event (
 
 -- 14. Maintenance -Natyra
 CREATE TABLE Maintenance (
-    id INT PRIMARY KEY,
+    id SERIAL PRIMARY KEY,
     room_id INT REFERENCES Room(id) ON DELETE CASCADE,
     reported_by INT REFERENCES Employee(id) ON DELETE SET NULL,
     description TEXT,
@@ -137,9 +137,8 @@ CREATE TABLE RoomService (
     requested_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
--- 10. CleaningSchedule -Era
 CREATE TABLE CleaningSchedule (
-    id INT PRIMARY KEY,
+    id SERIAL PRIMARY KEY,
     room_id INT REFERENCES Room(id) ON DELETE CASCADE,
     employee_id INT REFERENCES Employee(id),
     scheduled_date DATE NOT NULL,
@@ -148,7 +147,7 @@ CREATE TABLE CleaningSchedule (
 
 -- 11. Feedback -Era
 CREATE TABLE Feedback (
-    id INT PRIMARY KEY,
+    id SERIAL PRIMARY KEY,
     customer_id INT REFERENCES Users(id) ON DELETE CASCADE,
     reservation_id INT REFERENCES Reservation(id) ON DELETE CASCADE,
     rating INT CHECK (rating BETWEEN 1 AND 5),

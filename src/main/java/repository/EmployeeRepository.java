@@ -92,4 +92,21 @@ public class EmployeeRepository extends BaseRepository<Employee, createEmployeeD
         }
         return null;
     }
+    public ArrayList<Employee> getByRole(String position){
+        ArrayList<Employee> puntort = new ArrayList<Employee>();
+        String query = """
+                SELECT * FROM employee WHERE position = ?
+                """;
+        try {
+            PreparedStatement ptsm = this.connection.prepareStatement(query);
+            ptsm.setString(1,position);
+            ResultSet res = ptsm.executeQuery();
+            while(res.next()){
+                puntort.add(this.fromResultSet(res));
+            }
+        }catch(SQLException e){
+            e.printStackTrace();
+        }
+        return puntort;
+    }
 }
