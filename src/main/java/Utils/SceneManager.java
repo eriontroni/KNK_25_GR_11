@@ -26,5 +26,5 @@ public class SceneManager {
             // Opsionale: Alert me mesazh gabimi
         }
     }
-    
+
 }
