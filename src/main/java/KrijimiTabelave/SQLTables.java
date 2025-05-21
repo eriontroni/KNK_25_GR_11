@@ -33,6 +33,7 @@ CREATE TABLE RoomType (
 CREATE TABLE RoomImage (
     id INT PRIMARY KEY,
     image_url TEXT NOT NULL
+    room_id INT REFERENCES Room(id) ON DELETE CASCADE
 );
 
 
@@ -84,7 +85,6 @@ CREATE TABLE Room (
     room_number VARCHAR(10) UNIQUE NOT NULL,
     type_id INT REFERENCES RoomType(id) ON DELETE SET NULL,
     is_available BOOLEAN DEFAULT TRUE,
-    RoomImage_id INT REFERENCES RoomImage(id) ON DELETE SET NULL
 );
 
 -- 7. Reservation -Natyra
