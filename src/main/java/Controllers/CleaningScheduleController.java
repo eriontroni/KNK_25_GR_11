@@ -137,14 +137,18 @@ public class CleaningScheduleController {
 
         Label lblRoomId = new Label("Room ID:");
         TextField tfRoomId = new TextField();
+
         Label lblEmployeeId = new Label("Employee ID:");
         TextField tfEmployeeId = new TextField();
-        Label lblDate = new Label("Scheduled Date (YYYY-MM-DD):");
-        TextField tfDate = new TextField();
-        Label lblStatus = new Label("Status:");
-        TextField tfStatus = new TextField();
 
-        VBox content = new VBox(10, lblRoomId, tfRoomId, lblEmployeeId, tfEmployeeId, lblDate, tfDate, lblStatus, tfStatus);
+        Label lblDate = new Label("Scheduled Date:");
+        DatePicker datePicker = new DatePicker();
+
+        Label lblStatus = new Label("Status:");
+        ComboBox<String> cbStatus = new ComboBox<>();
+        cbStatus.getItems().addAll("Scheduled", "Missed", "Completed");
+
+        VBox content = new VBox(10, lblRoomId, tfRoomId, lblEmployeeId, tfEmployeeId, lblDate, datePicker, lblStatus, cbStatus);
         dialog.getDialogPane().setContent(content);
 
         ButtonType addButtonType = new ButtonType("Shto", ButtonBar.ButtonData.OK_DONE);
@@ -155,14 +159,15 @@ public class CleaningScheduleController {
                 try {
                     int roomId = Integer.parseInt(tfRoomId.getText().trim());
                     int employeeId = Integer.parseInt(tfEmployeeId.getText().trim());
-                    Date scheduledDate = Date.valueOf(tfDate.getText().trim());
-                    String status = tfStatus.getText().trim();
+                    LocalDate localDate = datePicker.getValue();
+                    String status = cbStatus.getValue();
 
-                    if (status.isEmpty()) {
-                        showAlert("Gabim", "Statusi nuk mund të jetë bosh.");
+                    if (localDate == null || status == null || status.isEmpty()) {
+                        showAlert("Gabim", "Ju lutem plotësoni të gjitha fushat.");
                         return null;
                     }
 
+                    Date scheduledDate = Date.valueOf(localDate);
                     return new CreateCleaningScheduleDTO(roomId, employeeId, scheduledDate, status);
                 } catch (Exception ex) {
                     showAlert("Gabim", "Ju lutem plotësoni të gjitha fushat saktë.");
@@ -182,6 +187,7 @@ public class CleaningScheduleController {
             }
         });
     }
+
 
     @FXML
     private void deleteCleaningById() {

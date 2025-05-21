@@ -11,7 +11,7 @@ import java.sql.Statement;
 
 public class OfferRepository extends BaseRepository<Offer, CreateOfferDTO, UpdateOfferDTO> {
 
-    public OfferRepository(String tableName) {
+    public OfferRepository() {
         super("Offer");
     }
 
@@ -28,16 +28,17 @@ public class OfferRepository extends BaseRepository<Offer, CreateOfferDTO, Updat
     @Override
     Offer create(CreateOfferDTO offer) {
         String query = """
-                INSERT INTO Offer (title, description, discount_percentage, start_date, end_date)
-                VALUES (?, ?, ?, ?, ?)
+                INSERT INTO Offer (title, description,code, discount_percentage, start_date, end_date)
+                VALUES (?, ?, ?, ?, ?, ?)
                 """;
         try {
             PreparedStatement pstm = this.connection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
             pstm.setString(1, offer.getTitle());
             pstm.setString(2, offer.getDescription());
-            pstm.setDouble(3, offer.getDiscount_percentage());
-            pstm.setDate(4, offer.getStart_date());
-            pstm.setDate(5, offer.getEnd_date());
+            pstm.setString(3, offer.getCode());
+            pstm.setDouble(4, offer.getDiscount_percentage());
+            pstm.setDate(5, offer.getStart_date());
+            pstm.setDate(6, offer.getEnd_date());
             pstm.execute();
 
             ResultSet result = pstm.getGeneratedKeys();
@@ -56,17 +57,18 @@ public class OfferRepository extends BaseRepository<Offer, CreateOfferDTO, Updat
     Offer update(UpdateOfferDTO offer) {
         String query = """
                 UPDATE Offer
-                SET title = ?, description = ?, discount_percentage = ?, start_date = ?, end_date = ?
+                SET title = ?, description = ?, discount_percentage = ?,code = ?, start_date = ?, end_date = ?
                 WHERE id = ?
                 """;
         try {
             PreparedStatement pstm = this.connection.prepareStatement(query);
             pstm.setString(1, offer.getTitle());
             pstm.setString(2, offer.getDescription());
-            pstm.setDouble(3, offer.getDiscount_percentage());
-            pstm.setDate(4, offer.getStart_date());
-            pstm.setDate(5, offer.getEnd_date());
-            pstm.setInt(6, offer.getId());
+            pstm.setString(3, offer.getCode());
+            pstm.setDouble(4, offer.getDiscount_percentage());
+            pstm.setDate(5, offer.getStart_date());
+            pstm.setDate(6, offer.getEnd_date());
+            pstm.setInt(7, offer.getId());
 
             int updated = pstm.executeUpdate();
             if (updated == 1) {
