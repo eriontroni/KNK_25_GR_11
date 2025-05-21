@@ -92,9 +92,8 @@ public class LoginController {
         showAlert("Ky email nuk ekziston në sistem!");
     }
 
-    @FXML
-    public void goBack(ActionEvent actionEvent) {
+    public void goSignup(ActionEvent actionEvent) {
         Stage stage = (Stage) loginButton.getScene().getWindow();
-        SceneManager.switchScene(stage, SceneLocator.First_Page, "First Page");
+        SceneManager.switchScene(stage, SceneLocator.Signup_Page, "Signup");
     }
 }

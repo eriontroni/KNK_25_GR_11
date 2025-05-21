@@ -24,5 +24,5 @@
    <Button fx:id="loginButton" layoutX="240.0" layoutY="260.0" onAction="#handleLogin" prefHeight="38.0" prefWidth="120.0" style="-fx-background-color: #a38467; -fx-text-fill: #fffaf4; -fx-font-size: 17px; -fx-background-radius: 20; -fx-font-weight: bold;" text="🔒  Login" />
 
    <!-- Back Button -->
-   <Button layoutX="380.0" layoutY="260.0" onAction="#goBack" prefHeight="38.0" prefWidth="100.0" style="-fx-background-color: #cfb89b; -fx-text-fill: #fffaf4; -fx-font-size: 16px; -fx-background-radius: 20;" text="⟲  Back" />
+   <Button layoutX="380.0" layoutY="260.0" onAction="#goSignup" prefHeight="38.0" prefWidth="100.0" style="-fx-background-color: #cfb89b; -fx-text-fill: #fffaf4; -fx-font-size: 16px; -fx-background-radius: 20;" text="Signup" />
 </AnchorPane>

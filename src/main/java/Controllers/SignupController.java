@@ -78,10 +78,11 @@ public class SignupController {
         } else {
             showAlert("Gabim gjatë krijimit të userit!");
         }
+
     }
 
     public void goBack(ActionEvent actionEvent) {
         Stage stage = (Stage) signupUsername.getScene().getWindow();
-        SceneManager.switchScene(stage, SceneLocator.First_Page,"First Page");
+        SceneManager.switchScene(stage, SceneLocator.Login_Page,"Login");
     }
 }
