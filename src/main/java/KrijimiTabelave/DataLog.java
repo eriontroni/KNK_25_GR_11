@@ -141,6 +141,10 @@ VALUES
 (4,4, 'Ulje speciale për ju këtë javë!', CURRENT_TIMESTAMP, FALSE),
 (5,5, 'Rezervimi juaj u anulua.', CURRENT_TIMESTAMP, FALSE);
 
+
+--EKZEKUTO NE PGADMIN PASI TE INSERTOSH DATALOG:
+--SELECT setval('cleaningschedule_id_seq', COALESCE(MAX(id), 1), true) FROM CleaningSchedule;
+--SELECT setval('maintenance_id_seq', COALESCE(MAX(id), 1), true) FROM Maintenance;
                 """;
         try{
             Statement statement = connection.createStatement();
