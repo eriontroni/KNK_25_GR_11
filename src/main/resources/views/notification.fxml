@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane xmlns="http://javafx.com/javafx/23.0.1"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="Controllers.NotificationController"
+            style="-fx-background-color: linear-gradient(to bottom right, #f0f4f9, #ffffff);">
+
+    <!-- HEADER -->
+    <top>
+        <HBox alignment="CENTER" style="
+                -fx-background-color: linear-gradient(to right, #1565c0, #5e92f3);
+                -fx-padding: 20;
+                -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 8, 0, 0, 4);">
+            <Label text="🔔 Njoftimet" style="
+                    -fx-text-fill: white;
+                    -fx-font-size: 28px;
+                    -fx-font-weight: bold;" />
+        </HBox>
+    </top>
+
+    <!-- QENDRA: Lista e njoftimeve -->
+    <center>
+        <ScrollPane fitToWidth="true" style="
+                -fx-background-color: transparent;
+                -fx-padding: 24;">
+            <VBox fx:id="notificationListVBox" alignment="TOP_CENTER" spacing="18" style="
+                    -fx-padding: 16;
+                    -fx-background-color: rgba(255,255,255,0.95);
+                    -fx-background-radius: 16;
+                    -fx-border-radius: 16;
+                    -fx-effect: dropshadow(gaussian, rgba(30,40,60,0.06), 10, 0, 0, 6);" />
+        </ScrollPane>
+    </center>
+
+    <!-- FOOTER -->
+    <bottom>
+        <HBox spacing="10" alignment="CENTER_LEFT" style="
+                -fx-background-color: #f5f7fa;
+                -fx-padding: 15;
+                -fx-border-color: #dcdde1;
+                -fx-border-width: 1 0 0 0;">
+            <Button fx:id="btnBackToHome"
+                    onAction="#goBackToHome"
+                    text="🏠 Home"
+                    style="
+                        -fx-background-color: linear-gradient(to right, #74ebd5, #ACB6E5);
+                        -fx-text-fill: #2c3e50;
+                        -fx-font-weight: bold;
+                        -fx-background-radius: 12;
+                        -fx-padding: 8 16;
+                        -fx-cursor: hand;" />
+
+            <Region fx:id="spacer" HBox.hgrow="ALWAYS"/>
+
+            <Label text="© 2025 Hotel Management System" style="-fx-text-fill: #7f8c8d;"/>
+        </HBox>
+    </bottom>
+</BorderPane>
