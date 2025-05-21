@@ -126,7 +126,7 @@ public class CleaningScheduleController {
         }).collect(Collectors.toList());
 
         cleaningTable.setItems(FXCollections.observableArrayList(filtered));
-        rowCountLabel.setText("Total rows: " + filtered.size());
+        rowCountLabel.setText("Numri i rreshtave: " + filtered.size());
     }
 
     @FXML
