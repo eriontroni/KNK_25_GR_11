@@ -63,8 +63,6 @@
             "
                     text="Ballina" />
 
-            <!-- Teksti i footer-it në mes -->
-            <Label style="-fx-text-fill: #7d6e63; -fx-font-size: 14px; -fx-font-style: italic;" text="© 2025 Hotel Management System" />
         </HBox>
 
     </VBox>
