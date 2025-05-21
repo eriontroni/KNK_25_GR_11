@@ -58,16 +58,7 @@ public class OffersController {
             System.out.println("Offers list is null.");
         }
     }
-    private void fetchOfferByTitle(String title) {
-        OfferRepository offerRepository = new OfferRepository("Offer");
-        Offer offer = offerRepository.getByTitle(title);
 
-        if (offer != null) {
-            System.out.println("Ofertë u gjet: " + offer.getTitle() + " - " + offer.getDescription());
-        } else {
-            System.out.println("Asnjë ofertë nuk u gjet me titullin: " + title);
-        }
-    }
 
     private void goBackToHome() {
         try {

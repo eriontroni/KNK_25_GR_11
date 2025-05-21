@@ -17,6 +17,7 @@ public class HomeController {
     @FXML private Button btnEvents;
     @FXML private Button btnReservations;
     @FXML private Button accBtn;
+    @FXML private Button reviewsBtn;
 
     // initialize() quhet automatikisht kur ngarkohet FXML
     @FXML
@@ -27,6 +28,7 @@ public class HomeController {
         btnEvents.setOnAction(e -> handleEvents());
         btnReservations.setOnAction(e -> handleReservations());
         accBtn.setOnAction(e -> handleAccount());
+        reviewsBtn.setOnAction(e -> handleReviews());
     }
 
     public void handleHome() {
@@ -61,12 +63,30 @@ public class HomeController {
     }
 
     public void handleEvents() {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/event.fxml"));
+            Parent offersRoot = loader.load();
+
+            Stage stage = (Stage) btnEvents.getScene().getWindow();
+            Scene scene = new Scene(offersRoot);
+            stage.setScene(scene);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
     }
 
     public void handleReservations() {
-        System.out.println("Reservations clicked");
-        // logjika për reservations
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/Reservations.fxml"));
+            Parent offersRoot = loader.load();
+
+            Stage stage = (Stage) btnReservations.getScene().getWindow();
+            Scene scene = new Scene(offersRoot);
+            stage.setScene(scene);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public void handleAccount() {
@@ -77,6 +97,20 @@ public class HomeController {
             Stage stage = (Stage) accBtn.getScene().getWindow();
             Scene scene = new Scene(offersRoot);
             stage.setScene(scene);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void handleReviews() {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/Feedback.fxml"));
+            Parent root = loader.load();
+
+            Stage stage = (Stage) reviewsBtn.getScene().getWindow();
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+
         } catch (IOException e) {
             e.printStackTrace();
         }

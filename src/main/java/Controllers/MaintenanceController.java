@@ -28,6 +28,8 @@ public class MaintenanceController {
 
     @FXML
     private TableView<Maintenance> maintenanceTable;
+    @FXML
+    private Label rowCountLabel;
 
     @FXML
     private TableColumn<Maintenance, Integer> maintenanceIdColumn;
@@ -72,7 +74,7 @@ public class MaintenanceController {
         reportedAtColumn.setCellValueFactory(new PropertyValueFactory<>("reportedAt"));
 
         // Inicializojmë ComboBox me opsionet për kërkim
-        searchByComboBox.setItems(FXCollections.observableArrayList("id", "roomId", "reportedBy", "status", "description", "reportedAt"));
+        searchByComboBox.setItems(FXCollections.observableArrayList("id", "roomId", "reportedBy", "status", "reportedAt"));
 
         // Ngarkojmë të dhënat nga baza
         loadAllMaintenance();
@@ -102,6 +104,8 @@ public class MaintenanceController {
         } else {
             Platform.runLater(() -> maintenanceTable.setItems(maintenanceList));
         }
+
+        rowCountLabel.setText("Total rows: " + maintenanceList.size());
     }
 
 
@@ -130,8 +134,6 @@ public class MaintenanceController {
                     return String.valueOf(m.getReportedBy()).contains(searchTerm);
                 case "status":
                     return m.getStatus().toLowerCase().contains(searchTerm);
-                case "description":
-                    return m.getDescription().toLowerCase().contains(searchTerm);
                 case "reportedAt":
                     return m.getReportedAt().toString().contains(searchTerm);
                 default:
@@ -140,6 +142,7 @@ public class MaintenanceController {
         }).collect(Collectors.toList());
 
         maintenanceTable.setItems(FXCollections.observableArrayList(filtered));
+        rowCountLabel.setText("Total rows: " + filtered.size());
     }
 
     @FXML
@@ -198,6 +201,7 @@ public class MaintenanceController {
                 showAlert("Gabim", "Shtimi i mirëmbajtjes dështoi.");
             }
         });
+
     }
 
     private void deleteMaintenanceById() {
@@ -257,12 +261,13 @@ public class MaintenanceController {
 
                 VBox content = new VBox(10, lblDescription, tfDescription, lblStatus, cbStatus);
                 editDialog.getDialogPane().setContent(content);
-
-                ButtonType updateButtonType = new ButtonType("Përditëso", ButtonBar.ButtonData.OK_DONE);
-                editDialog.getDialogPane().getButtonTypes().addAll(updateButtonType, ButtonType.CANCEL);
+                editDialog.getDialogPane().getButtonTypes().addAll(
+                        new ButtonType("Përditëso", ButtonBar.ButtonData.OK_DONE),
+                        ButtonType.CANCEL
+                );
 
                 editDialog.setResultConverter(dialogButton -> {
-                    if (dialogButton == updateButtonType) {
+                    if (dialogButton.getButtonData() == ButtonBar.ButtonData.OK_DONE) {
                         String newDescription = tfDescription.getText().trim();
                         String newStatus = cbStatus.getValue();
 
@@ -292,7 +297,6 @@ public class MaintenanceController {
                 showAlert("Gabim", "ID-ja duhet të jetë numër i saktë.");
             }
         });
-
     }
 
 
