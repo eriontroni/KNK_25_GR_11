@@ -39,6 +39,7 @@
                 </Label>
 
                 <Button fx:id="accBtn" layoutX="320.0" layoutY="342.0" prefHeight="38.0" prefWidth="200.0" style="-fx-background-color: #6b5746; -fx-text-fill: white; -fx-background-radius: 12;" text="🔐 Sign in or Create an Account" textAlignment="CENTER" />
+            <Button fx:id="reviewsBtn" layoutX="679.0" layoutY="550.0" prefHeight="18.0" prefWidth="100.0" style="-fx-background-color: #6b5746; -fx-text-fill: white; -fx-background-radius: 12;" text="Read reviews" textAlignment="CENTER" />
 
             </children>
         </Pane>
