@@ -53,10 +53,10 @@ VALUES
 INSERT INTO Reservation (id,customer_id, room_id,offer_id, check_in_date, check_out_date, status, total_price)
 VALUES
 (1,1, 2, 2, '2024-06-10', '2024-06-12', 'Confirmed', 120.00),
-(2,2, 3, '2024-07-15', '2024-07-20', 'Pending', 300.00),
+(2,2, 3,NULL,'2024-07-15', '2024-07-20', 'Pending', 300.00),
 (3,3, 1, 2, '2024-06-05', '2024-06-07', 'Cancelled', 70.00),
-(4,4, 4, '2024-08-01', '2024-08-05', 'Confirmed', 400.00),
-(5,5, 5, '2024-09-10', '2024-09-15', 'Pending', 125.00);
+(4,4, 4,NULL, '2024-08-01', '2024-08-05', 'Confirmed', 400.00),
+(5,5, 5,NULL, '2024-09-10', '2024-09-15', 'Pending', 125.00);
 
 -- Insert në tabelën Event
 INSERT INTO Event (id,event_name, organizer_name, event_date, event_time, room_id, description)
