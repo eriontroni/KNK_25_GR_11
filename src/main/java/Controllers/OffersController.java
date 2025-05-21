@@ -23,6 +23,7 @@ public class OffersController {
     @FXML private TableColumn<Offer, Double> discountCol;
     @FXML private TableColumn<Offer, String> startDateCol;
     @FXML private TableColumn<Offer, String> endDateCol;
+    @FXML private TableColumn<Offer, String> codeCol;
     @FXML private Button btnBackToHome;
     @FXML private Label currentDateLabel;
     @FXML private Label lblTitle;
@@ -33,8 +34,6 @@ public class OffersController {
         // Initialize UI elements
         lblTitle.setText("Special Offers");
         currentDateLabel.setText(LocalDate.now().toString());
-
-        // Back button action
         btnBackToHome.setOnAction(e -> goBackToHome());
 
 
@@ -43,8 +42,7 @@ public class OffersController {
         discountCol.setCellValueFactory(new PropertyValueFactory<>("discountPercentage"));
         startDateCol.setCellValueFactory(new PropertyValueFactory<>("startDate"));
         endDateCol.setCellValueFactory(new PropertyValueFactory<>("endDate"));
-
-
+        codeCol.setCellValueFactory(new PropertyValueFactory<>("code"));
 
         loadOffers();
     }
