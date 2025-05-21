@@ -8,6 +8,7 @@ public class UpdateReservationDTO {
     private Date checkOutDate;
     private String status;
     private double totalPrice;
+    private Integer offerId;
 
     public UpdateReservationDTO(int id, Date checkInDate, Date checkOutDate, String status, double totalPrice) {
         this.id = id;
@@ -15,6 +16,7 @@ public class UpdateReservationDTO {
         this.checkOutDate = checkOutDate;
         this.status = status;
         this.totalPrice = totalPrice;
+        this.offerId = offerId;
     }
 
     public int getId() {
@@ -36,4 +38,6 @@ public class UpdateReservationDTO {
     public double getTotalPrice() {
         return totalPrice;
     }
+
+    public int getOfferId() {return offerId;}
 }

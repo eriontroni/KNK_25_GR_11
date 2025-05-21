@@ -3,6 +3,7 @@ package Controllers;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import java.sql.Date;
+import java.time.temporal.ChronoUnit;
 
 public class ReservationsController {
 
@@ -19,12 +20,25 @@ public class ReservationsController {
     private ComboBox<String> paymentMethod;
 
     @FXML
+    private ComboBox<String> roomType;
+
+    @FXML
+    private TextField reservationCode;
+
+    @FXML
+    private Label totalPriceLabel;
+
+    @FXML
     private Button bookButton;
 
     @FXML
     public void initialize() {
         arrivalDate.setValue(java.time.LocalDate.now());
         departureDate.setValue(java.time.LocalDate.now().plusDays(1));
+
+        arrivalDate.setOnAction(e -> updatePrice());
+        departureDate.setOnAction(e -> updatePrice());
+        roomType.setOnAction(e -> updatePrice());
     }
 
     @FXML
@@ -33,6 +47,8 @@ public class ReservationsController {
         Date departure = departureDate.getValue() != null ? Date.valueOf(departureDate.getValue()) : null;
         String guests = guestCombo.getValue();
         String payment = paymentMethod.getValue();
+        String room = roomType.getValue();
+        String code = reservationCode.getText();
 
         if (arrival == null || departure == null || guests == null || payment == null) {
             showAlert("Ju lutem plotësoni të gjitha fushat.");
@@ -46,6 +62,27 @@ public class ReservationsController {
         System.out.println("Pagesa: " + payment);
 
         showAlert("Rezervimi u krye me sukses!");
+    }
+
+    private void updatePrice() {
+        if (arrivalDate.getValue() == null || departureDate.getValue() == null || roomType.getValue() == null)
+            return;
+
+        long nights = ChronoUnit.DAYS.between(arrivalDate.getValue(), departureDate.getValue());
+        if (nights <= 0) {
+            totalPriceLabel.setText("€0.00");
+            return;
+        }
+
+        double pricePerNight = switch (roomType.getValue()) {
+            case "Single" -> 50;
+            case "Double" -> 80;
+            case "Suite" -> 120;
+            default -> 0;
+        };
+
+        double total = nights * pricePerNight;
+        totalPriceLabel.setText(String.format("€%.2f", total));
     }
 
     private void showAlert(String message) {
