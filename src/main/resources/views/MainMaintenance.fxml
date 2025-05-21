@@ -29,17 +29,17 @@
 
                 <VBox spacing="15.0" alignment="CENTER">
                     <children>
-                        <Button fx:id="mirembajtjeButton" text="🛠️ Mirëmbajtje"
+                        <Button fx:id="mirembajtjeButton" text="Mirëmbajtje"
                                 onAction="#handleMirembajtje"
                                 prefWidth="180.0" prefHeight="45.0"
                                 style="-fx-background-color: #a1866f; -fx-text-fill: white; -fx-font-size: 14px; -fx-background-radius: 14; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 4, 0, 1, 1);" />
 
-                        <Button fx:id="pastrimButton" text="🧹 Pastrim"
+                        <Button fx:id="pastrimButton" text="Pastrim"
                                 onAction="#handlePastrim"
                                 prefWidth="180.0" prefHeight="45.0"
                                 style="-fx-background-color: #8c7b68; -fx-text-fill: white; -fx-font-size: 14px; -fx-background-radius: 14; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 4, 0, 1, 1);" />
 
-                        <Button fx:id="backToLoginButton" text="⬅️ Kthehu te Log In"
+                        <Button fx:id="backToLoginButton" text="Log Out"
                                 onAction="#handleBackToLogin"
                                 prefWidth="180.0" prefHeight="40.0"
                                 style="-fx-background-color: #7e6a58; -fx-text-fill: white; -fx-font-size: 13px; -fx-background-radius: 14; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 4, 0, 1, 1);" />
