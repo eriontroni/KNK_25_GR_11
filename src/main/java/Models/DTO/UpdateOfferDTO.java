@@ -6,13 +6,15 @@ public class UpdateOfferDTO {
     private int id;
     private String title;
     private String description;
+    private String code;
     private double discount_percentage;
     private Date start_date;
     private Date end_date;
 
-    UpdateOfferDTO(String title, String description, double discount_percentage, Date start_date, Date end_date, int id) {
+    UpdateOfferDTO(String title, String description,String code, double discount_percentage, Date start_date, Date end_date, int id) {
         this.title = title;
         this.description = description;
+        this.code = code;
         this.discount_percentage = discount_percentage;
         this.start_date = start_date;
         this.end_date = end_date;
@@ -65,5 +67,13 @@ public class UpdateOfferDTO {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public String getCode() {
+        return code;
+    }
+
+    public void setCode(String code) {
+        this.code = code;
     }
 }
