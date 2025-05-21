@@ -32,7 +32,7 @@ CREATE TABLE RoomType (
 -- 2. RoomImage -Erioni
 CREATE TABLE RoomImage (
     id INT PRIMARY KEY,
-    image_url TEXT NOT NULL
+    image_url TEXT NOT NULL,
     room_id INT REFERENCES Room(id) ON DELETE CASCADE
 );
 
