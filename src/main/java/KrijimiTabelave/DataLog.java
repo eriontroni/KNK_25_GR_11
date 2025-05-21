@@ -52,9 +52,9 @@ INSERT INTO Room (id,room_number, type_id, is_available) VALUES
 -- Insert në tabelën Reservation (customer_id dhe room_id duhet të jenë ekzistuese nga tabela Customer dhe Room)
 INSERT INTO Reservation (id,customer_id, room_id,offer_id, check_in_date, check_out_date, status, total_price)
 VALUES
-(1,1, 2, '2024-06-10',2, '2024-06-12', 'Confirmed', 120.00),
+(1,1, 2, 2, '2024-06-10', '2024-06-12', 'Confirmed', 120.00),
 (2,2, 3, '2024-07-15', '2024-07-20', 'Pending', 300.00),
-(3,3, 1, '2024-06-05',2, '2024-06-07', 'Cancelled', 70.00),
+(3,3, 1, 2, '2024-06-05', '2024-06-07', 'Cancelled', 70.00),
 (4,4, 4, '2024-08-01', '2024-08-05', 'Confirmed', 400.00),
 (5,5, 5, '2024-09-10', '2024-09-15', 'Pending', 125.00);
 
