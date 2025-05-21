@@ -111,7 +111,7 @@ public class ReservationsController {
             int customerId = getLoggedInCustomerId();
 
             // Oferta nuk është e domosdoshme, vendose null
-            Integer offerId = null;
+            Integer offerId = 1;
 
             CreateReservationDTO dto = new CreateReservationDTO(
                     0, // id, për create nuk duhet
