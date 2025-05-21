@@ -13,9 +13,10 @@
             <padding>
                 <Insets bottom="40" left="40" right="40" top="40" />
             </padding>
-            <Label prefHeight="172.0" prefWidth="342.0" style="-fx-font-size: 36px; -fx-font-weight: bold; -fx-text-fill: #5C3A1A;" text="Read what our customers&#10;say about us" wrapText="true" />
+            <Label prefHeight="172.0" prefWidth="342.0" style="-fx-font-size: 36px; -fx-font-weight: bold; -fx-text-fill: #5C3A1A;" text="Ja çfarë kanë thënë klientët tanë për ne" wrapText="true" />
 
-            <Label prefHeight="147.0" prefWidth="394.0" style="-fx-text-fill: #555555;" text="At our hotel, we pride ourselves on delivering an exceptional&#10;guest experience through personalized service and comfort.&#10;&#10;Our dedicated team ensures your stay is memorable, offering&#10;luxurious amenities and warm hospitality to exceed your expectations." wrapText="true" />
+            <Label prefHeight="147.0" prefWidth="394.0" style="-fx-text-fill: #555555;" text="Në hotelin tonë, jemi të përkushtuar t’u ofrojmë mysafirëve një përvojë të jashtëzakonshme, përmes shërbimit të personalizuar dhe rehatisë së lartë.
+Stafi ynë profesional kujdeset që qëndrimi juaj të jetë i paharrueshëm, duke ofruar kushte luksoze dhe mikpritje të ngrohtë që tejkalojnë pritjet tuaja." wrapText="true" />
 
             <Button fx:id="backBtn" prefHeight="18.0" prefWidth="100.0" style="-fx-background-color: #6b5746; -fx-text-fill: white; -fx-background-radius: 12;" text="Back" textAlignment="CENTER" />
 
