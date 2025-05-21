@@ -20,47 +20,49 @@ import java.util.ArrayList;
 
 public class ReservationsHistoryController {
 
-    public TableColumn colOld;
-    public TableColumn colNew;
     @FXML
-    private TableView<Reservation> reservationTable;
+    private TableView<ReservationHistory> reservationTable;
 
     @FXML
-    private TableColumn<Reservation, Integer> colRoom;
+    private TableColumn<ReservationHistory, Integer> colRoom;
 
     @FXML
-    private TableColumn<Reservation, Integer> colUser;
+    private TableColumn<ReservationHistory, Integer> colUser;
 
     @FXML
-    private TableColumn<Reservation, String> colStatus;
+    private TableColumn<ReservationHistory, String> colStatus;
 
     @FXML
-    private TableColumn<Reservation, Void> colActions;
+    private TableColumn<ReservationHistory, Void> colActions;
 
     @FXML
-    private TableColumn<Reservation, String> colDate;
+    private TableColumn<ReservationHistory, String> colDate;
+
+    @FXML
+    private TableColumn<ReservationHistory, String> colOld;
+
+    @FXML
+    private TableColumn<ReservationHistory, String> colNew;
+
 
     @FXML
     public void initialize() {
-//        colRoom.setCellValueFactory(new PropertyValueFactory<>("roomId"));
-//        colUser.setCellValueFactory(new PropertyValueFactory<>("customerId"));
-//        colStatus.setCellValueFactory(new PropertyValueFactory<>("status"));
-//        colDate.setCellValueFactory(cell -> {
-//            String dateRange = cell.getValue().getCheckInDate().toString() + " - " + cell.getValue().getCheckOutDate().toString();
-//            return new javafx.beans.property.SimpleStringProperty(dateRange);
-//        });
-//
-//        // Shtimi i butonit Detaje
-//        ReservationHistoryRepository rhp = new ReservationHistoryRepository();
-//        ArrayList<ReservationHistory> arr = new ArrayList<>(rhp.getAll());
-//        // TODO: VESA E NDREQ QETA
-//
-//        // Test data (pa database për momentin)
-//        ObservableList<Reservation> list = FXCollections.observableArrayList(
-//
-//        );
-//
-//        reservationTable.setItems(list);
+        ReservationHistoryRepository repo = new ReservationHistoryRepository();
+        ObservableList<ReservationHistory> list = FXCollections.observableArrayList(repo.getAll());
+
+        colRoom.setCellValueFactory(new PropertyValueFactory<>("reservationId"));
+        colUser.setCellValueFactory(new PropertyValueFactory<>("customerId"));
+        colDate.setCellValueFactory(cellData ->
+                new javafx.beans.property.SimpleStringProperty(cellData.getValue().getChangeDate().toString())
+        );
+        colOld.setCellValueFactory(cellData ->
+                new javafx.beans.property.SimpleStringProperty(cellData.getValue().getOldStatus())
+        );
+        colNew.setCellValueFactory(cellData ->
+                new javafx.beans.property.SimpleStringProperty(cellData.getValue().getNewStatus())
+        );
+
+        reservationTable.setItems(list);
     }
 
     @FXML
