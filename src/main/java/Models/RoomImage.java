@@ -19,7 +19,7 @@ public class RoomImage {
     public static RoomImage getInstance(ResultSet resultset) throws SQLException {
         int id = resultset.getInt("id");
         int roomID = resultset.getInt("room_id");
-        String imgURL = resultset.getString("img_url");
+        String imgURL = resultset.getString("image_url");
 
         return new RoomImage(id, roomID, imgURL);
     }

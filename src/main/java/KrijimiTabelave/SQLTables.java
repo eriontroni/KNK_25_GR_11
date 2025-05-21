@@ -32,7 +32,8 @@ CREATE TABLE RoomType (
 -- 2. RoomImage -Erioni
 CREATE TABLE RoomImage (
     id INT PRIMARY KEY,
-    image_url TEXT NOT NULL
+    image_url TEXT NOT NULL,
+    room_id INT REFERENCES Room(id) ON DELETE CASCADE
 );
 
 
@@ -58,21 +59,12 @@ CREATE TABLE Employee (
     hire_date DATE
 );
 
--- 12. Discount -Vesa
-CREATE TABLE Discount (
-    id INT PRIMARY KEY,
-    code VARCHAR(50) UNIQUE NOT NULL,
-    description TEXT,
-    percentage DECIMAL(5,2) CHECK (percentage > 0 AND percentage <= 100),
-    valid_from DATE NOT NULL,
-    valid_to DATE NOT NULL
-);
-
 -- 15. Offer -Leoni
 CREATE TABLE Offer (
     id INT PRIMARY KEY,
     title VARCHAR(100) NOT NULL,
     description TEXT,
+    code VARCHAR(50) UNIQUE NOT NULL,
     discount_percentage DECIMAL(5,2) CHECK (discount_percentage BETWEEN 0 AND 100) NOT NULL,
     start_date DATE NOT NULL,
     end_date DATE NOT NULL
@@ -84,7 +76,6 @@ CREATE TABLE Room (
     room_number VARCHAR(10) UNIQUE NOT NULL,
     type_id INT REFERENCES RoomType(id) ON DELETE SET NULL,
     is_available BOOLEAN DEFAULT TRUE,
-    RoomImage_id INT REFERENCES RoomImage(id) ON DELETE SET NULL
 );
 
 -- 7. Reservation -Natyra
@@ -92,6 +83,7 @@ CREATE TABLE Reservation (
     id INT PRIMARY KEY,
     customer_id INT REFERENCES Users(id) ON DELETE CASCADE,
     room_id INT REFERENCES Room(id) ON DELETE CASCADE,
+    offer_id INT REFERENCES Offer(id) ON DELETE SET NULL
     check_in_date DATE NOT NULL,
     check_out_date DATE NOT NULL,
     status VARCHAR(50) CHECK (status IN ('Pending', 'Confirmed', 'Cancelled')) DEFAULT 'Pending',
@@ -111,7 +103,7 @@ CREATE TABLE Event (
 
 -- 14. Maintenance -Natyra
 CREATE TABLE Maintenance (
-    id INT PRIMARY KEY,
+    id SERIAL PRIMARY KEY,
     room_id INT REFERENCES Room(id) ON DELETE CASCADE,
     reported_by INT REFERENCES Employee(id) ON DELETE SET NULL,
     description TEXT,
@@ -137,9 +129,8 @@ CREATE TABLE RoomService (
     requested_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
--- 10. CleaningSchedule -Era
 CREATE TABLE CleaningSchedule (
-    id INT PRIMARY KEY,
+    id SERIAL PRIMARY KEY,
     room_id INT REFERENCES Room(id) ON DELETE CASCADE,
     employee_id INT REFERENCES Employee(id),
     scheduled_date DATE NOT NULL,
@@ -148,7 +139,7 @@ CREATE TABLE CleaningSchedule (
 
 -- 11. Feedback -Era
 CREATE TABLE Feedback (
-    id INT PRIMARY KEY,
+    id SERIAL PRIMARY KEY,
     customer_id INT REFERENCES Users(id) ON DELETE CASCADE,
     reservation_id INT REFERENCES Reservation(id) ON DELETE CASCADE,
     rating INT CHECK (rating BETWEEN 1 AND 5),
@@ -160,7 +151,7 @@ CREATE TABLE Feedback (
 CREATE TABLE ReservationDiscount (
     id INT PRIMARY KEY,
     reservation_id INT REFERENCES Reservation(id) ON DELETE CASCADE,
-    discount_id INT REFERENCES Discount(id) ON DELETE CASCADE
+    offer_id INT REFERENCES Offer(id) ON DELETE CASCADE
 );
 
 -- 17. ReservationHistory -Erioni
