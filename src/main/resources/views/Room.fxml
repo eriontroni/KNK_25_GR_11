@@ -1,49 +1,71 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="600.0" maxWidth="800.0" minHeight="600.0" minWidth="800.0"
-            prefHeight="600.0" prefWidth="800.0"
-            style="-fx-background-color: linear-gradient(to bottom right, #f5f1ea, #d6c8b8);"
+<AnchorPane style="-fx-background-color: linear-gradient(to bottom right, #f5f1ea, #d6c8b8);"
             xmlns="http://javafx.com/javafx/23.0.1"
             xmlns:fx="http://javafx.com/fxml/1"
             fx:controller="Controllers.RoomsController">
 
-    <children>
-        <Pane prefHeight="600.0" prefWidth="800.0" style="-fx-background-color: transparent;">
-            <children>
+    <VBox alignment="TOP_CENTER"
+          fillWidth="true"
+          spacing="20"
+          style="-fx-padding: 20;"
+          AnchorPane.topAnchor="0"
+          AnchorPane.bottomAnchor="0"
+          AnchorPane.leftAnchor="0"
+          AnchorPane.rightAnchor="0">
 
-                <!-- Titulli -->
-                <Label layoutX="280.0" layoutY="40.0" prefHeight="63.0" prefWidth="250.0" style="-fx-text-fill: #5a4a3c;" text="🛏️ Our Rooms">
-                    <font>
-                        <Font name="Segoe UI Semibold" size="30.0" />
-                    </font>
-                </Label>
+        <!-- Titulli -->
+        <Label text="Dhomat" style="-fx-text-fill: #5a4a3c;">
+            <font>
+                <Font name="Segoe UI Semibold" size="30.0"/>
+            </font>
+        </Label>
 
-                <!-- Lista e dhomave në një ScrollPane -->
-                <ScrollPane layoutX="50.0" layoutY="120.0" prefHeight="360.0" prefWidth="700.0"
-                            style="-fx-background: transparent;">
-                    <content>
-                        <VBox fx:id="roomListVBox" spacing="20.0" alignment="TOP_CENTER"
-                              style="-fx-padding: 20; -fx-background-color: rgba(255, 255, 255, 0.85); -fx-background-radius: 15;"/>
-                    </content>
-                </ScrollPane>
+        <!-- ScrollPane me dhomat -->
+        <ScrollPane fitToWidth="true"
+                    hbarPolicy="NEVER"
+                    vbarPolicy="AS_NEEDED"
+                    pannable="true"
+                    prefHeight="420.0"
+                    prefWidth="760.0"
+                    style="-fx-background-color: transparent;">
+            <content>
+                <VBox fx:id="roomListVBox"
+                      alignment="CENTER"
+                      spacing="20.0"
+                      prefHeight="418.0"
+                      prefWidth="758.0"
+                      style="-fx-padding: 20; -fx-background-color: rgba(255,255,255,0.85); -fx-background-radius: 15; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 12, 0.3, 0, 4);"/>
+            </content>
+        </ScrollPane>
 
-                <!-- Butoni per kthim -->
-                <Button fx:id="btnBackToHome"
-                        layoutX="30.0" layoutY="540.0"
-                        prefHeight="30.0" prefWidth="100.0"
-                        text="🏠 Home"
-                        onAction="#goBackToHome"
-                        style="-fx-background-color: #a1866f; -fx-text-fill: white; -fx-background-radius: 12;" />
+        <!-- Footer -->
+        <HBox alignment="CENTER" prefHeight="50" prefWidth="760" spacing="20">
+            <!-- Butoni Home me madhësi dhe stil më të mirë -->
+            <Button fx:id="btnBackToHome"
+                    onAction="#goBackToHome"
+                    style="
+                -fx-background-color: linear-gradient(to right, #a1866f, #bca48b);
+                -fx-text-fill: white;
+                -fx-background-radius: 16;
+                -fx-font-size: 16px;
+                -fx-font-weight: bold;
+                -fx-padding: 10 20;
+                -fx-cursor: hand;
+            "
+                    text="Ballina" />
 
-                <!-- E drejta autoriale -->
-                <Label layoutX="580.0" layoutY="545.0" text="© 2025 Hotel Management System"
-                       style="-fx-text-fill: #7d6e63;" />
+            <!-- Teksti i footer-it në mes -->
+            <Label style="-fx-text-fill: #7d6e63; -fx-font-size: 14px; -fx-font-style: italic;" text="© 2025 Hotel Management System" />
+        </HBox>
 
-            </children>
-        </Pane>
-    </children>
+    </VBox>
 </AnchorPane>
