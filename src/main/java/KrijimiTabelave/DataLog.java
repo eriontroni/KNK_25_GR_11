@@ -23,49 +23,40 @@ VALUES
 (4,'Family', 'Dhomë e madhe familjare', 5, 95.00),
 (5,'Economy', 'Dhomë ekonomike me facilitete bazë', 1, 25.00);
 
--- Insert në tabelën RoomImage
-INSERT INTO RoomImage (id,image_url)
-VALUES
-(1,'/images/img.png'),
-(2,'/images/img_1.png'),
-(3,'/images/img_2.png'),
-(4,'/images/img_3.png'),
-(5,'/images/img_4.png');
+-- Insert në tabelën Room (sigurohet që type_id është i saktë nga RoomType)
+INSERT INTO Room (id,room_number, type_id, is_available) VALUES
+(1,'101', 1, TRUE),
+(2,'102', 2, TRUE),
+(3,'201', 3, FALSE),
+(4,'202', 4, TRUE),
+(5,'301', 5, TRUE);
 
--- Insert në tabelën Discount
-INSERT INTO Discount (id,code, description, percentage, valid_from, valid_to)
+-- Insert në tabelën RoomImage
+INSERT INTO RoomImage (id,image_url,room_id)
 VALUES
-(1,'SUMMER20', 'Ulje vere 20%', 20.00, '2024-06-01', '2024-08-31'),
-(2,'WELCOME10', 'Ulje për klientët e rinj 10%', 10.00, '2024-05-01', '2024-12-31'),
-(3,'FESTIVE15', 'Ulje gjatë festave 15%', 15.00, '2024-12-01', '2024-12-31'),
-(4,'WEEKEND5', 'Ulje për fundjavë 5%', 5.00, '2024-05-01', '2024-09-30'),
-(5,'VIP25', 'Ulje speciale për klientët VIP 25%', 25.00, '2024-01-01', '2024-12-31');
+(1,'/images/img.png',5),
+(2,'/images/img_1.png',4),
+(3,'/images/img_2.png',3),
+(4,'/images/img_3.png',2),
+(5,'/images/img_4.png',1);
 
 -- Insert në tabelën Offer
-INSERT INTO Offer (id,title, description, discount_percentage, start_date, end_date)
+INSERT INTO Offer (id,title, description,code, discount_percentage, start_date, end_date)
 VALUES
-(1,'Oferta Pranverore', 'Ulje speciale për muajin Prill dhe Maj', 15.00, '2024-04-01', '2024-05-31'),
-(2,'Fundjava Relax', 'Ulje 10% për fundjava', 10.00, '2024-06-01', '2024-08-31'),
-(3,'Oferta për Çiftet', 'Ulje speciale 20% për çiftet', 20.00, '2024-02-01', '2024-12-31'),
-(4,'Oferta Ditore', 'Ulje ditore për rezervime të minutës së fundit', 5.00, '2024-05-01', '2024-12-31'),
-(5,'Oferta VIP', 'Ulje 25% për klientët VIP', 25.00, '2024-01-01', '2024-12-31');
-
--- Insert në tabelën Room (sigurohet që type_id është i saktë nga RoomType)
-INSERT INTO Room (id,room_number, type_id, is_available, RoomImage_id) VALUES
-(1,'101', 1, TRUE, 5),
-(2,'102', 2, TRUE, 4),
-(3,'201', 3, FALSE, 3),
-(4,'202', 4, TRUE, 1),
-(5,'301', 5, TRUE, 2);
+(1,'Oferta Pranverore', 'Ulje speciale për muajin Prill dhe Maj',123, 15.00, '2024-04-01', '2024-05-31'),
+(2,'Fundjava Relax', 'Ulje 10% për fundjava',645, 10.00, '2024-06-01', '2024-08-31'),
+(3,'Oferta për Çiftet', 'Ulje speciale 20% për çiftet',478, 20.00, '2024-02-01', '2024-12-31'),
+(4,'Oferta Ditore', 'Ulje ditore për rezervime të minutës së fundit',986, 5.00, '2024-05-01', '2024-12-31'),
+(5,'Oferta VIP', 'Ulje 25% për klientët VIP',357, 25.00, '2024-01-01', '2024-12-31');
 
 -- Insert në tabelën Reservation (customer_id dhe room_id duhet të jenë ekzistuese nga tabela Customer dhe Room)
-INSERT INTO Reservation (id,customer_id, room_id, check_in_date, check_out_date, status, total_price)
+INSERT INTO Reservation (id,customer_id, room_id,offer_id, check_in_date, check_out_date, status, total_price)
 VALUES
-(1,1, 2, '2024-06-10', '2024-06-12', 'Confirmed', 120.00),
-(2,2, 3, '2024-07-15', '2024-07-20', 'Pending', 300.00),
-(3,3, 1, '2024-06-05', '2024-06-07', 'Cancelled', 70.00),
-(4,4, 4, '2024-08-01', '2024-08-05', 'Confirmed', 400.00),
-(5,5, 5, '2024-09-10', '2024-09-15', 'Pending', 125.00);
+(1,1, 2, 2, '2024-06-10', '2024-06-12', 'Confirmed', 120.00),
+(2,2, 3,NULL,'2024-07-15', '2024-07-20', 'Pending', 300.00),
+(3,3, 1, 2, '2024-06-05', '2024-06-07', 'Cancelled', 70.00),
+(4,4, 4,NULL, '2024-08-01', '2024-08-05', 'Confirmed', 400.00),
+(5,5, 5,NULL, '2024-09-10', '2024-09-15', 'Pending', 125.00);
 
 -- Insert në tabelën Event
 INSERT INTO Event (id,event_name, organizer_name, event_date, event_time, room_id, description)
@@ -85,6 +76,7 @@ VALUES
 (3,3, 4, 'Ndriçimi në banjë nuk funksionon.', 'Completed', CURRENT_TIMESTAMP),
 (4,4, 5, 'Dera e ballkonit nuk mbyllet mirë.', 'Pending', CURRENT_TIMESTAMP),
 (5,5, 4, 'Probleme me televizorin.', 'In Progress', CURRENT_TIMESTAMP);
+
 -- Insert në tabelën Payment
 INSERT INTO Payment (id,reservation_id, amount, payment_method, payment_status)
 VALUES
@@ -122,7 +114,7 @@ VALUES
 (5,5, 5, 5, 'Fantastike! Do ta rekomandoja!', CURRENT_TIMESTAMP);
 
 -- Insert në tabelën ReservationDiscount
-INSERT INTO ReservationDiscount (id,reservation_id, discount_id)
+INSERT INTO ReservationDiscount (id,reservation_id, offer_id)
 VALUES
 (1,1, 1),
 (2,2, 2),

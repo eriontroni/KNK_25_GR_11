@@ -5,13 +5,15 @@ import java.sql.Date;
 public class CreateOfferDTO {
     private String title;
     private String description;
+    private String code;
     private double discount_percentage;
     private Date start_date;
     private Date end_date;
 
-    public CreateOfferDTO(String title, String description, double discount_percentage, Date start_date, Date end_date) {
+    public CreateOfferDTO(String title, String description,String code, double discount_percentage, Date start_date, Date end_date) {
         this.title = title;
         this.description = description;
+        this.code = code;
         this.discount_percentage = discount_percentage;
         this.start_date = start_date;
         this.end_date = end_date;
@@ -55,5 +57,13 @@ public class CreateOfferDTO {
 
     public void setEnd_date(Date end_date) {
         this.end_date = end_date;
+    }
+
+    public String getCode() {
+        return code;
+    }
+
+    public void setCode(String code) {
+        this.code = code;
     }
 }

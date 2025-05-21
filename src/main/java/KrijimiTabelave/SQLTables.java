@@ -44,7 +44,6 @@ CREATE TABLE RoomImage (
     room_id INT REFERENCES Room(id) ON DELETE CASCADE
 );
 
-
 -- 5. Users -Vesa
 CREATE TABLE Users (
     id SERIAL PRIMARY KEY,
@@ -72,7 +71,7 @@ CREATE TABLE Offer (
     id INT PRIMARY KEY,
     title VARCHAR(100) NOT NULL,
     description TEXT,
-    code VARCHAR(50) UNIQUE NOT NULL,
+    code VARCHAR(50) UNIQUE,
     discount_percentage DECIMAL(5,2) CHECK (discount_percentage BETWEEN 0 AND 100) NOT NULL,
     start_date DATE NOT NULL,
     end_date DATE NOT NULL

@@ -20,6 +20,7 @@ import java.io.IOException;
 
 
 import java.sql.Date;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -152,36 +153,61 @@ public class MaintenanceController {
     }
 
     private void showAddDialog() {
-        // Form i thjeshtë për futjen e mirëmbajtjes së re
+        // Dialog për shtimin e mirëmbajtjes së re
         Dialog<CreateMaintenanceDTO> dialog = new Dialog<>();
         dialog.setTitle("Shto mirëmbajtje të re");
         dialog.setHeaderText(null);
 
+        // Fushat e formularit
         Label lblRoomId = new Label("Room ID:");
         TextField tfRoomId = new TextField();
+
         Label lblReportedBy = new Label("Reported By:");
         TextField tfReportedBy = new TextField();
+
         Label lblDescription = new Label("Description:");
         TextField tfDescription = new TextField();
-        Label lblStatus = new Label("Status:");
-        TextField tfStatus = new TextField();
-        Label lblReportedAt = new Label("Reported At (YYYY-MM-DD):");
-        TextField tfReportedAt = new TextField();
 
-        VBox content = new VBox(10, lblRoomId, tfRoomId, lblReportedBy, tfReportedBy, lblDescription, tfDescription, lblStatus, tfStatus, lblReportedAt, tfReportedAt);
+        Label lblStatus = new Label("Status:");
+        ComboBox<String> cbStatus = new ComboBox<>();
+        cbStatus.getItems().addAll("Pending", "In Progress", "Completed");
+        cbStatus.setPromptText("Zgjedh statusin");
+
+        Label lblReportedAt = new Label("Reported At:");
+        DatePicker dpReportedAt = new DatePicker();
+
+        // Vendosja në një VBox
+        VBox content = new VBox(10,
+                lblRoomId, tfRoomId,
+                lblReportedBy, tfReportedBy,
+                lblDescription, tfDescription,
+                lblStatus, cbStatus,
+                lblReportedAt, dpReportedAt
+        );
+        //content.setPadding(new Insets(10));
+
         dialog.getDialogPane().setContent(content);
 
+        // Butonat e dialogut
         ButtonType addButtonType = new ButtonType("Add", ButtonBar.ButtonData.OK_DONE);
         dialog.getDialogPane().getButtonTypes().addAll(addButtonType, ButtonType.CANCEL);
 
+        // Konvertimi i të dhënave kur klikohet "Add"
         dialog.setResultConverter(dialogButton -> {
             if (dialogButton == addButtonType) {
                 try {
                     int roomId = Integer.parseInt(tfRoomId.getText().trim());
                     int reportedBy = Integer.parseInt(tfReportedBy.getText().trim());
                     String description = tfDescription.getText().trim();
-                    String status = tfStatus.getText().trim();
-                    Date reportedAt = Date.valueOf(tfReportedAt.getText().trim());
+                    String status = cbStatus.getValue();
+                    LocalDate reportedAtLocalDate = dpReportedAt.getValue();
+
+                    if (status == null || reportedAtLocalDate == null) {
+                        showAlert("Gabim", "Ju lutem plotësoni statusin dhe datën.");
+                        return null;
+                    }
+
+                    Date reportedAt = Date.valueOf(reportedAtLocalDate);
 
                     return new CreateMaintenanceDTO(roomId, reportedBy, description, status, reportedAt);
                 } catch (Exception ex) {
@@ -192,6 +218,7 @@ public class MaintenanceController {
             return null;
         });
 
+        // Ekzekutimi pas klikimit
         dialog.showAndWait().ifPresent(dto -> {
             Maintenance newMaintenance = repository.create(dto);
             if (newMaintenance != null) {
@@ -201,8 +228,8 @@ public class MaintenanceController {
                 showAlert("Gabim", "Shtimi i mirëmbajtjes dështoi.");
             }
         });
-
     }
+
 
     private void deleteMaintenanceById() {
         TextInputDialog dialog = new TextInputDialog();

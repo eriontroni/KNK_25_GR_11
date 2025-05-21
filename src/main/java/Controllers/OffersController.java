@@ -45,10 +45,11 @@ public class OffersController {
         endDateCol.setCellValueFactory(new PropertyValueFactory<>("endDate"));
 
 
+
         loadOffers();
     }
     private void loadOffers() {
-        OfferRepository offerRepository = new OfferRepository("Offer");
+        OfferRepository offerRepository = new OfferRepository();
         var offers = offerRepository.getAll();
 
         if (offers != null) {
