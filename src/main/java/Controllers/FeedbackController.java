@@ -15,7 +15,7 @@ import repository.FeedbackRepository;
 import java.io.IOException;
 import java.util.ArrayList;
 
-public class FeedbackController{
+public class FeedbackController {
 
     @FXML
     private VBox testimonialContainer;
@@ -70,4 +70,3 @@ public class FeedbackController{
         }
     }
 }
-
