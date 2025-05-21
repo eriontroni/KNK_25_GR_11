@@ -8,7 +8,7 @@ import javafx.stage.Stage;
 public class vesa extends Application {
     @Override
     public void start(Stage stage) throws Exception {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/offers.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/home.fxml"));
         Scene scene = new Scene(loader.load(), 800, 600);
         stage.setScene(scene);
         stage.setTitle("Hotel Offers");

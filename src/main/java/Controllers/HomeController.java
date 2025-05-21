@@ -16,7 +16,7 @@ public class HomeController {
     @FXML private Button btnOffers;
     @FXML private Button btnEvents;
     @FXML private Button btnReservations;
-    @FXML private Button accBtn;
+    @FXML private Button logoutBtn;
     @FXML private Button reviewsBtn;
 
     // initialize() quhet automatikisht kur ngarkohet FXML
@@ -27,7 +27,6 @@ public class HomeController {
         btnOffers.setOnAction(e -> handleOffers());
         btnEvents.setOnAction(e -> handleEvents());
         btnReservations.setOnAction(e -> handleReservations());
-        accBtn.setOnAction(e -> handleAccount());
         reviewsBtn.setOnAction(e -> handleReviews());
     }
 
@@ -94,7 +93,7 @@ public class HomeController {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/firstpage.fxml"));
             Parent offersRoot = loader.load();
 
-            Stage stage = (Stage) accBtn.getScene().getWindow();
+            Stage stage = (Stage) logoutBtn.getScene().getWindow();
             Scene scene = new Scene(offersRoot);
             stage.setScene(scene);
         } catch (IOException e) {
