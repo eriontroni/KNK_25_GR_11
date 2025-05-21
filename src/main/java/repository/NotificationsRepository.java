@@ -10,7 +10,7 @@ import java.util.ArrayList;
 public class NotificationsRepository extends BaseRepository<Notifications, CreateNotificationDTO, UpdateNotificationDTO> {
 
     public NotificationsRepository() {
-        super("Notifications");
+        super("notification");
     }
 
     @Override
