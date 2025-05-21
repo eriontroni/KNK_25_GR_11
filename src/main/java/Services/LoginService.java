@@ -25,7 +25,7 @@ public class LoginService {
     }
     public static Boolean positionExists(String email, String position) {
         Connection connection = DBConnector.getConnection();
-        String query = "SELECT 1 FROM Employee WHERE email = ? AND position = ? LIMIT 1";
+        String query = "SELECT 1 FROM employee WHERE email = ? AND position = ? LIMIT 1";
         try (PreparedStatement pst = connection.prepareStatement(query)) {
             pst.setString(1, email);
             pst.setString(2, position);

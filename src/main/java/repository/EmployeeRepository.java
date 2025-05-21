@@ -11,7 +11,7 @@ import java.util.ArrayList;
 public class EmployeeRepository extends BaseRepository<Employee, createEmployeeDTO, updateEmployeeDTO> {
 
     public EmployeeRepository() {
-        super("Employee");
+        super("employee");
     }
 
     @Override
@@ -25,7 +25,7 @@ public class EmployeeRepository extends BaseRepository<Employee, createEmployeeD
     }
 
     public Employee getByEmail(String email) {
-        String query = "SELECT * FROM employees WHERE email = ?";
+        String query = "SELECT * FROM employee WHERE email = ?";
         try (Connection conn = DBConnector.getConnection();
              PreparedStatement stmt = conn.prepareStatement(query)) {
             stmt.setString(1, email);
@@ -43,7 +43,7 @@ public class EmployeeRepository extends BaseRepository<Employee, createEmployeeD
     @Override
     public Employee create(createEmployeeDTO dto) {
         String query = """
-                INSERT INTO Employee (first_name, last_name, position, email, password_hash, salted_hash, phone, hire_date)
+                INSERT INTO employee (first_name, last_name, position, email, password_hash, salted_hash, phone, hire_date)
                 VALUES (?, ?, ?,?,?, ?, ?, ?)
                 """;
         try {

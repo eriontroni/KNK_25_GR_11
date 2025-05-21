@@ -2,60 +2,48 @@
 
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Font?>
 
-<BorderPane xmlns="http://javafx.com/javafx/23.0.1"
+<AnchorPane maxHeight="600.0" maxWidth="800.0" minHeight="600.0" minWidth="800.0"
+            prefHeight="600.0" prefWidth="800.0"
+            style="-fx-background-color: linear-gradient(to bottom right, #f5f1ea, #d6c8b8);"
+            xmlns="http://javafx.com/javafx/23.0.1"
             xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="Controllers.RoomsController"
-            style="-fx-background-color: linear-gradient(to bottom right, #e3f2fd, #ffffff);">
+            fx:controller="Controllers.RoomsController">
 
-    <!-- HEADER -->
-    <top>
-        <HBox alignment="CENTER" style="
-                -fx-background-color: linear-gradient(to right, #2c3e50, #34495e);
-                -fx-padding: 20;
-                -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.3), 8, 0, 0, 4);">
-            <Label text="🏨 Hotel Room Management" style="
-                    -fx-text-fill: white;
-                    -fx-font-size: 28px;
-                    -fx-font-weight: bold;" />
-        </HBox>
-    </top>
+    <children>
+        <Pane prefHeight="600.0" prefWidth="800.0" style="-fx-background-color: transparent;">
+            <children>
 
-    <!-- QENDRA -->
-    <center>
-        <ScrollPane fitToHeight="true" fitToWidth="true" style="
-                -fx-background-color: transparent;
-                -fx-padding: 20;">
-            <VBox fx:id="roomListVBox" alignment="TOP_CENTER" spacing="25" style="
-                    -fx-padding: 20;
-                    -fx-background-color: rgba(255, 255, 255, 0.8);
-                    -fx-background-radius: 20;
-                    -fx-border-radius: 20;
-                    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.08), 10, 0, 0, 6);" />
-        </ScrollPane>
-    </center>
+                <!-- Titulli -->
+                <Label layoutX="280.0" layoutY="40.0" prefHeight="63.0" prefWidth="250.0" style="-fx-text-fill: #5a4a3c;" text="🛏️ Our Rooms">
+                    <font>
+                        <Font name="Segoe UI Semibold" size="30.0" />
+                    </font>
+                </Label>
 
-    <!-- FOOTER -->
-    <bottom>
-        <HBox spacing="10" alignment="CENTER_LEFT" style="
-                -fx-background-color: #f5f7fa;
-                -fx-padding: 15;
-                -fx-border-color: #dcdde1;
-                -fx-border-width: 1 0 0 0;">
-            <Button fx:id="btnBackToHome"
-                    onAction="#goBackToHome"
-                    text="🏠 Home"
-                    style="
-                        -fx-background-color: linear-gradient(to right, #74ebd5, #ACB6E5);
-                        -fx-text-fill: #2c3e50;
-                        -fx-font-weight: bold;
-                        -fx-background-radius: 12;
-                        -fx-padding: 8 16;
-                        -fx-cursor: hand;" />
+                <!-- Lista e dhomave në një ScrollPane -->
+                <ScrollPane layoutX="50.0" layoutY="120.0" prefHeight="360.0" prefWidth="700.0"
+                            style="-fx-background: transparent;">
+                    <content>
+                        <VBox fx:id="roomListVBox" spacing="20.0" alignment="TOP_CENTER"
+                              style="-fx-padding: 20; -fx-background-color: rgba(255, 255, 255, 0.85); -fx-background-radius: 15;"/>
+                    </content>
+                </ScrollPane>
 
-            <Region fx:id="spacer" HBox.hgrow="ALWAYS"/>
+                <!-- Butoni per kthim -->
+                <Button fx:id="btnBackToHome"
+                        layoutX="30.0" layoutY="540.0"
+                        prefHeight="30.0" prefWidth="100.0"
+                        text="🏠 Home"
+                        onAction="#goBackToHome"
+                        style="-fx-background-color: #a1866f; -fx-text-fill: white; -fx-background-radius: 12;" />
 
-            <Label text="© 2025 Hotel Management System" style="-fx-text-fill: #7f8c8d;"/>
-        </HBox>
-    </bottom>
-</BorderPane>
+                <!-- E drejta autoriale -->
+                <Label layoutX="580.0" layoutY="545.0" text="© 2025 Hotel Management System"
+                       style="-fx-text-fill: #7d6e63;" />
+
+            </children>
+        </Pane>
+    </children>
+</AnchorPane>
