@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.VBox?>
+
+<BorderPane prefHeight="500" prefWidth="900" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.FeedbackController">
+
+    <left>
+        <VBox spacing="20" style="-fx-background-color: #D7C4A3;">
+            <padding>
+                <Insets bottom="40" left="40" right="40" top="40" />
+            </padding>
+            <Label prefHeight="172.0" prefWidth="342.0" style="-fx-font-size: 36px; -fx-font-weight: bold; -fx-text-fill: #5C3A1A;" text="Read what our customers&#10;say about us" wrapText="true" />
+
+            <Label prefHeight="147.0" prefWidth="394.0" style="-fx-text-fill: #555555;" text="At our hotel, we pride ourselves on delivering an exceptional&#10;guest experience through personalized service and comfort.&#10;&#10;Our dedicated team ensures your stay is memorable, offering&#10;luxurious amenities and warm hospitality to exceed your expectations." wrapText="true" />
+
+            <Button fx:id="backBtn" prefHeight="18.0" prefWidth="100.0" style="-fx-background-color: #6b5746; -fx-text-fill: white; -fx-background-radius: 12;" text="Back" textAlignment="CENTER" />
+            <Button fx:id="addBtn" prefHeight="18.0" prefWidth="100.0" style="-fx-background-color: #6b5746; -fx-text-fill: white; -fx-background-radius: 12;" text="Add Review" textAlignment="CENTER" />
+        </VBox>
+    </left>
+
+    <center>
+        <VBox fx:id="testimonialContainer" spacing="20">
+            <padding>
+                <Insets bottom="40" left="40" right="40" top="40" />
+            </padding>
+        </VBox>
+    </center>
+</BorderPane>
