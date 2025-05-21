@@ -18,9 +18,9 @@
             </font>
         </Label>
 
-        <TextField fx:id="searchField" layoutX="390.0" layoutY="35.0" prefHeight="30.0" prefWidth="150.0" promptText="Search..." style="-fx-background-radius: 12;" />
-        <ComboBox fx:id="searchByComboBox" layoutX="550.0" layoutY="35.0" prefHeight="30.0" prefWidth="130.0" promptText="Search By" style="-fx-background-radius: 12;" visibleRowCount="6" />
-        <Button fx:id="searchButton" layoutX="708.0" layoutY="35.0" prefHeight="30.0" prefWidth="130.0" style="-fx-background-color: #a1866f; -fx-text-fill: white; -fx-background-radius: 12;" text="Search" />
+        <TextField fx:id="searchField" layoutX="448.0" layoutY="30.0" prefHeight="30.0" prefWidth="150.0" promptText="Kerko..." style="-fx-background-radius: 12;" />
+        <ComboBox fx:id="searchByComboBox" layoutX="611.0" layoutY="30.0" prefHeight="30.0" prefWidth="130.0" promptText="Kerko sipas" style="-fx-background-radius: 12;" visibleRowCount="6" />
+        <Button fx:id="searchButton" layoutX="751.0" layoutY="30.0" prefHeight="30.0" prefWidth="130.0" style="-fx-background-color: #a1866f; -fx-text-fill: white; -fx-background-radius: 12;" text="Kerko" />
 
         <TableView fx:id="maintenanceTable" layoutX="20.0" layoutY="90.0" prefHeight="350.0" prefWidth="722.0" style="-fx-background-radius: 12;">
             <columns>
@@ -35,18 +35,18 @@
 
         <VBox layoutX="751.0" layoutY="120.0" prefHeight="180.0" prefWidth="130.0" spacing="15.0">
             <children>
-                <Button fx:id="addbutton" mnemonicParsing="false" prefHeight="50.0" prefWidth="130.0" style="-fx-background-color: #a1866f; -fx-text-fill: white; -fx-background-radius: 12;" text="Add" />
-                <Button fx:id="deleteButton" mnemonicParsing="false" prefHeight="50.0" prefWidth="130.0" style="-fx-background-color: #8c7b68; -fx-text-fill: white; -fx-background-radius: 12;" text="Delete" />
-                <Button fx:id="editButton" mnemonicParsing="false" prefHeight="50.0" prefWidth="130.0" style="-fx-background-color: #b49a7a; -fx-text-fill: white; -fx-background-radius: 12;" text="Edit" />
+                <Button fx:id="addbutton" mnemonicParsing="false" prefHeight="50.0" prefWidth="130.0" style="-fx-background-color: #a1866f; -fx-text-fill: white; -fx-background-radius: 12;" text="Shto" />
+                <Button fx:id="deleteButton" mnemonicParsing="false" prefHeight="50.0" prefWidth="130.0" style="-fx-background-color: #8c7b68; -fx-text-fill: white; -fx-background-radius: 12;" text="Fshij" />
+                <Button fx:id="editButton" mnemonicParsing="false" prefHeight="50.0" prefWidth="130.0" style="-fx-background-color: #b49a7a; -fx-text-fill: white; -fx-background-radius: 12;" text="Perditeso" />
             </children>
         </VBox>
 
-        <Label fx:id="rowCountLabel" layoutX="20.0" layoutY="455.0" style="-fx-text-fill: #7d6e63;" text="Total rows: 0">
+        <Label fx:id="rowCountLabel" layoutX="20.0" layoutY="455.0" style="-fx-text-fill: #7d6e63;" text="Numri i rreshtave: 0">
             <font>
                 <Font name="Segoe UI" size="14.0" />
             </font>
         </Label>
 
-        <Button fx:id="goback" layoutX="20.0" layoutY="490.0" mnemonicParsing="false" onAction="#handlebback" prefHeight="38.0" prefWidth="100.0" style="-fx-background-color: #7e6a58; -fx-text-fill: white; -fx-background-radius: 12;" text="Back" />
+        <Button fx:id="goback" layoutX="20.0" layoutY="490.0" mnemonicParsing="false" onAction="#handlebback" prefHeight="38.0" prefWidth="100.0" style="-fx-background-color: #7e6a58; -fx-text-fill: white; -fx-background-radius: 12;" text="Kthehu" />
     </children>
 </AnchorPane>

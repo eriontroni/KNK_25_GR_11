@@ -56,13 +56,14 @@ public class LoginController {
                     Employee employee = er.getByEmail(email);
                     EmployeeSessionManager employeeSessionManager = new EmployeeSessionManager();
                     employeeSessionManager.setCurrentUser(employee);
+
                     SceneManager.switchScene(stage, SceneLocator.Reception_Dashboard_Page, "ReceptionDashboard");
                 } else if (LoginService.positionExists(email, "Mirembajtes")) {
                     EmployeeRepository er = new EmployeeRepository();
                     Employee employee = er.getByEmail(email);
                     EmployeeSessionManager employeeSessionManager = new EmployeeSessionManager();
                     employeeSessionManager.setCurrentUser(employee);
-                    SceneManager.switchScene(stage, SceneLocator.Maintenance_Page, "Mirembajtes");
+                    SceneManager.switchScene(stage, SceneLocator.Main_Maintenance_Page, "Mirembajtes");
                 } else {
                     showAlert("Nuk keni pozitë të përcaktuar të lejuar për qasje.");
                 }

@@ -13,12 +13,12 @@
 
     <children>
         <!-- Titulli -->
-        <TextField editable="false" layoutX="14.0" layoutY="14.0" prefHeight="32.0" prefWidth="300.0" style="                        -fx-font-size: 22px;                        -fx-font-weight: bold;                        -fx-text-fill: #5a4a3c;                        -fx-background-color: transparent;                        -fx-border-color: transparent;                        -fx-font-family: 'Segoe UI Semibold';" text="🧹 Cleaning Schedule Table" />
+        <TextField editable="false" layoutX="14.0" layoutY="14.0" prefHeight="48.0" prefWidth="330.0" style="                        -fx-font-size: 22px;                        -fx-font-weight: bold;                        -fx-text-fill: #5a4a3c;                        -fx-background-color: transparent;                        -fx-border-color: transparent;                        -fx-font-family: 'Segoe UI Semibold';" text="Tabela e orarit te pastrimeve" />
 
         <!-- Fusha e kërkimit -->
-        <TextField fx:id="searchBox" layoutX="514.0" layoutY="23.0" promptText="🔍 Search" style="                        -fx-background-radius: 12;                        -fx-border-radius: 12;                        -fx-padding: 6 10;                        -fx-background-color: white;                        -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 4, 0, 1, 1);" />
+        <TextField fx:id="searchBox" layoutX="514.0" layoutY="23.0" promptText="🔍 Kerko..." style="                        -fx-background-radius: 12;                        -fx-border-radius: 12;                        -fx-padding: 6 10;                        -fx-background-color: white;                        -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 4, 0, 1, 1);" />
 
-        <ComboBox fx:id="comboBox" layoutX="684.0" layoutY="21.0" prefWidth="130.0" promptText="Search By" style="                       -fx-background-radius: 12;                       -fx-border-radius: 12;                       -fx-padding: 4 8;                       -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.05), 3, 0, 1, 1);" />
+        <ComboBox fx:id="comboBox" layoutX="684.0" layoutY="21.0" prefWidth="130.0" promptText="Kerko sipas" style="                       -fx-background-radius: 12;                       -fx-border-radius: 12;                       -fx-padding: 4 8;                       -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.05), 3, 0, 1, 1);" />
 
         <Button fx:id="se" layoutX="836.0" layoutY="23.0" style="                     -fx-background-color: #a1866f;                     -fx-text-fill: white;                     -fx-background-radius: 12;                     -fx-font-weight: bold;" text="🔍" />
 
@@ -34,14 +34,14 @@
         </TableView>
 
         <!-- Butonat -->
-        <Button fx:id="btnAdd" layoutX="750.0" layoutY="96.0" onAction="#showAddDialog" prefHeight="46.0" prefWidth="114.0" style="-fx-background-color: #a1866f; -fx-text-fill: white; -fx-background-radius: 12;" text="➕ Add" />
+        <Button fx:id="btnAdd" layoutX="750.0" layoutY="96.0" onAction="#showAddDialog" prefHeight="46.0" prefWidth="114.0" style="-fx-background-color: #a1866f; -fx-text-fill: white; -fx-background-radius: 12;" text="➕ Kerko" />
 
-        <Button fx:id="btnDelete" layoutX="750.0" layoutY="156.0" onAction="#deleteCleaningById" prefHeight="46.0" prefWidth="114.0" style="-fx-background-color: #8c7b68; -fx-text-fill: white; -fx-background-radius: 12;" text="🗑️ Delete" />
+        <Button fx:id="btnDelete" layoutX="750.0" layoutY="156.0" onAction="#deleteCleaningById" prefHeight="46.0" prefWidth="114.0" style="-fx-background-color: #8c7b68; -fx-text-fill: white; -fx-background-radius: 12;" text="🗑 Fshij" />
 
-        <Button fx:id="btnUpdate" layoutX="750.0" layoutY="223.0" onAction="#editCleaningById" prefHeight="46.0" prefWidth="114.0" style="-fx-background-color: #b49a7a; -fx-text-fill: white; -fx-background-radius: 12;" text="✏️ Edit" />
+        <Button fx:id="btnUpdate" layoutX="750.0" layoutY="223.0" onAction="#editCleaningById" prefHeight="46.0" prefWidth="114.0" style="-fx-background-color: #b49a7a; -fx-text-fill: white; -fx-background-radius: 12;" text="✏ Perditeso" />
 
-        <Button fx:id="backbutton" layoutX="37.0" layoutY="539.0" onAction="#handleback" style="-fx-background-color: #7e6a58; -fx-text-fill: white; -fx-background-radius: 12;" text="⬅️ Back" />
-      <Label fx:id="rowCountLabel" layoutX="37.0" layoutY="495.0" style="-fx-text-fill: #7d6e63;" text="Total rows: 0">
+        <Button fx:id="backbutton" layoutX="37.0" layoutY="539.0" onAction="#handleback" style="-fx-background-color: #7e6a58; -fx-text-fill: white; -fx-background-radius: 12;" text="⬅Kthehu" />
+      <Label fx:id="rowCountLabel" layoutX="37.0" layoutY="495.0" style="-fx-text-fill: #7d6e63;" text="Numri i rreshtave: 0">
          <font>
             <Font name="Segoe UI" size="14.0" />
          </font>
