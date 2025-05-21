@@ -51,18 +51,18 @@ public class LoginController {
         // Kontrollo fillimisht Employee
         if (LoginService.emailExists(email, "Employee")) {
             if (LoginService.checkPassword(email, password, "Employee")) {
-                if (LoginService.positionExists(email, "Receptionist")) {
+                if (LoginService.positionExists(email, "Recepcionist")) {
                     EmployeeRepository er = new EmployeeRepository();
                     Employee employee = er.getByEmail(email);
                     EmployeeSessionManager employeeSessionManager = new EmployeeSessionManager();
                     employeeSessionManager.setCurrentUser(employee);
                     SceneManager.switchScene(stage, SceneLocator.Reception_Dashboard_Page, "ReceptionDashboard");
-                } else if (LoginService.positionExists(email, "Maintanance")) {
+                } else if (LoginService.positionExists(email, "Mirembajtes")) {
                     EmployeeRepository er = new EmployeeRepository();
                     Employee employee = er.getByEmail(email);
                     EmployeeSessionManager employeeSessionManager = new EmployeeSessionManager();
                     employeeSessionManager.setCurrentUser(employee);
-                    SceneManager.switchScene(stage, SceneLocator.Maintenance_Page, "Maintanance");
+                    SceneManager.switchScene(stage, SceneLocator.Maintenance_Page, "Mirembajtes");
                 } else {
                     showAlert("Nuk keni pozitë të përcaktuar të lejuar për qasje.");
                 }
