@@ -29,6 +29,14 @@ CREATE TABLE RoomType (
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
+-- 3. Room -Natyra
+CREATE TABLE Room (
+    id INT PRIMARY KEY,
+    room_number VARCHAR(10) UNIQUE NOT NULL,
+    type_id INT REFERENCES RoomType(id) ON DELETE SET NULL,
+    is_available BOOLEAN DEFAULT TRUE
+);
+
 -- 2. RoomImage -Erioni
 CREATE TABLE RoomImage (
     id INT PRIMARY KEY,
@@ -70,20 +78,14 @@ CREATE TABLE Offer (
     end_date DATE NOT NULL
 );
 
--- 3. Room -Natyra
-CREATE TABLE Room (
-    id INT PRIMARY KEY,
-    room_number VARCHAR(10) UNIQUE NOT NULL,
-    type_id INT REFERENCES RoomType(id) ON DELETE SET NULL,
-    is_available BOOLEAN DEFAULT TRUE,
-);
+
 
 -- 7. Reservation -Natyra
 CREATE TABLE Reservation (
     id INT PRIMARY KEY,
     customer_id INT REFERENCES Users(id) ON DELETE CASCADE,
     room_id INT REFERENCES Room(id) ON DELETE CASCADE,
-    offer_id INT REFERENCES Offer(id) ON DELETE SET NULL
+    offer_id INT REFERENCES Offer(id) ON DELETE SET NULL,
     check_in_date DATE NOT NULL,
     check_out_date DATE NOT NULL,
     status VARCHAR(50) CHECK (status IN ('Pending', 'Confirmed', 'Cancelled')) DEFAULT 'Pending',
