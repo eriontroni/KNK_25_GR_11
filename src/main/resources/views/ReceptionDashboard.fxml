@@ -2,27 +2,97 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.layout.Pane?>
-<?import javafx.scene.shape.Line?>
-<?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="475.0" prefWidth="678.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.ReceptionDashboardController">
-   <children>
-      <Label fx:id="lblTitle" layoutX="211.0" layoutY="66.0" text="Paneli i Recepsionit" textFill="#f0ac00">
-         <font>
-            <Font size="30.0" />
-         </font>
-      </Label>
-      <Label layoutX="80.0" layoutY="216.0" prefHeight="43.0" prefWidth="215.0" text="Zgjidh nje nga opsionet ">
-         <font>
-            <Font size="20.0" />
-         </font>
-      </Label>
-      <Line endX="-6.20001220703125" endY="50.399993896484375" layoutX="448.0" layoutY="244.0" startX="-128.70709228515625" startY="-5.7928619384765625" />
-      <Line endX="5.20001220703125" endY="-32.99998474121094" layoutX="437.0" layoutY="228.0" startX="-119.0" startY="8.500015258789062" />
-      <Button fx:id="btnPerRole" layoutX="459.0" layoutY="173.0" mnemonicParsing="false" onAction="#handlePerRole" prefHeight="43.0" prefWidth="180.0" text="Numri perdoruesve per cdo rol" />
+<BorderPane prefHeight="358.0" prefWidth="763.0"
+            style="-fx-background-color: linear-gradient(to bottom right, #f7f3eb, #e7dfd6);"
+            xmlns="http://javafx.com/javafx/23.0.1"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="Controllers.ReceptionDashboardController">
 
-      <Button fx:id="btnPerDay" layoutX="459.0" layoutY="274.0" mnemonicParsing="false" onAction="#handlePerDay" prefHeight="43.0" prefWidth="188.0" text="Numri rezervimeve per cdo dite" />
+   <!-- HEADER -->
+   <top>
+      <HBox alignment="CENTER"
+            prefHeight="65.0"
+            prefWidth="763.0"
+            style="-fx-background-color: transparent; -fx-padding: 36 0 12 0;">
+         <Label style="-fx-text-fill: #7b6148;
+                       -fx-font-size: 32px;
+                       -fx-font-weight: bold;
+                       -fx-font-family: 'Segoe UI', sans-serif;"
+                text="Paneli i Recepsionit" />
+      </HBox>
+   </top>
 
-   </children>
-</Pane>
+   <!-- QENDRA: Përmbajtja -->
+   <center>
+      <VBox alignment="TOP_CENTER" spacing="22" style="-fx-padding: 20 0 0 0;">
+         <Label style="-fx-text-fill: #70543a;
+                       -fx-font-size: 19px;
+                       -fx-padding: 0 0 14 0;
+                       -fx-font-family: 'Segoe UI', sans-serif;"
+                text="Zgjidh një nga opsionet" />
+         <Button fx:id="btnPerRole"
+                 onAction="#handlePerRole"
+                 prefHeight="40.0"
+                 prefWidth="298.0"
+                 style="-fx-background-color: #7b6148;
+                        -fx-text-fill: #fff;
+                        -fx-font-size: 16px;
+                        -fx-font-weight: bold;
+                        -fx-background-radius: 12;
+                        -fx-padding: 10 32;
+                        -fx-cursor: hand;
+                        -fx-font-family: 'Segoe UI', sans-serif;"
+                 text="Numri përdoruesve për çdo rol" />
+
+         <HBox alignment="CENTER" spacing="22">
+            <Button fx:id="btnCreateReservation"
+                    onAction="#handleCreateReservation"
+                    style="-fx-background-color: #e0b46c;
+                           -fx-text-fill: #70543a;
+                           -fx-font-size: 16px;
+                           -fx-font-weight: bold;
+                           -fx-background-radius: 12;
+                           -fx-padding: 10 32;
+                           -fx-cursor: hand;
+                           -fx-font-family: 'Segoe UI', sans-serif;"
+                    text="Krijo Rezervim" />
+            <Button fx:id="btnAddStaff"
+                    onAction="#handleAddStaff"
+                    prefHeight="40.0"
+                    prefWidth="150.0"
+                    style="-fx-background-color: #ac8a56;
+                           -fx-text-fill: #fff;
+                           -fx-font-size: 16px;
+                           -fx-font-weight: bold;
+                           -fx-background-radius: 12;
+                           -fx-padding: 10 32;
+                           -fx-cursor: hand;
+                           -fx-font-family: 'Segoe UI', sans-serif;"
+                    text="Shto Staf" />
+         </HBox>
+      </VBox>
+   </center>
+
+   <!-- FOOTER: LOGOUT POSHTË-DJATHTAS -->
+   <bottom>
+      <HBox alignment="BOTTOM_RIGHT" style="-fx-padding: 0 30 22 0;">
+         <Pane HBox.hgrow="ALWAYS"/>
+         <Button fx:id="btnLogout"
+                 onAction="#handleLogout"
+                 style="-fx-background-color: #e0e0e0;
+                        -fx-text-fill: #4a3c2b;
+                        -fx-font-size: 15px;
+                        -fx-font-weight: bold;
+                        -fx-background-radius: 14;
+                        -fx-padding: 7 30;
+                        -fx-cursor: hand;
+                        -fx-font-family: 'Segoe UI', sans-serif;"
+                 text="Logout" />
+      </HBox>
+   </bottom>
+</BorderPane>

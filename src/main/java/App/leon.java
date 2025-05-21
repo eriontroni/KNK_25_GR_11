@@ -17,7 +17,7 @@ public class leon extends Application {
 
         Scene scene = new Scene(root);
         stage.setScene(scene);
-        stage.setTitle("Dashboard - Recepsionisti");
+        stage.setTitle("Paneli - Recepsionisti");
         stage.setResizable(false); // opsional, qe mos me lëviz dritarja
         stage.show();
     }

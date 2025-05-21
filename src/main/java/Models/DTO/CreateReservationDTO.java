@@ -2,10 +2,12 @@ package Models.DTO;
 
 import java.sql.Date;
 
+//-- 7. Reservation -Natyra
 //CREATE TABLE Reservation (
-//        id SERIAL PRIMARY KEY,
-//        customer_id INT REFERENCES Customer(id) ON DELETE CASCADE,
+//        id INT PRIMARY KEY,
+//        customer_id INT REFERENCES Users(id) ON DELETE CASCADE,
 //room_id INT REFERENCES Room(id) ON DELETE CASCADE,
+//offer_id INT REFERENCES Offer(id) ON DELETE SET NULL,
 //check_in_date DATE NOT NULL,
 //check_out_date DATE NOT NULL,
 //status VARCHAR(50) CHECK (status IN ('Pending', 'Confirmed', 'Cancelled')) DEFAULT 'Pending',
@@ -16,16 +18,18 @@ public class CreateReservationDTO {
     private int id; //perdoret psh per update ose view
     private int customerId;
     private int roomId;
+    private Integer offerId;
     private Date checkInDate;
     private Date checkOutDate;
     private String status;
     private double totalPrice;
 
     //konstruktor per me kriju nje rezervim
-    public CreateReservationDTO(int id, int customerId, int roomId, Date checkInDate, Date checkOutDate, String status, double totalPrice) {
+    public CreateReservationDTO(int id, int customerId, int roomId, Integer offerId, Date checkInDate, Date checkOutDate, String status, double totalPrice) {
         this.id = id;
         this.customerId = customerId;
         this.roomId = roomId;
+        this.offerId = offerId;
         this.checkInDate = checkInDate;
         this.checkOutDate = checkOutDate;
         this.status = status;
@@ -44,6 +48,8 @@ public class CreateReservationDTO {
     public int getRoomId() {
         return roomId;
     }
+
+    public Integer getOfferId() { return offerId;}
 
     public Date getCheckInDate() {
         return checkInDate;
