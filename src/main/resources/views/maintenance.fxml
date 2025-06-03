@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="600.0" prefWidth="896.0" style="-fx-background-color: linear-gradient(to bottom right, #f5f1ea, #d6c8b8);" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.MaintenanceController">
+<AnchorPane prefHeight="600.0" prefWidth="800.0" style="-fx-background-color: linear-gradient(to bottom right, #f5f1ea, #d6c8b8);" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.MaintenanceController">
     <children>
         <Label layoutX="20.0" layoutY="20.0" prefHeight="50.0" prefWidth="306.0" style="-fx-text-fill: #5a4a3c;" text="Tabela e Mirëmbajtjes">
             <font>

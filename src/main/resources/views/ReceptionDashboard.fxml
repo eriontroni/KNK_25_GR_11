@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.layout.Pane?>
 
-<BorderPane prefHeight="358.0" prefWidth="763.0"
+<BorderPane prefHeight="600.0" prefWidth="800.0"
             style="-fx-background-color: linear-gradient(to bottom right, #f7f3eb, #e7dfd6);"
             xmlns="http://javafx.com/javafx/23.0.1"
             xmlns:fx="http://javafx.com/fxml/1"
