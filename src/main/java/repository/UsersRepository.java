@@ -12,7 +12,7 @@ import java.sql.SQLException;
 public class UsersRepository extends BaseRepository<Users, CreateUsersDTO, UpdateUsersDTO> {
 
     public UsersRepository() {
-        super("Users");
+        super("users");
     }
 
     @Override
@@ -54,7 +54,7 @@ public class UsersRepository extends BaseRepository<Users, CreateUsersDTO, Updat
     }
 
     public Users updateById(int id, UpdateUsersDTO dto) {
-        String query = "UPDATE Users SET username = ?, email = ? WHERE id = ? RETURNING *";
+        String query = "UPDATE users SET username = ?, email = ? WHERE id = ? RETURNING *";
         try {
             PreparedStatement stmt = this.connection.prepareStatement(query);
             stmt.setString(1, dto.getUsername());

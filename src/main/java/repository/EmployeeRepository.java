@@ -72,7 +72,7 @@ public class EmployeeRepository extends BaseRepository<Employee, createEmployeeD
     @Override
     public Employee update(updateEmployeeDTO dto) {
         String query = """
-                UPDATE Employee
+                UPDATE employee
                 SET position = ?, email = ?, phone = ?
                 WHERE id = ?
                 """;

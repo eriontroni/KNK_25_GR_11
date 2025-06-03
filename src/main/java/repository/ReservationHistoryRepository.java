@@ -10,7 +10,7 @@ import java.util.ArrayList;
 public class ReservationHistoryRepository extends BaseRepository<ReservationHistory, CreateReservationHistoryDTO, UpdateReservationHistoryDTO> {
 
     public ReservationHistoryRepository() {
-        super("ReservationHistory");
+        super("reservationhistory");
     }
 
     @Override
@@ -26,7 +26,7 @@ public class ReservationHistoryRepository extends BaseRepository<ReservationHist
     @Override
     public ReservationHistory create(CreateReservationHistoryDTO dto) {
         String query = """
-                INSERT INTO ReservationHistory (reservation_id, customer_id, change_date, old_status, new_status)
+                INSERT INTO reservationhistory (reservation_id, customer_id, change_date, old_status, new_status)
                 VALUES (?, ?, ?, ?, ?)
                 """;
         try {

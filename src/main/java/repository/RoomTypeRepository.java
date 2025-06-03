@@ -10,7 +10,7 @@ import java.util.Date;
 public class RoomTypeRepository extends BaseRepository<RoomType, createRoomTypeDTO, updateRoomTypeDTO> {
 
     public RoomTypeRepository() {
-        super("RoomType");
+        super("roomtype");
     }
 
     @Override
@@ -26,7 +26,7 @@ public class RoomTypeRepository extends BaseRepository<RoomType, createRoomTypeD
     @Override
     public RoomType create(createRoomTypeDTO dto) {
         String query = """
-                INSERT INTO RoomType (name, description, capacity, price_per_night, created_at, updated_at)
+                INSERT INTO roomtype (name, description, capacity, price_per_night, created_at, updated_at)
                 VALUES (?, ?, ?, ?, ?, ?)
                 """;
         try {
@@ -53,7 +53,7 @@ public class RoomTypeRepository extends BaseRepository<RoomType, createRoomTypeD
     @Override
     public RoomType update(updateRoomTypeDTO dto) {
         String query = """
-                UPDATE RoomType
+                UPDATE roomtype
                 SET description = ?, capacity = ?, price_per_night = ?, updated_at = ?
                 WHERE id = ?
                 """;

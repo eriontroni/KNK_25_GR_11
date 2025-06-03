@@ -10,7 +10,7 @@ import java.util.ArrayList;
 
 public class MaintenanceRepository extends BaseRepository<Maintenance, CreateMaintenanceDTO, UpdateMaintenanceDTO> {
     public MaintenanceRepository() {
-        super("Maintenance");
+        super("maintenance");
     }
 
     @Override

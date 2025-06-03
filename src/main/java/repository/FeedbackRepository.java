@@ -11,7 +11,7 @@ import java.sql.Statement;
 
 public class FeedbackRepository extends BaseRepository<Feedback, CreateFeedbackDTO, UpdateFeedbackDTO> {
     public FeedbackRepository(){
-        super("Feedback");
+        super("feedback");
     }
 
     @Override

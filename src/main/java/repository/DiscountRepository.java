@@ -11,7 +11,7 @@ import java.util.ArrayList;
 public class DiscountRepository extends BaseRepository<Discount, CreateDiscountDTO, UpdateDiscountDTO> {
 
     public DiscountRepository() {
-        super("Discount");
+        super("discount");
     }
 
     @Override

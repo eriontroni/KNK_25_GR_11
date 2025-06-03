@@ -62,5 +62,6 @@
 
         <!-- BOOK BUTTON -->
         <Button fx:id="bookButton" layoutX="580.0" layoutY="165.0" onAction="#handleBook" prefHeight="38.0" prefWidth="160.0" style="-fx-background-color: #6b5746; -fx-text-fill: white; -fx-background-radius: 12; -fx-font-weight: bold;" text="✔ Book Now" />
+      <Button fx:id="bookButton1" layoutX="29.0" layoutY="235.0" onAction="#handleBallina" prefHeight="38.0" prefWidth="86.0" style="-fx-background-color: #6b5746; -fx-text-fill: white; -fx-background-radius: 12; -fx-font-weight: bold;" text="←Ballina" />
     </children>
 </AnchorPane>

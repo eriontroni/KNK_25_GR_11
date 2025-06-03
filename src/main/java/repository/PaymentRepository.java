@@ -12,7 +12,7 @@ import java.sql.SQLException;
 public class PaymentRepository extends BaseRepository<Payment, CreatePaymentDTO, UpdatePaymentDTO> {
 
     public PaymentRepository() {
-        super("Payment");
+        super("payment");
     }
 
     @Override
@@ -27,7 +27,7 @@ public class PaymentRepository extends BaseRepository<Payment, CreatePaymentDTO,
 
     @Override
     public Payment create(CreatePaymentDTO dto) {
-        String query = "INSERT INTO Payment (reservation_id, amount, payment_method, payment_status) " +
+        String query = "INSERT INTO payment (reservation_id, amount, payment_method, payment_status) " +
                 "VALUES (?, ?, ?, ?) RETURNING *";
         try {
             PreparedStatement stmt = this.connection.prepareStatement(query);
@@ -55,7 +55,7 @@ public class PaymentRepository extends BaseRepository<Payment, CreatePaymentDTO,
 
     // Metodë shtesë për përditësim me ID të dhënë
     public Payment updateById(int id, UpdatePaymentDTO dto) {
-        String query = "UPDATE Payment SET amount = ?, payment_method = ?, payment_status = ? " +
+        String query = "UPDATE payment SET amount = ?, payment_method = ?, payment_status = ? " +
                 "WHERE id = ? RETURNING *";
         try {
             PreparedStatement stmt = this.connection.prepareStatement(query);

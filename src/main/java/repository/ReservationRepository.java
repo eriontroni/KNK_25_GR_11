@@ -10,7 +10,7 @@ import java.util.ArrayList;
 
 public class ReservationRepository extends BaseRepository<Reservation, CreateReservationDTO, UpdateReservationDTO>   {
     public ReservationRepository() {
-        super("Reservation");  // emri i tabelës
+        super("reservation");  // emri i tabelës
     }
 
     @Override
@@ -25,7 +25,7 @@ public class ReservationRepository extends BaseRepository<Reservation, CreateRes
 
     @Override
     public Reservation create(CreateReservationDTO dto) {
-        String query = "INSERT INTO Reservation (customer_id, room_id, check_in_date, check_out_date, status, total_price) VALUES (?, ?, ?, ?, ?, ?) RETURNING *";
+        String query = "INSERT INTO reservation (customer_id, room_id, check_in_date, check_out_date, status, total_price) VALUES (?, ?, ?, ?, ?, ?) RETURNING *";
         try (PreparedStatement pstm = connection.prepareStatement(query)) {
             pstm.setInt(1, dto.getCustomerId());
             pstm.setInt(2, dto.getRoomId());
@@ -46,7 +46,7 @@ public class ReservationRepository extends BaseRepository<Reservation, CreateRes
 
     @Override
     public Reservation update(UpdateReservationDTO dto) {
-        String query = "UPDATE Reservation SET check_in_date = ?, check_out_date = ?, status = ?, total_price = ? WHERE id = ? RETURNING *";
+        String query = "UPDATE reservation SET check_in_date = ?, check_out_date = ?, status = ?, total_price = ? WHERE id = ? RETURNING *";
         try (PreparedStatement pstm = connection.prepareStatement(query)) {
             pstm.setDate(1, dto.getCheckInDate());
             pstm.setDate(2, dto.getCheckOutDate());

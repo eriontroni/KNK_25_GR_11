@@ -12,7 +12,7 @@ import java.sql.Statement;
 public class RoomImageRepository extends BaseRepository<RoomImage, CreateRoomImageDTO,UpdateRoomImageDTO> {
 
     public RoomImageRepository(String tableName) {
-        super("RoomImage");
+        super("roomimage");
     }
 
     @Override
@@ -28,7 +28,7 @@ public class RoomImageRepository extends BaseRepository<RoomImage, CreateRoomIma
     @Override
     RoomImage create(CreateRoomImageDTO RoomImage) {
         String query = """
-                INSERT INTO RoomImage (room_id, image_url, uploaded_at)
+                INSERT INTO roomimage (room_id, image_url, uploaded_at)
                 VALUES (?, ?)
                 """;
         try{
@@ -53,7 +53,7 @@ public class RoomImageRepository extends BaseRepository<RoomImage, CreateRoomIma
     @Override
     RoomImage update(UpdateRoomImageDTO RoomImage) {
         String query = """
-                UPDATE RoomImage
+                UPDATE roomimage
                 SET image_url = ?
                 WHERE ID = ?
                 """;

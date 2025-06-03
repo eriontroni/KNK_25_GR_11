@@ -10,7 +10,7 @@ import java.util.ArrayList;
 public class EventRepository extends BaseRepository<Event, createEventDTO, updateEventDTO> {
 
     public EventRepository() {
-        super("Event");
+        super("event");
     }
 
     @Override

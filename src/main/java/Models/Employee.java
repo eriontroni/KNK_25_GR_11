@@ -13,7 +13,7 @@ public class Employee {
     private String phone;
     private Date hire_date;
 
-    Employee(int id, String first_name, String last_name, String position, String email, String phone, Date hire_date) {
+    private Employee(int id, String first_name, String last_name, String position, String email, String phone, Date hire_date) {
         this.id = id;
         this.first_name = first_name;
         this.last_name = last_name;

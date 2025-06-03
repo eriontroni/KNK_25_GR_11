@@ -81,7 +81,7 @@ CREATE TABLE Offer (
 
 -- 7. Reservation -Natyra
 CREATE TABLE Reservation (
-    id INT PRIMARY KEY,
+    id SERIAL PRIMARY KEY,
     customer_id INT REFERENCES Users(id) ON DELETE CASCADE,
     room_id INT REFERENCES Room(id) ON DELETE CASCADE,
     offer_id INT REFERENCES Offer(id) ON DELETE SET NULL,

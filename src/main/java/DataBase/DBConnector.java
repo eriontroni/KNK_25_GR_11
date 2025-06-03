@@ -10,18 +10,26 @@ public class DBConnector {
 
     private static Connection connection = null;
     public static Connection getConnection() {
-        if(connection == null) {
-            try{
-                connection = DriverManager.getConnection(
-                        DB_URL,
-                        DB_USER,
-                        DB_PASSWORD
-                );
-            }catch(SQLException e){
-                return null;
-            }
+    try {
+        if (connection == null || connection.isClosed()) {
+            connection = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD);
         }
-        return connection;
+    } catch (SQLException e) {
+        e.printStackTrace();
+        return null;
     }
+    return connection;
+}
 
 }
+//public static Connection getConnection() {
+//    try {
+//        if (connection == null || connection.isClosed()) {
+//            connection = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD);
+//        }
+//    } catch (SQLException e) {
+//        e.printStackTrace();
+//        return null;
+//    }
+//    return connection;
+//}

@@ -9,7 +9,7 @@ import java.sql.*;
 public class RoomServiceRepository extends BaseRepository<RoomService, CreateRoomServiceDTO, UpdateRoomServiceDTO> {
 
     public RoomServiceRepository() {
-        super("RoomService");
+        super("roomservice");
     }
 
     @Override
@@ -25,7 +25,7 @@ public class RoomServiceRepository extends BaseRepository<RoomService, CreateRoo
     @Override
     public RoomService create(CreateRoomServiceDTO roomservice) {
         String query = """
-                INSERT INTO RoomService (reservation_id, service_name, price, requested_at)
+                INSERT INTO roomservice (reservation_id, service_name, price, requested_at)
                 VALUES (?, ?, ?, ?)
                 """;
         try (PreparedStatement pstm = this.connection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS)) {
@@ -50,7 +50,7 @@ public class RoomServiceRepository extends BaseRepository<RoomService, CreateRoo
     @Override
     public RoomService update(UpdateRoomServiceDTO roomservice) {
         String query = """
-                UPDATE RoomService
+                UPDATE roomservice
                 SET service_name = ?, price = ?
                 WHERE id = ?
                 """;

@@ -10,7 +10,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 public class CleaningScheduleRepository extends BaseRepository<CleaningSchedule, CreateCleaningScheduleDTO, UpdateCleaningScheduleDTO>{
-    public CleaningScheduleRepository() { super("CleaningSchedule");}
+    public CleaningScheduleRepository() { super("cleaningschedule");}
 
     @Override
     public CleaningSchedule fromResultSet(ResultSet res) {

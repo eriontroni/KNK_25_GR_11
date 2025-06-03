@@ -12,7 +12,7 @@ import java.sql.Statement;
 public class ReservationDiscountRepository extends BaseRepository<ReservationDiscount, CreateReservationDiscountDTO, UpdateReservationDiscountDTO> {
 
     public ReservationDiscountRepository(String tableName) {
-        super("ReservationDiscount");
+        super("reservationdiscount");
     }
 
     @Override

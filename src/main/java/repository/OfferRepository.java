@@ -12,7 +12,7 @@ import java.sql.Statement;
 public class OfferRepository extends BaseRepository<Offer, CreateOfferDTO, UpdateOfferDTO> {
 
     public OfferRepository() {
-        super("Offer");
+        super("offer");
     }
 
     @Override

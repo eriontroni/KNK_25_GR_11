@@ -26,7 +26,7 @@ public class NotificationsRepository extends BaseRepository<Notifications, Creat
     @Override
     public Notifications create(CreateNotificationDTO dto) {
         String query = """
-            INSERT INTO Notifications (user_id, message, created_at, is_read)
+            INSERT INTO notifications (user_id, message, created_at, is_read)
             VALUES (?, ?, ?, ?)
         """;
 
@@ -60,7 +60,7 @@ public class NotificationsRepository extends BaseRepository<Notifications, Creat
     // Custom update method përmes ID-së
     public Notifications markAsRead(int id, UpdateNotificationDTO dto) {
         String query = """
-            UPDATE Notifications
+            UPDATE notifications
             SET is_read = ?
             WHERE id = ?
         """;
@@ -83,7 +83,7 @@ public class NotificationsRepository extends BaseRepository<Notifications, Creat
     // merr krejt notifications per 1 user
     public ArrayList<Notifications> getAllByUserId(int userId) {
         ArrayList<Notifications> list = new ArrayList<>();
-        String query = "SELECT * FROM Notifications WHERE user_id = ? ORDER BY created_at DESC";
+        String query = "SELECT * FROM notifications WHERE user_id = ? ORDER BY created_at DESC";
         try {
             PreparedStatement pstm = this.connection.prepareStatement(query);
             pstm.setInt(1, userId);

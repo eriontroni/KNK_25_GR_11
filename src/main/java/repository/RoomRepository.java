@@ -12,7 +12,7 @@ import java.util.List;
 
 public class RoomRepository extends BaseRepository<Room, CreateRoomDTO, UpdateRoomDTO> {
     public RoomRepository() {
-        super("Room");
+        super("room");
     }
 
     @Override
@@ -26,7 +26,7 @@ public class RoomRepository extends BaseRepository<Room, CreateRoomDTO, UpdateRo
     }
 
     public List<RoomImage> getRoomImages(int roomId) {
-        String query = "SELECT * FROM RoomImage WHERE room_id = ?";
+        String query = "SELECT * FROM roomimage WHERE room_id = ?";
         List<RoomImage> images = new ArrayList<>();
         try (PreparedStatement pstm = this.connection.prepareStatement(query)) {
             pstm.setInt(1, roomId);
@@ -42,7 +42,7 @@ public class RoomRepository extends BaseRepository<Room, CreateRoomDTO, UpdateRo
     }
 
     public RoomType getRoomTypeForRoom(int roomId) {
-        String query = "SELECT rt.* FROM Room r JOIN RoomType rt ON r.type_id = rt.id WHERE r.id = ?";
+        String query = "SELECT rt.* FROM room r JOIN roomtype rt ON r.type_id = rt.id WHERE r.id = ?";
         try (PreparedStatement pstm = this.connection.prepareStatement(query)) {
             pstm.setInt(1, roomId);
             ResultSet rs = pstm.executeQuery();
@@ -57,7 +57,7 @@ public class RoomRepository extends BaseRepository<Room, CreateRoomDTO, UpdateRo
 
     @Override
     public Room getById(int id) {
-        String query = "SELECT * FROM Room WHERE id = ?";
+        String query = "SELECT * FROM room WHERE id = ?";
         try (PreparedStatement pstm = this.connection.prepareStatement(query)) {
             pstm.setInt(1, id);
             ResultSet rs = pstm.executeQuery();
@@ -74,7 +74,7 @@ public class RoomRepository extends BaseRepository<Room, CreateRoomDTO, UpdateRo
     @Override
     public Room create(CreateRoomDTO room) {
         String query = """
-                INSERT INTO Room (room_number, type_id, is_available)
+                INSERT INTO room (room_number, type_id, is_available)
                 VALUES (?, ?, ?)""";
         try (PreparedStatement pstm = this.connection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS)) {
             pstm.setString(1, room.getRoomNumber());
@@ -96,7 +96,7 @@ public class RoomRepository extends BaseRepository<Room, CreateRoomDTO, UpdateRo
     @Override
     public Room update(UpdateRoomDTO room) {
         String query = """
-                UPDATE Room
+                UPDATE room
                 SET room_number = ?, type_id = ?, is_available = ?
                 WHERE id = ?""";
         try (PreparedStatement pstm = this.connection.prepareStatement(query)) {
@@ -116,7 +116,7 @@ public class RoomRepository extends BaseRepository<Room, CreateRoomDTO, UpdateRo
     }
 
     public boolean delete(int id) {
-        String query = "DELETE FROM Room WHERE id = ?";
+        String query = "DELETE FROM room WHERE id = ?";
         try (PreparedStatement pstm = this.connection.prepareStatement(query)) {
             pstm.setInt(1, id);
             return pstm.executeUpdate() == 1;

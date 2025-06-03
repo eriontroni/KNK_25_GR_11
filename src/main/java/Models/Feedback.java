@@ -12,7 +12,7 @@ public class Feedback {
     private String comment;
     private Date created_at;
 
-    public Feedback(int id, int customer_id, int reservation_id, int rating, String comment, Date created_at){
+    private Feedback(int id, int customer_id, int reservation_id, int rating, String comment, Date created_at){
         this.id=id;
         this.customer_id=customer_id;
         this.reservation_id=reservation_id;

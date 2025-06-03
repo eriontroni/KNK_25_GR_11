@@ -10,7 +10,7 @@ import java.sql.*;
 public class CustomerRepository extends BaseRepository<Customer, CreateCustomerDTO, UpdateCustomerDTO> {
 
     public CustomerRepository(String tableName) {
-        super("Customer");
+        super("customer");
     }
 
     @Override

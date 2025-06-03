@@ -1,13 +1,18 @@
 package Controllers;
 
 import Services.ReservationService;
+import Utils.SceneLocator;
+import Utils.SceneManager;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 
 import Models.DTO.CreateReservationDTO;
 import Models.Reservation;
+import javafx.stage.Stage;
 import repository.ReservationRepository;
 import repository.RoomRepository;
 import Models.Room;
@@ -35,7 +40,7 @@ public class ReservationsController {
     private ReservationRepository reservationRepo = new ReservationRepository();
     private RoomRepository roomRepo = new RoomRepository(); // Supozojmë se e ke këtë repository
 
-    // Shkruaje këtë kod në initialize që mos të fusësh dorë manualisht në DB për RoomType
+
     @FXML
     public void initialize() {
         // Kjo është për test. Nëse i ke dhomat në DB, merr të gjitha me roomRepo.getAll();
@@ -125,9 +130,7 @@ public class ReservationsController {
             );
             ReservationRepository rr = new ReservationRepository();
             Reservation reservation = rr.create(dto);
-
-            Reservation created = reservationRepo.create(dto);
-            if (created != null) {
+            if (reservation != null) {
                 showAlert(Alert.AlertType.INFORMATION, "Rezervimi u shtua me sukses!");
                 clearForm();
             } else {
@@ -155,9 +158,13 @@ public class ReservationsController {
         totalPriceLabel.setText("€0.00");
     }
 
-    // Shto ketë metodë sipas logjikës së aplikacionit tënd, ose hardcode për testim
     private int getLoggedInCustomerId() {
         // TODO: nxirre nga session, ose hardcode për testim p.sh.
         return 1;
+    }
+
+    public void handleBallina(ActionEvent actionEvent) {
+        Stage stage = (Stage) bookButton.getScene().getWindow();
+        SceneManager.switchScene(stage, SceneLocator.Home_Page,"Ballina");
     }
 }
