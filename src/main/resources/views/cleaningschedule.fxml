@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="searchbutton" prefHeight="600.0" prefWidth="896.0" style="-fx-background-color: linear-gradient(to bottom right, #f5f1ea, #d6c8b8);" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.CleaningScheduleController">
+<AnchorPane fx:id="searchbutton" prefHeight="600.0" prefWidth="800.0" style="-fx-background-color: linear-gradient(to bottom right, #f5f1ea, #d6c8b8);" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.CleaningScheduleController">
 
     <children>
         <!-- Titulli -->
